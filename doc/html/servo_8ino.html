@@ -95,7 +95,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="textblock"><code>#include &lt;Servo.h&gt;</code><br />
 <code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;stdint.h&gt;</code><br />
-<code>#include &quot;settings.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="settings_8h_source.html">settings.h</a>&quot;</code><br />
 </div>
 <p><a href="servo_8ino_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -145,19 +145,19 @@ Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:adf02be48d17da3f4a229ebfdfda2fa71"><td class="memItemLeft" align="right" valign="top">Servo&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="servo_8ino.html#adf02be48d17da3f4a229ebfdfda2fa71">servo</a> [<a class="el" href="rhand_8h.html#a7baed4559391f95790fea2b456a22b68">SERVOS</a>]</td></tr>
+<tr class="memitem:adf02be48d17da3f4a229ebfdfda2fa71"><td class="memItemLeft" align="right" valign="top">Servo&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="servo_8ino.html#adf02be48d17da3f4a229ebfdfda2fa71">servo</a> [<a class="el" href="settings_8h.html#a7baed4559391f95790fea2b456a22b68">SERVOS</a>]</td></tr>
 <tr class="separator:adf02be48d17da3f4a229ebfdfda2fa71"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afb7b19d5ec5c1046df4a261ca4ee9f70"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="servo_8ino.html#afb7b19d5ec5c1046df4a261ca4ee9f70">adjusted_angles</a> [<a class="el" href="rhand_8h.html#a7baed4559391f95790fea2b456a22b68">SERVOS</a>][181]</td></tr>
+<tr class="memitem:afb7b19d5ec5c1046df4a261ca4ee9f70"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="servo_8ino.html#afb7b19d5ec5c1046df4a261ca4ee9f70">adjusted_angles</a> [<a class="el" href="settings_8h.html#a7baed4559391f95790fea2b456a22b68">SERVOS</a>][181]</td></tr>
 <tr class="separator:afb7b19d5ec5c1046df4a261ca4ee9f70"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae88c6e452cc6a2dc7af59897c42d8e1e"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="servo_8ino.html#ae88c6e452cc6a2dc7af59897c42d8e1e">current_pos</a> [<a class="el" href="rhand_8h.html#a7baed4559391f95790fea2b456a22b68">SERVOS</a>] = { 0 }</td></tr>
+<tr class="memitem:ae88c6e452cc6a2dc7af59897c42d8e1e"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="servo_8ino.html#ae88c6e452cc6a2dc7af59897c42d8e1e">current_pos</a> [<a class="el" href="settings_8h.html#a7baed4559391f95790fea2b456a22b68">SERVOS</a>] = { 0 }</td></tr>
 <tr class="separator:ae88c6e452cc6a2dc7af59897c42d8e1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac95651d79c608a3148973b5b1fc9e525"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac95651d79c608a3148973b5b1fc9e525"></a>
-char&#160;</td><td class="memItemRight" valign="bottom"><b>buf</b> [<a class="el" href="rhand_8h.html#aeca034f67218340ecb2261a22c2f3dcd">BUFSIZE</a>]</td></tr>
+char&#160;</td><td class="memItemRight" valign="bottom"><b>buf</b> [<a class="el" href="settings_8h.html#aeca034f67218340ecb2261a22c2f3dcd">BUFSIZE</a>]</td></tr>
 <tr class="separator:ac95651d79c608a3148973b5b1fc9e525"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This is the common code for all Arduino servo boards.</p>
-<p>The program is written to be a simple module that can pass values to servos. Each board needs its own settings file. Because of limitations of the Arduino command line interface, these are included as <b>settings.h</b>. The Makefile manages which configuration is currently located in the same directory as this file and named <b>settings.h</b>. A better build system in the future could use the tools <b>avrdude</b> or <b>ino</b>.</p>
+<p>The program is written to be a simple module that can pass values to servos. Each board needs its own settings file. Because of limitations of the Arduino command line interface, these are included as <b><a class="el" href="settings_8h.html">settings.h</a></b>. The Makefile manages which configuration is currently located in the same directory as this file and named <b><a class="el" href="settings_8h.html">settings.h</a></b>. A better build system in the future could use the tools <b>avrdude</b> or <b>ino</b>.</p>
 <p>See <a class="el" href="rhand_8h.html">rhand.h</a> for an example of a settings header, and <a class="el" href="index.html#Arduino">Arduino Protocol</a> for information servo IDs and other relevant values. </p>
 
 <p>Definition in file <a class="el" href="servo_8ino_source.html">servo.ino</a>.</p>
@@ -175,10 +175,10 @@ char&#160;</td><td class="memItemRight" valign="bottom"><b>buf</b> [<a class="el
 <p>The print buffer. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a class="anchor" id="a99fb83031ce9923c84392b4e92f956b5a28384d7634c7976556d681b53a81e140"></a>MAX_LIM&#160;</td><td class="fielddoc">
-<p>Index for the <a class="el" href="rhand_8h.html#ab48e069f24be713d91d0268626f2df7d">limit</a> variables. </p>
+<p>Index for the <a class="el" href="settings_8h.html#ab48e069f24be713d91d0268626f2df7d">limit</a> variables. </p>
 </td></tr>
 <tr><td class="fieldname"><a class="anchor" id="a99fb83031ce9923c84392b4e92f956b5ac997ff2715ad695454398a53eeed31cc"></a>CANCEL_SIGNAL&#160;</td><td class="fielddoc">
-<p>Index for the <a class="el" href="rhand_8h.html#ab48e069f24be713d91d0268626f2df7d">limit</a> variables. </p>
+<p>Index for the <a class="el" href="settings_8h.html#ab48e069f24be713d91d0268626f2df7d">limit</a> variables. </p>
 </td></tr>
 <tr><td class="fieldname"><a class="anchor" id="a99fb83031ce9923c84392b4e92f956b5ac22157b3832ba05308923fb860925d68"></a>WAIT_RESPONSE&#160;</td><td class="fielddoc">
 <p>Incoming signal commanding termination of the current loop. </p>
@@ -306,7 +306,7 @@ char&#160;</td><td class="memItemRight" valign="bottom"><b>buf</b> [<a class="el
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Prints a string to the serial port if <a class="el" href="rhand_8h.html#a06fc87d81c62e9abb8790b6e5713c55bace3e26676763569084c86b8c3b67d601">VERBOSE</a> is enabled. </p>
+<p>Prints a string to the serial port if <a class="el" href="settings_8h.html#abc6126af1d45847bc59afa0aa3216b04ace3e26676763569084c86b8c3b67d601">VERBOSE</a> is enabled. </p>
 
 <p>Definition at line <a class="el" href="servo_8ino_source.html#l00136">136</a> of file <a class="el" href="servo_8ino_source.html">servo.ino</a>.</p>
 
@@ -325,7 +325,7 @@ char&#160;</td><td class="memItemRight" valign="bottom"><b>buf</b> [<a class="el
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Prints an integer to the serial port as a string if <a class="el" href="rhand_8h.html#a06fc87d81c62e9abb8790b6e5713c55bace3e26676763569084c86b8c3b67d601">VERBOSE</a> is enabled. </p>
+<p>Prints an integer to the serial port as a string if <a class="el" href="settings_8h.html#abc6126af1d45847bc59afa0aa3216b04ace3e26676763569084c86b8c3b67d601">VERBOSE</a> is enabled. </p>
 
 <p>Definition at line <a class="el" href="servo_8ino_source.html#l00147">147</a> of file <a class="el" href="servo_8ino_source.html">servo.ino</a>.</p>
 
@@ -360,7 +360,7 @@ char&#160;</td><td class="memItemRight" valign="bottom"><b>buf</b> [<a class="el
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Prints an integer as a string surrounded by two strings to the serial port if <a class="el" href="rhand_8h.html#a06fc87d81c62e9abb8790b6e5713c55bace3e26676763569084c86b8c3b67d601">VERBOSE</a> is enabled. </p>
+<p>Prints an integer as a string surrounded by two strings to the serial port if <a class="el" href="settings_8h.html#abc6126af1d45847bc59afa0aa3216b04ace3e26676763569084c86b8c3b67d601">VERBOSE</a> is enabled. </p>
 
 <p>Definition at line <a class="el" href="servo_8ino_source.html#l00161">161</a> of file <a class="el" href="servo_8ino_source.html">servo.ino</a>.</p>
 
@@ -468,7 +468,7 @@ char&#160;</td><td class="memItemRight" valign="bottom"><b>buf</b> [<a class="el
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="servo_8ino.html#a20d430b6239d882e0f977aba9147454b">getAdjustedAngle()</a>, <a class="el" href="rhand_8h.html#ae858a0ba64b6875be7726f8cb68fc391">reverse</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="servo_8ino.html#a20d430b6239d882e0f977aba9147454b">getAdjustedAngle()</a>, <a class="el" href="settings_8h.html#ae858a0ba64b6875be7726f8cb68fc391">reverse</a> </dd></dl>
 
 <p>Definition at line <a class="el" href="servo_8ino_source.html#l00237">237</a> of file <a class="el" href="servo_8ino_source.html">servo.ino</a>.</p>
 
@@ -498,11 +498,11 @@ char&#160;</td><td class="memItemRight" valign="bottom"><b>buf</b> [<a class="el
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint8_t adjusted_angles[<a class="el" href="rhand_8h.html#a7baed4559391f95790fea2b456a22b68">SERVOS</a>][181]</td>
+          <td class="memname">uint8_t adjusted_angles[<a class="el" href="settings_8h.html#a7baed4559391f95790fea2b456a22b68">SERVOS</a>][181]</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>The adjusted angles of the servos given the <a class="el" href="rhand_8h.html#ab48e069f24be713d91d0268626f2df7d">limit</a> of each servo. A table calculated at initialization for optimization purposes. Its index corresponds to <a class="el" href="servo_8ino.html#adf02be48d17da3f4a229ebfdfda2fa71">servo</a>. The program uses the convention "angles", but continuous rotation servos are technically compatible. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="servo_8ino.html#a4c944167f0f7eab9551650a150631cc6">setAdjustedAngles</a> (), <a class="el" href="servo_8ino.html#a20d430b6239d882e0f977aba9147454b">getAdjustedAngle</a> () </dd></dl>
+<p>The adjusted angles of the servos given the <a class="el" href="settings_8h.html#ab48e069f24be713d91d0268626f2df7d">limit</a> of each servo. A table calculated at initialization for optimization purposes. Its index corresponds to <a class="el" href="servo_8ino.html#adf02be48d17da3f4a229ebfdfda2fa71">servo</a>. The program uses the convention "angles", but continuous rotation servos are technically compatible. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="servo_8ino.html#a4c944167f0f7eab9551650a150631cc6">setAdjustedAngles</a> (), <a class="el" href="servo_8ino.html#a20d430b6239d882e0f977aba9147454b">getAdjustedAngle</a> () </dd></dl>
 
 <p>Definition at line <a class="el" href="servo_8ino_source.html#l00037">37</a> of file <a class="el" href="servo_8ino_source.html">servo.ino</a>.</p>
 
@@ -513,7 +513,7 @@ char&#160;</td><td class="memItemRight" valign="bottom"><b>buf</b> [<a class="el
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint8_t current_pos[<a class="el" href="rhand_8h.html#a7baed4559391f95790fea2b456a22b68">SERVOS</a>] = { 0 }</td>
+          <td class="memname">uint8_t current_pos[<a class="el" href="settings_8h.html#a7baed4559391f95790fea2b456a22b68">SERVOS</a>] = { 0 }</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -528,7 +528,7 @@ char&#160;</td><td class="memItemRight" valign="bottom"><b>buf</b> [<a class="el
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Servo servo[<a class="el" href="rhand_8h.html#a7baed4559391f95790fea2b456a22b68">SERVOS</a>]</td>
+          <td class="memname">Servo servo[<a class="el" href="settings_8h.html#a7baed4559391f95790fea2b456a22b68">SERVOS</a>]</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -541,7 +541,7 @@ char&#160;</td><td class="memItemRight" valign="bottom"><b>buf</b> [<a class="el
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 19 2015 15:10:21 for RIG InMoov Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 19 2015 15:50:10 for RIG InMoov Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>
