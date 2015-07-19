@@ -1,0 +1,228 @@
+/**
+@mainpage Introduction
+@tableofcontents
+
+@details
+This is the official documentation for the Conestoga Robotics Innovation
+Group's InMoov project. It is not meant to be read linearly or all at once.
+Rather, readers should skim relevant pages and skip information that requires
+more context. More in depth information is provided for those that wish to
+modify the source code. Examples are provided when possible for quick reference
+and experimentation. Note that colored phrases are links for both html and pdf.
+
+@section Dependencies Dependencies
+The project currently depends on <a href="http://www.python.org">Python</a> for
+an example script, <a href="http://www.arduino.cc">Arduino</a>,
+<a href="http://www.stack.nl/~dimitri/doxygen/">Doxygen</a> (if you wish to
+remake the documentation) and <a href="http://www.gnu.org/software/make/">
+Make</a> (if you wish to build the project).
+
+@section Quick_Start Quick Start
+To quickly demo the right hand, do the following. Copy the file
+\b arduino/settings/rhand.h to \b arduino/src/servo/settings.h. Copy the \b
+servo folder to your Arduino sketch folder. Open the Arduino software. Select
+your board and the port it is connected to. Open your sketch, and hit upload.
+Instructions for the Arduino software are located
+<a href="http://www.arduino.cc">on its website</a>.
+
+To transmit commands to the board, run this from the command line.
+@code{.sh}
+python -i example/rhand.py
+@endcode
+You can now run commands defined in that python script.
+
+The python script needs the pyserial library. Its website is located
+<a href="http://pyserial.sourceforge.net/">here.</a>
+
+Call this to connect to the board (replace COM0 with the name of the port you
+set in Arduino).
+@code{.py}
+connect ('COM0')
+@endcode
+
+To demo some movements, run this.
+@code{.py}
+demo()
+@endcode
+
+Read the @ref rhand documentation for more. Read the @ref
+Examples section to understand how it formulates commands.
+
+@section Installation Installation
+You can build this documentation with the command
+@code{.sh}
+make documentation
+@endcode
+from the root directory.
+
+To upload the right hand code to the connected Arduino, run
+@code{.sh}
+make rhand
+@endcode
+Be sure to customize the \b PORT and \b BOARD variables in the \b Makefile.
+
+The build system is in its infancy, so please feel free to modify it as needed
+and add support for other build systems.
+
+@section Arduino Arduino Protocol
+The Arduinos controlling the various parts of the bot communicate over their
+serial ports. All information is sent and recieved using 8 bit unsigned raw
+integers instead of text. This allows extremely fast and simple code, but
+limits programs to 255 signals, identifiers, and values.
+
+However, the Arduino boards only have one function; to pass commands to
+their servos.
+
+@par Servo Position
+Unless otherwise instructed, the Arduino accepts two values at a time. First,
+it accepts a servo number, and a value to write to the pin associated with that
+servo number.
+@par
+Servo numbers start at 0 and should be uniquely identified on every board,
+allowing a maximum of 255 servos on each bot, not including signals. They
+should be assigned different values because if commands are routed through a
+central board, it allows the protocol to remain the same. If an invalid servo
+number is passed to any given board, the board will still read another value
+from the serial port to avoid syncing issues, but it will do nothing to its
+servos.
+@par Servo Values
+The value passed to the servo can be from 0-180. If it exceeds 180 and is not a
+valid signal, the board will change the angle to 180. On positional rotation
+servos, this number represents the servo's target angle. On continuous rotation
+servos, 90 represents stillness, 180 represents full speed in one direction,
+and 0 represents full speed in the other.
+@par
+Each board has callibrations for each servo that scale the angles from 0-180 to
+some minimum angle and some maximum angle. The host program has no need to know
+these values. When the board reports current values, they are non-scaled.
+@par
+To ensure that the board is reading the correct information (servo number or
+servo position), there is a cancel signal.
+
+@par Signals
+The boards accept some pre-defined signals that break the default flow. It can
+recieve these signals at any time and will terminate its current servo command.
+In addition, the board may print some signals to output. Both kinds of signals,
+incoming and outgoing, are assigned starting from 255 and going down. In the
+arduino code, incoming signals are denoted by \b *_SIGNAL, and the outgoing
+signals are denoted by \b *_RESPONSE. We will use this convention.
+
+@par CANCEL_SIGNAL
+This signal exists to cancel all pending input and syncronize the host and
+master. If a host connects to an Arduino and does not know its current state,
+it can send this signal and know that the board is waiting on a servo number.
+
+@par WAIT_RESPONSE
+This signal indicates that the board has no bytes left to read and is ready for
+input. A host does not need to wait for this signal, but it may want to if it
+is experiencing difficulties or the board may have crashed.
+
+@par DUMP_SIGNAL
+This signal makes the board return various information about itself and its
+servos. As of writing, it returns \b DUMP_START_RESPONSE, an ID, its number of
+servos, the values last sent to its servos, and \b DUMP_END_RESPONSE.
+Board IDs start from 181 and go up. It is recommended that if we build more
+modular bots such as this one in the future using the same protocol, they
+recieve unique board identifiers.
+The response is likely to change in the near future as we add sensors and other
+types of devices.
+
+@subsection Examples
+@code{.sh}
+CANCEL_SIGNAL 0 180 1 135 2 90
+@endcode
+This would send the servo with ID 0 a value of 180, servo 1 135, and
+servo 2 90. The board would then respond with \b WAIT_RESPONSE.
+@code{.sh}
+CANCEL_SIGNAL 0 180 1 135 22 CANCEL_SIGNAL 4 45
+@endcode
+This would send the servo with ID 0 a value of 180, servo 1 135, begin
+to read a command for servo 22 but cancel, then send 45 to servo 4.
+@code{.sh}
+CANCEL_SIGNAL 0 0 1 45 2 90 3 135 4 180 DUMP_SIGNAL
+@endcode
+On a board with ID \b BOARD_ID and 5 servos identified as 0-4, this would
+return the response
+@code{.sh}
+DUMP_START_RESPONSE BOARD_ID 4 0 45 90 135 180 DUMP_END_RESPONSE WAIT_RESPONSE
+@endcode
+@code{.sh}
+CANCEL_SIGNAL 0 0 0 45 0 90 0 135 0 180
+@endcode
+If this stream of bytes were sent instantly, it would essentially move servo 0
+directly to 180 degrees (if it was a positional servo) because of
+the speed of the commands. However, if we inserted a slight delay, we could
+slowly move the servo from its starting position to its ending position.
+@code{.sh}
+CANCEL_SIGNAL 0 0 1 0 0 45 1 45 0 90 1 90 0 135 1 135 0 180 1 180
+@endcode
+This would move servo 0 and servo 1 from their start to end positions. If we
+were to send these bytes immediately, they would essentially both move
+instantaneously to 180 degrees (if they were positional servos). However, if we
+were to insert a delay, they would both appear to move together slowly to their
+end location despite the delay between commands. Putting this functionality on
+the Arduino boards themselves would cause the boards to lock and use up
+resources, but formulating commands like this allows computation to occur on
+other systems.
+
+@subsection Values Values
+### Board IDs
+<table>
+    <tr>
+        <td>181</td>
+        <td>Right hand</td>
+    </tr>
+</table>
+### Servo IDs
+<table>
+    <tr>
+        <td>0</td>
+        <td>Right hand wrist</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Right hand thumb</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Right hand index finger</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Right hand middle finger</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Right hand ring finger</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>Right hand pinky finger</td>
+    </tr>
+</table>
+### Signals
+<table>
+    <tr>
+        <td>@ref CANCEL_SIGNAL</td>
+        <td>255</td>
+    </tr>
+    <tr>
+        <td>@ref WAIT_RESPONSE</td>
+        <td>254</td>
+    </tr>
+    <tr>
+        <td>@ref DUMP_SIGNAL</td>
+        <td>253</td>
+    </tr>
+    <tr>
+        <td>@ref DUMP_START_RESPONSE</td>
+        <td>252</td>
+    </tr>
+    <tr>
+        <td>@ref DUMP_END_RESPONSE</td>
+        <td>251</td>
+    </tr>
+</table>
+
+@see servo.ino rhand
+**/

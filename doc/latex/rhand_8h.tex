@@ -1,0 +1,126 @@
+\hypertarget{rhand_8h}{}\section{arduino/settings/rhand.h File Reference}
+\label{rhand_8h}\index{arduino/settings/rhand.\+h@{arduino/settings/rhand.\+h}}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{rhand_8h_a7baed4559391f95790fea2b456a22b68}{S\+E\+R\+V\+O\+S}~6
+\item 
+\#define \hyperlink{rhand_8h_aeca034f67218340ecb2261a22c2f3dcd}{B\+U\+F\+S\+I\+Z\+E}~16
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \hyperlink{rhand_8h_a06fc87d81c62e9abb8790b6e5713c55bace3e26676763569084c86b8c3b67d601}{V\+E\+R\+B\+O\+S\+E} = 0, 
+\hyperlink{rhand_8h_a06fc87d81c62e9abb8790b6e5713c55ba3500b6e5566b426111c65403e81a27b4}{B\+O\+A\+R\+D\+\_\+\+I\+D} = 181
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{rhand_8h_a13edec01163cd92d516634c36fe06aeb}{get\+Servo\+From\+I\+D} (uint8\+\_\+t servo\+\_\+id)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \hyperlink{rhand_8h_ab48e069f24be713d91d0268626f2df7d}{limit} \mbox{[}\hyperlink{rhand_8h_a7baed4559391f95790fea2b456a22b68}{S\+E\+R\+V\+O\+S}\mbox{]}\mbox{[}2\mbox{]}
+\item 
+uint8\+\_\+t \hyperlink{rhand_8h_af9e032ca502bd456fc642064811ca273}{default\+\_\+pos} \mbox{[}\hyperlink{rhand_8h_a7baed4559391f95790fea2b456a22b68}{S\+E\+R\+V\+O\+S}\mbox{]} = \{ 0, 0, 0, 0, 0, 0 \}
+\item 
+uint8\+\_\+t \hyperlink{rhand_8h_ae858a0ba64b6875be7726f8cb68fc391}{reverse} \mbox{[}\hyperlink{rhand_8h_a7baed4559391f95790fea2b456a22b68}{S\+E\+R\+V\+O\+S}\mbox{]} = \{ 0, 0, 0, 0, 0, 1 \}
+\item 
+uint8\+\_\+t \hyperlink{rhand_8h_ae6369c9657b975e4dfe967c7284c1f1b}{pin\+\_\+offset} = 2
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This is an example {\bfseries settings.\+h} for \hyperlink{servo_8ino}{servo.\+ino}.
+
+Every Arduino board on the bot is to be a simple servo controller that accepts commands from serial input, and so they are all to share the code located in \hyperlink{servo_8ino}{servo.\+ino}. Each board needs its own header like this one to define custom information about the board and each servo on the board. This is such a settings file and will be documented as an example. 
+
+\subsection{Macro Definition Documentation}
+\hypertarget{rhand_8h_aeca034f67218340ecb2261a22c2f3dcd}{}\index{rhand.\+h@{rhand.\+h}!B\+U\+F\+S\+I\+Z\+E@{B\+U\+F\+S\+I\+Z\+E}}
+\index{B\+U\+F\+S\+I\+Z\+E@{B\+U\+F\+S\+I\+Z\+E}!rhand.\+h@{rhand.\+h}}
+\subsubsection[{B\+U\+F\+S\+I\+Z\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+U\+F\+S\+I\+Z\+E~16}\label{rhand_8h_aeca034f67218340ecb2261a22c2f3dcd}
+Size of the print buffer (must be large enough to hold \hyperlink{servo_8ino_a99fb83031ce9923c84392b4e92f956b5aebe1616f434c26e10f088aebf559d708}{D\+U\+M\+P\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E\+\_\+\+L\+E\+N}). 
+
+Definition at line 18 of file rhand.\+h.
+
+\hypertarget{rhand_8h_a7baed4559391f95790fea2b456a22b68}{}\index{rhand.\+h@{rhand.\+h}!S\+E\+R\+V\+O\+S@{S\+E\+R\+V\+O\+S}}
+\index{S\+E\+R\+V\+O\+S@{S\+E\+R\+V\+O\+S}!rhand.\+h@{rhand.\+h}}
+\subsubsection[{S\+E\+R\+V\+O\+S}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+E\+R\+V\+O\+S~6}\label{rhand_8h_a7baed4559391f95790fea2b456a22b68}
+Number of servos to assign. 
+
+Definition at line 14 of file rhand.\+h.
+
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{rhand_8h_a06fc87d81c62e9abb8790b6e5713c55b}{}\subsubsection[{anonymous enum}]{\setlength{\rightskip}{0pt plus 5cm}anonymous enum}\label{rhand_8h_a06fc87d81c62e9abb8790b6e5713c55b}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{V\+E\+R\+B\+O\+S\+E@{V\+E\+R\+B\+O\+S\+E}!rhand.\+h@{rhand.\+h}}\index{rhand.\+h@{rhand.\+h}!V\+E\+R\+B\+O\+S\+E@{V\+E\+R\+B\+O\+S\+E}}\item[{\em 
+\hypertarget{rhand_8h_a06fc87d81c62e9abb8790b6e5713c55bace3e26676763569084c86b8c3b67d601}{}V\+E\+R\+B\+O\+S\+E\label{rhand_8h_a06fc87d81c62e9abb8790b6e5713c55bace3e26676763569084c86b8c3b67d601}
+}]Whether to print debug output to the serial port. \index{B\+O\+A\+R\+D\+\_\+\+I\+D@{B\+O\+A\+R\+D\+\_\+\+I\+D}!rhand.\+h@{rhand.\+h}}\index{rhand.\+h@{rhand.\+h}!B\+O\+A\+R\+D\+\_\+\+I\+D@{B\+O\+A\+R\+D\+\_\+\+I\+D}}\item[{\em 
+\hypertarget{rhand_8h_a06fc87d81c62e9abb8790b6e5713c55ba3500b6e5566b426111c65403e81a27b4}{}B\+O\+A\+R\+D\+\_\+\+I\+D\label{rhand_8h_a06fc87d81c62e9abb8790b6e5713c55ba3500b6e5566b426111c65403e81a27b4}
+}]The unique identification for this board. \end{description}
+\end{Desc}
+
+
+Definition at line 45 of file rhand.\+h.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{rhand_8h_a13edec01163cd92d516634c36fe06aeb}{}\index{rhand.\+h@{rhand.\+h}!get\+Servo\+From\+I\+D@{get\+Servo\+From\+I\+D}}
+\index{get\+Servo\+From\+I\+D@{get\+Servo\+From\+I\+D}!rhand.\+h@{rhand.\+h}}
+\subsubsection[{get\+Servo\+From\+I\+D}]{\setlength{\rightskip}{0pt plus 5cm}int get\+Servo\+From\+I\+D (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{servo\+\_\+id}
+\end{DoxyParamCaption}
+)}\label{rhand_8h_a13edec01163cd92d516634c36fe06aeb}
+This function gets array index of a servo using its I\+D. If the servo does not belong to this board, it returns -\/1. It is recommended that boards with complex I\+D assignments use a switch statement or a similar solution to save resources. \begin{DoxySeeAlso}{See also}
+\hyperlink{index_Values}{Values} 
+\end{DoxySeeAlso}
+
+
+Definition at line 59 of file rhand.\+h.
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{rhand_8h_af9e032ca502bd456fc642064811ca273}{}\index{rhand.\+h@{rhand.\+h}!default\+\_\+pos@{default\+\_\+pos}}
+\index{default\+\_\+pos@{default\+\_\+pos}!rhand.\+h@{rhand.\+h}}
+\subsubsection[{default\+\_\+pos}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t default\+\_\+pos\mbox{[}{\bf S\+E\+R\+V\+O\+S}\mbox{]} = \{ 0, 0, 0, 0, 0, 0 \}}\label{rhand_8h_af9e032ca502bd456fc642064811ca273}
+The default position to set each servo to. Its index corresponds with \hyperlink{servo_8ino_adf02be48d17da3f4a229ebfdfda2fa71}{servo}. 
+
+Definition at line 33 of file rhand.\+h.
+
+\hypertarget{rhand_8h_ab48e069f24be713d91d0268626f2df7d}{}\index{rhand.\+h@{rhand.\+h}!limit@{limit}}
+\index{limit@{limit}!rhand.\+h@{rhand.\+h}}
+\subsubsection[{limit}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t limit\mbox{[}{\bf S\+E\+R\+V\+O\+S}\mbox{]}\mbox{[}2\mbox{]}}\label{rhand_8h_ab48e069f24be713d91d0268626f2df7d}
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+= \{
+    \{ 15, 114 \}, \{ 10, 123 \}, \{ 17, 100 \},
+    \{ 25, 122 \}, \{ 22, 112 \}, \{ 82, 160 \},
+\}
+\end{DoxyCode}
+This is the callibration for each servo-\/ its minimum then maximum angle (for positional servos) or its minimum then maximum speed (for continuous rotation servos). Its index corresponds with \hyperlink{servo_8ino_adf02be48d17da3f4a229ebfdfda2fa71}{servo}. 
+
+Definition at line 25 of file rhand.\+h.
+
+\hypertarget{rhand_8h_ae6369c9657b975e4dfe967c7284c1f1b}{}\index{rhand.\+h@{rhand.\+h}!pin\+\_\+offset@{pin\+\_\+offset}}
+\index{pin\+\_\+offset@{pin\+\_\+offset}!rhand.\+h@{rhand.\+h}}
+\subsubsection[{pin\+\_\+offset}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t pin\+\_\+offset = 2}\label{rhand_8h_ae6369c9657b975e4dfe967c7284c1f1b}
+Pin value to begin assigning pins at. It may be necessary to eventually implement a similar pin retrieval system to \hyperlink{rhand_8h_a13edec01163cd92d516634c36fe06aeb}{get\+Servo\+From\+I\+D()}. 
+
+Definition at line 43 of file rhand.\+h.
+
+\hypertarget{rhand_8h_ae858a0ba64b6875be7726f8cb68fc391}{}\index{rhand.\+h@{rhand.\+h}!reverse@{reverse}}
+\index{reverse@{reverse}!rhand.\+h@{rhand.\+h}}
+\subsubsection[{reverse}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t reverse\mbox{[}{\bf S\+E\+R\+V\+O\+S}\mbox{]} = \{ 0, 0, 0, 0, 0, 1 \}}\label{rhand_8h_ae858a0ba64b6875be7726f8cb68fc391}
+Indicates whether to reverse the angles for each servo, for servos that turn the wrong way. Its index corresponds with \hyperlink{servo_8ino_adf02be48d17da3f4a229ebfdfda2fa71}{servo}. 
+
+Definition at line 38 of file rhand.\+h.
+

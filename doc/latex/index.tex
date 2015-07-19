@@ -1,0 +1,127 @@
+This is the official documentation for the Conestoga Robotics Innovation Group\textquotesingle{}s In\+Moov project. It is not meant to be read linearly or all at once. Rather, readers should skim relevant pages and skip information that requires more context. More in depth information is provided for those that wish to modify the source code. Examples are provided when possible for quick reference and experimentation. Note that colored phrases are links for both html and pdf.\hypertarget{index_Dependencies}{}\section{Dependencies}\label{index_Dependencies}
+The project currently depends on \href{http://www.python.org}{\tt Python} for an example script, \href{http://www.arduino.cc}{\tt Arduino}, \href{http://www.stack.nl/~dimitri/doxygen/}{\tt Doxygen} (if you wish to remake the documentation) and \href{http://www.gnu.org/software/make/}{\tt Make} (if you wish to build the project).\hypertarget{index_Quick_Start}{}\section{Quick Start}\label{index_Quick_Start}
+To quickly demo the right hand, do the following. Copy the file {\bfseries \hyperlink{rhand_8h}{arduino/settings/rhand.\+h}} to {\bfseries arduino/src/servo/settings.\+h}. Copy the {\bfseries servo} folder to your Arduino sketch folder. Open the Arduino software. Select your board and the port it is connected to. Open your sketch, and hit upload. Instructions for the Arduino software are located \href{http://www.arduino.cc}{\tt on its website}.
+
+To transmit commands to the board, run this from the command line. 
+\begin{DoxyCode}
+1 python -i example/rhand.py
+\end{DoxyCode}
+ You can now run commands defined in that python script.
+
+The python script needs the pyserial library. Its website is located \href{http://pyserial.sourceforge.net/}{\tt here.}
+
+Call this to connect to the board (replace C\+O\+M0 with the name of the port you set in Arduino). 
+\begin{DoxyCode}
+1 connect (\textcolor{stringliteral}{'COM0'})
+\end{DoxyCode}
+
+
+To demo some movements, run this. 
+\begin{DoxyCode}
+1 \hyperlink{namespacerhand_ab61f76a347c39c86870720263e1ffbdc}{demo}()
+\end{DoxyCode}
+
+
+Read the \hyperlink{namespacerhand}{rhand} documentation for more. Read the \hyperlink{index_Examples}{Examples} section to understand how it formulates commands.\hypertarget{index_Installation}{}\section{Installation}\label{index_Installation}
+You can build this documentation with the command 
+\begin{DoxyCode}
+1 make documentation
+\end{DoxyCode}
+ from the root directory.
+
+To upload the right hand code to the connected Arduino, run 
+\begin{DoxyCode}
+1 make rhand
+\end{DoxyCode}
+ Be sure to customize the {\bfseries P\+O\+R\+T} and {\bfseries B\+O\+A\+R\+D} variables in the {\bfseries Makefile}.
+
+The build system is in its infancy, so please feel free to modify it as needed and add support for other build systems.\hypertarget{index_Arduino}{}\section{Arduino Protocol}\label{index_Arduino}
+The Arduinos controlling the various parts of the bot communicate over their serial ports. All information is sent and recieved using 8 bit unsigned raw integers instead of text. This allows extremely fast and simple code, but limits programs to 255 signals, identifiers, and values.
+
+However, the Arduino boards only have one function; to pass commands to their servos.
+
+\begin{DoxyParagraph}{Servo Position}
+Unless otherwise instructed, the Arduino accepts two values at a time. First, it accepts a servo number, and a value to write to the pin associated with that servo number. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+Servo numbers start at 0 and should be uniquely identified on every board, allowing a maximum of 255 servos on each bot, not including signals. They should be assigned different values because if commands are routed through a central board, it allows the protocol to remain the same. If an invalid servo number is passed to any given board, the board will still read another value from the serial port to avoid syncing issues, but it will do nothing to its servos. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Servo Values}
+The value passed to the servo can be from 0-\/180. If it exceeds 180 and is not a valid signal, the board will change the angle to 180. On positional rotation servos, this number represents the servo\textquotesingle{}s target angle. On continuous rotation servos, 90 represents stillness, 180 represents full speed in one direction, and 0 represents full speed in the other. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+Each board has callibrations for each servo that scale the angles from 0-\/180 to some minimum angle and some maximum angle. The host program has no need to know these values. When the board reports current values, they are non-\/scaled. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+To ensure that the board is reading the correct information (servo number or servo position), there is a cancel signal.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Signals}
+The boards accept some pre-\/defined signals that break the default flow. It can recieve these signals at any time and will terminate its current servo command. In addition, the board may print some signals to output. Both kinds of signals, incoming and outgoing, are assigned starting from 255 and going down. In the arduino code, incoming signals are denoted by {\bfseries $\ast$\+\_\+\+S\+I\+G\+N\+A\+L}, and the outgoing signals are denoted by {\bfseries $\ast$\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E}. We will use this convention.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{C\+A\+N\+C\+E\+L\+\_\+\+S\+I\+G\+N\+A\+L}
+This signal exists to cancel all pending input and syncronize the host and master. If a host connects to an Arduino and does not know its current state, it can send this signal and know that the board is waiting on a servo number.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{W\+A\+I\+T\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E}
+This signal indicates that the board has no bytes left to read and is ready for input. A host does not need to wait for this signal, but it may want to if it is experiencing difficulties or the board may have crashed.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{D\+U\+M\+P\+\_\+\+S\+I\+G\+N\+A\+L}
+This signal makes the board return various information about itself and its servos. As of writing, it returns {\bfseries D\+U\+M\+P\+\_\+\+S\+T\+A\+R\+T\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E}, an I\+D, its number of servos, the values last sent to its servos, and {\bfseries D\+U\+M\+P\+\_\+\+E\+N\+D\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E}. Board I\+Ds start from 181 and go up. It is recommended that if we build more modular bots such as this one in the future using the same protocol, they recieve unique board identifiers. The response is likely to change in the near future as we add sensors and other types of devices.
+\end{DoxyParagraph}
+\hypertarget{index_Examples}{}\subsection{Examples}\label{index_Examples}
+
+\begin{DoxyCode}
+1 CANCEL\_SIGNAL 0 180 1 135 2 90
+\end{DoxyCode}
+ This would send the servo with I\+D 0 a value of 180, servo 1 135, and servo 2 90. The board would then respond with {\bfseries W\+A\+I\+T\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E}. 
+\begin{DoxyCode}
+1 CANCEL\_SIGNAL 0 180 1 135 22 CANCEL\_SIGNAL 4 45
+\end{DoxyCode}
+ This would send the servo with I\+D 0 a value of 180, servo 1 135, begin to read a command for servo 22 but cancel, then send 45 to servo 4. 
+\begin{DoxyCode}
+1 CANCEL\_SIGNAL 0 0 1 45 2 90 3 135 4 180 DUMP\_SIGNAL
+\end{DoxyCode}
+ On a board with I\+D {\bfseries B\+O\+A\+R\+D\+\_\+\+I\+D} and 5 servos identified as 0-\/4, this would return the response 
+\begin{DoxyCode}
+1 DUMP\_START\_RESPONSE BOARD\_ID 4 0 45 90 135 180 DUMP\_END\_RESPONSE WAIT\_RESPONSE
+\end{DoxyCode}
+ 
+\begin{DoxyCode}
+1 CANCEL\_SIGNAL 0 0 0 45 0 90 0 135 0 180
+\end{DoxyCode}
+ If this stream of bytes were sent instantly, it would essentially move servo 0 directly to 180 degrees (if it was a positional servo) because of the speed of the commands. However, if we inserted a slight delay, we could slowly move the servo from its starting position to its ending position. 
+\begin{DoxyCode}
+1 CANCEL\_SIGNAL 0 0 1 0 0 45 1 45 0 90 1 90 0 135 1 135 0 180 1 180
+\end{DoxyCode}
+ This would move servo 0 and servo 1 from their start to end positions. If we were to send these bytes immediately, they would essentially both move instantaneously to 180 degrees (if they were positional servos). However, if we were to insert a delay, they would both appear to move together slowly to their end location despite the delay between commands. Putting this functionality on the Arduino boards themselves would cause the boards to lock and use up resources, but formulating commands like this allows computation to occur on other systems.\hypertarget{index_Values}{}\subsection{Values}\label{index_Values}
+\subsubsection*{Board I\+Ds}
+
+\begin{TabularC}{2}
+\hline
+181 &Right hand  \\\cline{1-2}
+\end{TabularC}
+\subsubsection*{Servo I\+Ds}
+
+\begin{TabularC}{2}
+\hline
+0 &Right hand wrist  \\\cline{1-2}
+1 &Right hand thumb  \\\cline{1-2}
+2 &Right hand index finger  \\\cline{1-2}
+3 &Right hand middle finger  \\\cline{1-2}
+4 &Right hand ring finger  \\\cline{1-2}
+5 &Right hand pinky finger  \\\cline{1-2}
+\end{TabularC}
+\subsubsection*{Signals}
+
+\begin{TabularC}{2}
+\hline
+\hyperlink{servo_8ino_a99fb83031ce9923c84392b4e92f956b5ac997ff2715ad695454398a53eeed31cc}{C\+A\+N\+C\+E\+L\+\_\+\+S\+I\+G\+N\+A\+L} &255  \\\cline{1-2}
+\hyperlink{servo_8ino_a99fb83031ce9923c84392b4e92f956b5ac22157b3832ba05308923fb860925d68}{W\+A\+I\+T\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E} &254  \\\cline{1-2}
+\hyperlink{servo_8ino_a99fb83031ce9923c84392b4e92f956b5a31cd671c80d04a4acc2d8256ec960c90}{D\+U\+M\+P\+\_\+\+S\+I\+G\+N\+A\+L} &253  \\\cline{1-2}
+\hyperlink{servo_8ino_a99fb83031ce9923c84392b4e92f956b5a51975080564db9aa29bff29cce328b5f}{D\+U\+M\+P\+\_\+\+S\+T\+A\+R\+T\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E} &252  \\\cline{1-2}
+\hyperlink{servo_8ino_a99fb83031ce9923c84392b4e92f956b5aa7ca295335eb71b345d3b0bd0e53277e}{D\+U\+M\+P\+\_\+\+E\+N\+D\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E} &251  \\\cline{1-2}
+\end{TabularC}
+
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{servo_8ino}{servo.\+ino} \hyperlink{namespacerhand}{rhand} 
+\end{DoxySeeAlso}
