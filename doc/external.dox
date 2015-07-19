@@ -9,7 +9,7 @@ Rather, readers should skim relevant pages and skip information that requires
 more context. More in depth information is provided for those that wish to
 modify the source code. Examples are provided when possible for quick reference
 and experimentation. Note that colored phrases are links for both html and pdf.
-Not that this project has a git repository located
+This project has a git repository located
 <a href="https://github.com/rbong/rig-inmoov">here</a>.
 
 @section Dependencies Dependencies
