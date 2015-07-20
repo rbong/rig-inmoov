@@ -12,16 +12,13 @@ See @ref rhand.h for an example of a settings header, and @ref Arduino for
 information servo IDs and other relevant values.
 **/
 
+#include <Servo.h>
+
 // Arduino's servo library
 #include <stdio.h>
 #include <stdint.h>
 
 #include "settings.h"
-
-// for defining test libraries that route input elsewhere
-#ifndef SERVO_LIB
-#include <Servo.h>
-#endif
 
 /**
 The representation of the servos.  Used to keep track of pin assignments and
