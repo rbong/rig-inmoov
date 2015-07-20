@@ -1,6 +1,5 @@
 \hypertarget{servo_8ino}{}\section{arduino/src/servo/servo.ino File Reference}
 \label{servo_8ino}\index{arduino/src/servo/servo.\+ino@{arduino/src/servo/servo.\+ino}}
-{\ttfamily \#include $<$Servo.\+h$>$}\\*
 {\ttfamily \#include $<$stdio.\+h$>$}\\*
 {\ttfamily \#include $<$stdint.\+h$>$}\\*
 {\ttfamily \#include \char`\"{}settings.\+h\char`\"{}}\\*
@@ -49,13 +48,13 @@ void \hyperlink{servo_8ino_a9cfb336c355574cb26d524cb65a4a7ec}{serial\+Wait} ()
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-Servo \hyperlink{servo_8ino_adf02be48d17da3f4a229ebfdfda2fa71}{servo} \mbox{[}\hyperlink{settings_8h_a7baed4559391f95790fea2b456a22b68}{S\+E\+R\+V\+O\+S}\mbox{]}
+Servo \hyperlink{servo_8ino_adf02be48d17da3f4a229ebfdfda2fa71}{servo} \mbox{[}\hyperlink{rhand_8h_a7baed4559391f95790fea2b456a22b68}{S\+E\+R\+V\+O\+S}\mbox{]}
 \item 
-uint8\+\_\+t \hyperlink{servo_8ino_afb7b19d5ec5c1046df4a261ca4ee9f70}{adjusted\+\_\+angles} \mbox{[}\hyperlink{settings_8h_a7baed4559391f95790fea2b456a22b68}{S\+E\+R\+V\+O\+S}\mbox{]}\mbox{[}181\mbox{]}
+uint8\+\_\+t \hyperlink{servo_8ino_afb7b19d5ec5c1046df4a261ca4ee9f70}{adjusted\+\_\+angles} \mbox{[}\hyperlink{rhand_8h_a7baed4559391f95790fea2b456a22b68}{S\+E\+R\+V\+O\+S}\mbox{]}\mbox{[}181\mbox{]}
 \item 
-uint8\+\_\+t \hyperlink{servo_8ino_ae88c6e452cc6a2dc7af59897c42d8e1e}{current\+\_\+pos} \mbox{[}\hyperlink{settings_8h_a7baed4559391f95790fea2b456a22b68}{S\+E\+R\+V\+O\+S}\mbox{]} = \{ 0 \}
+uint8\+\_\+t \hyperlink{servo_8ino_ae88c6e452cc6a2dc7af59897c42d8e1e}{current\+\_\+pos} \mbox{[}\hyperlink{rhand_8h_a7baed4559391f95790fea2b456a22b68}{S\+E\+R\+V\+O\+S}\mbox{]} = \{ 0 \}
 \item 
-\hypertarget{servo_8ino_ac95651d79c608a3148973b5b1fc9e525}{}char {\bfseries buf} \mbox{[}\hyperlink{settings_8h_aeca034f67218340ecb2261a22c2f3dcd}{B\+U\+F\+S\+I\+Z\+E}\mbox{]}\label{servo_8ino_ac95651d79c608a3148973b5b1fc9e525}
+\hypertarget{servo_8ino_ac95651d79c608a3148973b5b1fc9e525}{}char {\bfseries buf} \mbox{[}\hyperlink{rhand_8h_aeca034f67218340ecb2261a22c2f3dcd}{B\+U\+F\+S\+I\+Z\+E}\mbox{]}\label{servo_8ino_ac95651d79c608a3148973b5b1fc9e525}
 
 \end{DoxyCompactItemize}
 
@@ -63,7 +62,7 @@ uint8\+\_\+t \hyperlink{servo_8ino_ae88c6e452cc6a2dc7af59897c42d8e1e}{current\+\
 \subsection{Detailed Description}
 This is the common code for all Arduino servo boards.
 
-The program is written to be a simple module that can pass values to servos. Each board needs its own settings file. Because of limitations of the Arduino command line interface, these are included as {\bfseries \hyperlink{settings_8h}{settings.\+h}}. The Makefile manages which configuration is currently located in the same directory as this file and named {\bfseries \hyperlink{settings_8h}{settings.\+h}}. A better build system in the future could use the tools {\bfseries avrdude} or {\bfseries ino}.
+The program is written to be a simple module that can pass values to servos. Each board needs its own settings file. Because of limitations of the Arduino command line interface, these are included as {\bfseries settings.\+h}. The Makefile manages which configuration is currently located in the same directory as this file and named {\bfseries settings.\+h}. A better build system in the future could use the tools {\bfseries avrdude} or {\bfseries ino}.
 
 See \hyperlink{rhand_8h}{rhand.\+h} for an example of a settings header, and \hyperlink{index_Arduino}{Arduino Protocol} for information servo I\+Ds and other relevant values. 
 
@@ -78,9 +77,9 @@ The print buffer.
 \begin{description}
 \index{M\+A\+X\+\_\+\+L\+I\+M@{M\+A\+X\+\_\+\+L\+I\+M}!servo.\+ino@{servo.\+ino}}\index{servo.\+ino@{servo.\+ino}!M\+A\+X\+\_\+\+L\+I\+M@{M\+A\+X\+\_\+\+L\+I\+M}}\item[{\em 
 \hypertarget{servo_8ino_a99fb83031ce9923c84392b4e92f956b5a28384d7634c7976556d681b53a81e140}{}M\+A\+X\+\_\+\+L\+I\+M\label{servo_8ino_a99fb83031ce9923c84392b4e92f956b5a28384d7634c7976556d681b53a81e140}
-}]Index for the \hyperlink{settings_8h_ab48e069f24be713d91d0268626f2df7d}{limit} variables. \index{C\+A\+N\+C\+E\+L\+\_\+\+S\+I\+G\+N\+A\+L@{C\+A\+N\+C\+E\+L\+\_\+\+S\+I\+G\+N\+A\+L}!servo.\+ino@{servo.\+ino}}\index{servo.\+ino@{servo.\+ino}!C\+A\+N\+C\+E\+L\+\_\+\+S\+I\+G\+N\+A\+L@{C\+A\+N\+C\+E\+L\+\_\+\+S\+I\+G\+N\+A\+L}}\item[{\em 
+}]Index for the \hyperlink{rhand_8h_ab48e069f24be713d91d0268626f2df7d}{limit} variables. \index{C\+A\+N\+C\+E\+L\+\_\+\+S\+I\+G\+N\+A\+L@{C\+A\+N\+C\+E\+L\+\_\+\+S\+I\+G\+N\+A\+L}!servo.\+ino@{servo.\+ino}}\index{servo.\+ino@{servo.\+ino}!C\+A\+N\+C\+E\+L\+\_\+\+S\+I\+G\+N\+A\+L@{C\+A\+N\+C\+E\+L\+\_\+\+S\+I\+G\+N\+A\+L}}\item[{\em 
 \hypertarget{servo_8ino_a99fb83031ce9923c84392b4e92f956b5ac997ff2715ad695454398a53eeed31cc}{}C\+A\+N\+C\+E\+L\+\_\+\+S\+I\+G\+N\+A\+L\label{servo_8ino_a99fb83031ce9923c84392b4e92f956b5ac997ff2715ad695454398a53eeed31cc}
-}]Index for the \hyperlink{settings_8h_ab48e069f24be713d91d0268626f2df7d}{limit} variables. \index{W\+A\+I\+T\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E@{W\+A\+I\+T\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E}!servo.\+ino@{servo.\+ino}}\index{servo.\+ino@{servo.\+ino}!W\+A\+I\+T\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E@{W\+A\+I\+T\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E}}\item[{\em 
+}]Index for the \hyperlink{rhand_8h_ab48e069f24be713d91d0268626f2df7d}{limit} variables. \index{W\+A\+I\+T\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E@{W\+A\+I\+T\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E}!servo.\+ino@{servo.\+ino}}\index{servo.\+ino@{servo.\+ino}!W\+A\+I\+T\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E@{W\+A\+I\+T\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E}}\item[{\em 
 \hypertarget{servo_8ino_a99fb83031ce9923c84392b4e92f956b5ac22157b3832ba05308923fb860925d68}{}W\+A\+I\+T\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E\label{servo_8ino_a99fb83031ce9923c84392b4e92f956b5ac22157b3832ba05308923fb860925d68}
 }]Incoming signal commanding termination of the current loop. \index{D\+U\+M\+P\+\_\+\+S\+I\+G\+N\+A\+L@{D\+U\+M\+P\+\_\+\+S\+I\+G\+N\+A\+L}!servo.\+ino@{servo.\+ino}}\index{servo.\+ino@{servo.\+ino}!D\+U\+M\+P\+\_\+\+S\+I\+G\+N\+A\+L@{D\+U\+M\+P\+\_\+\+S\+I\+G\+N\+A\+L}}\item[{\em 
 \hypertarget{servo_8ino_a99fb83031ce9923c84392b4e92f956b5a31cd671c80d04a4acc2d8256ec960c90}{}D\+U\+M\+P\+\_\+\+S\+I\+G\+N\+A\+L\label{servo_8ino_a99fb83031ce9923c84392b4e92f956b5a31cd671c80d04a4acc2d8256ec960c90}
@@ -94,7 +93,7 @@ The print buffer.
 \end{Desc}
 
 
-Definition at line 46 of file servo.\+ino.
+Definition at line 45 of file servo.\+ino.
 
 
 
@@ -111,7 +110,7 @@ Writes various information about the board to the serial port. Triggered on rece
 \end{DoxySeeAlso}
 
 
-Definition at line 292 of file servo.\+ino.
+Definition at line 291 of file servo.\+ino.
 
 \hypertarget{servo_8ino_a20d430b6239d882e0f977aba9147454b}{}\index{servo.\+ino@{servo.\+ino}!get\+Adjusted\+Angle@{get\+Adjusted\+Angle}}
 \index{get\+Adjusted\+Angle@{get\+Adjusted\+Angle}!servo.\+ino@{servo.\+ino}}
@@ -136,7 +135,7 @@ The adjusted angle.
 \end{DoxySeeAlso}
 
 
-Definition at line 220 of file servo.\+ino.
+Definition at line 219 of file servo.\+ino.
 
 \hypertarget{servo_8ino_afe461d27b9c48d5921c00d521181f12f}{}\index{servo.\+ino@{servo.\+ino}!loop@{loop}}
 \index{loop@{loop}!servo.\+ino@{servo.\+ino}}
@@ -147,7 +146,7 @@ Definition at line 220 of file servo.\+ino.
 )}\label{servo_8ino_afe461d27b9c48d5921c00d521181f12f}
 The {\bfseries loop} function is called continually until the program exits. It performs actions based on \hyperlink{index_Arduino}{Arduino Protocol}. Recieves two unsigned 8-\/bit integers, a servo id and a servo angle, then calls \hyperlink{servo_8ino_a3a39af320e5158e45d76e498553daa1c}{set\+Servo\+From\+I\+D()}. If the \hyperlink{servo_8ino_a99fb83031ce9923c84392b4e92f956b5a31cd671c80d04a4acc2d8256ec960c90}{D\+U\+M\+P\+\_\+\+S\+I\+G\+N\+A\+L} is recieved at any time, calls \hyperlink{servo_8ino_accd2600060dbaee3a3b41aed4034c63c}{dump()} and continues. If the \hyperlink{servo_8ino_a99fb83031ce9923c84392b4e92f956b5ac997ff2715ad695454398a53eeed31cc}{C\+A\+N\+C\+E\+L\+\_\+\+S\+I\+G\+N\+A\+L} is recieved, it does nothing and continues. If, at the beginning of the function, there is no pending input, it transmits \hyperlink{servo_8ino_a99fb83031ce9923c84392b4e92f956b5ac22157b3832ba05308923fb860925d68}{W\+A\+I\+T\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E}, then does nothing until input is available. 
 
-Definition at line 94 of file servo.\+ino.
+Definition at line 93 of file servo.\+ino.
 
 \hypertarget{servo_8ino_a06d585a91d5f5e628f8a8b36b026e1a3}{}\index{servo.\+ino@{servo.\+ino}!serial\+Get\+Byte@{serial\+Get\+Byte}}
 \index{serial\+Get\+Byte@{serial\+Get\+Byte}!servo.\+ino@{servo.\+ino}}
@@ -161,7 +160,7 @@ If a normal value is recieved, returns that value as an integer. If \hyperlink{s
 \end{DoxyReturn}
 
 
-Definition at line 176 of file servo.\+ino.
+Definition at line 175 of file servo.\+ino.
 
 \hypertarget{servo_8ino_a0f3ae8cf0248b01210907e87ad4eea85}{}\index{servo.\+ino@{servo.\+ino}!serial\+Print@{serial\+Print}}
 \index{serial\+Print@{serial\+Print}!servo.\+ino@{servo.\+ino}}
@@ -170,9 +169,9 @@ Definition at line 176 of file servo.\+ino.
 \item[{const char $\ast$}]{s}
 \end{DoxyParamCaption}
 )}\label{servo_8ino_a0f3ae8cf0248b01210907e87ad4eea85}
-Prints a string to the serial port if \hyperlink{settings_8h_abc6126af1d45847bc59afa0aa3216b04ace3e26676763569084c86b8c3b67d601}{V\+E\+R\+B\+O\+S\+E} is enabled. 
+Prints a string to the serial port if \hyperlink{rhand_8h_a06fc87d81c62e9abb8790b6e5713c55bace3e26676763569084c86b8c3b67d601}{V\+E\+R\+B\+O\+S\+E} is enabled. 
 
-Definition at line 136 of file servo.\+ino.
+Definition at line 135 of file servo.\+ino.
 
 \hypertarget{servo_8ino_a4f103414ba9a87662bcbdd19a742a9de}{}\index{servo.\+ino@{servo.\+ino}!serial\+Print\+Int@{serial\+Print\+Int}}
 \index{serial\+Print\+Int@{serial\+Print\+Int}!servo.\+ino@{servo.\+ino}}
@@ -181,9 +180,9 @@ Definition at line 136 of file servo.\+ino.
 \item[{uint8\+\_\+t}]{i}
 \end{DoxyParamCaption}
 )}\label{servo_8ino_a4f103414ba9a87662bcbdd19a742a9de}
-Prints an integer to the serial port as a string if \hyperlink{settings_8h_abc6126af1d45847bc59afa0aa3216b04ace3e26676763569084c86b8c3b67d601}{V\+E\+R\+B\+O\+S\+E} is enabled. 
+Prints an integer to the serial port as a string if \hyperlink{rhand_8h_a06fc87d81c62e9abb8790b6e5713c55bace3e26676763569084c86b8c3b67d601}{V\+E\+R\+B\+O\+S\+E} is enabled. 
 
-Definition at line 147 of file servo.\+ino.
+Definition at line 146 of file servo.\+ino.
 
 \hypertarget{servo_8ino_a049abf2e8acf34fe1c919b25e04220c7}{}\index{servo.\+ino@{servo.\+ino}!serial\+Print\+Int\+Pretty@{serial\+Print\+Int\+Pretty}}
 \index{serial\+Print\+Int\+Pretty@{serial\+Print\+Int\+Pretty}!servo.\+ino@{servo.\+ino}}
@@ -194,9 +193,9 @@ Definition at line 147 of file servo.\+ino.
 \item[{const char $\ast$}]{post}
 \end{DoxyParamCaption}
 )}\label{servo_8ino_a049abf2e8acf34fe1c919b25e04220c7}
-Prints an integer as a string surrounded by two strings to the serial port if \hyperlink{settings_8h_abc6126af1d45847bc59afa0aa3216b04ace3e26676763569084c86b8c3b67d601}{V\+E\+R\+B\+O\+S\+E} is enabled. 
+Prints an integer as a string surrounded by two strings to the serial port if \hyperlink{rhand_8h_a06fc87d81c62e9abb8790b6e5713c55bace3e26676763569084c86b8c3b67d601}{V\+E\+R\+B\+O\+S\+E} is enabled. 
 
-Definition at line 161 of file servo.\+ino.
+Definition at line 160 of file servo.\+ino.
 
 \hypertarget{servo_8ino_a9cfb336c355574cb26d524cb65a4a7ec}{}\index{servo.\+ino@{servo.\+ino}!serial\+Wait@{serial\+Wait}}
 \index{serial\+Wait@{serial\+Wait}!servo.\+ino@{servo.\+ino}}
@@ -207,7 +206,7 @@ Definition at line 161 of file servo.\+ino.
 )}\label{servo_8ino_a9cfb336c355574cb26d524cb65a4a7ec}
 Waits for serial input to become available then returns. 
 
-Definition at line 317 of file servo.\+ino.
+Definition at line 316 of file servo.\+ino.
 
 \hypertarget{servo_8ino_a4c944167f0f7eab9551650a150631cc6}{}\index{servo.\+ino@{servo.\+ino}!set\+Adjusted\+Angles@{set\+Adjusted\+Angles}}
 \index{set\+Adjusted\+Angles@{set\+Adjusted\+Angles}!servo.\+ino@{servo.\+ino}}
@@ -226,7 +225,7 @@ Calculates modified angles for a servo. The function scales angles from 0-\/180 
 \end{DoxySeeAlso}
 
 
-Definition at line 197 of file servo.\+ino.
+Definition at line 196 of file servo.\+ino.
 
 \hypertarget{servo_8ino_a3a39af320e5158e45d76e498553daa1c}{}\index{servo.\+ino@{servo.\+ino}!set\+Servo\+From\+I\+D@{set\+Servo\+From\+I\+D}}
 \index{set\+Servo\+From\+I\+D@{set\+Servo\+From\+I\+D}!servo.\+ino@{servo.\+ino}}
@@ -241,7 +240,7 @@ Writes an angle to a pin associated with a servo I\+D. \begin{DoxySeeAlso}{See a
 \end{DoxySeeAlso}
 
 
-Definition at line 272 of file servo.\+ino.
+Definition at line 271 of file servo.\+ino.
 
 \hypertarget{servo_8ino_ac3c8cef5edd5074a8219f281c192462f}{}\index{servo.\+ino@{servo.\+ino}!set\+Servo\+From\+Num@{set\+Servo\+From\+Num}}
 \index{set\+Servo\+From\+Num@{set\+Servo\+From\+Num}!servo.\+ino@{servo.\+ino}}
@@ -259,11 +258,11 @@ Writes an angle to a pin associated with a servo number. Servos are controlled b
 \hline
 \end{DoxyParams}
 \begin{DoxySeeAlso}{See also}
-\hyperlink{servo_8ino_a20d430b6239d882e0f977aba9147454b}{get\+Adjusted\+Angle()}, \hyperlink{settings_8h_ae858a0ba64b6875be7726f8cb68fc391}{reverse} 
+\hyperlink{servo_8ino_a20d430b6239d882e0f977aba9147454b}{get\+Adjusted\+Angle()}, \hyperlink{rhand_8h_ae858a0ba64b6875be7726f8cb68fc391}{reverse} 
 \end{DoxySeeAlso}
 
 
-Definition at line 237 of file servo.\+ino.
+Definition at line 236 of file servo.\+ino.
 
 \hypertarget{servo_8ino_a4fc01d736fe50cf5b977f755b675f11d}{}\index{servo.\+ino@{servo.\+ino}!setup@{setup}}
 \index{setup@{setup}!servo.\+ino@{servo.\+ino}}
@@ -274,7 +273,7 @@ Definition at line 237 of file servo.\+ino.
 )}\label{servo_8ino_a4fc01d736fe50cf5b977f755b675f11d}
 The {\bfseries setup} function is called at the beginning of the program. In it, we call \hyperlink{servo_8ino_a4c944167f0f7eab9551650a150631cc6}{set\+Adjusted\+Angles} for each servo and assign a pin to each \hyperlink{servo_8ino_adf02be48d17da3f4a229ebfdfda2fa71}{servo}. 
 
-Definition at line 62 of file servo.\+ino.
+Definition at line 61 of file servo.\+ino.
 
 
 
@@ -282,19 +281,19 @@ Definition at line 62 of file servo.\+ino.
 \hypertarget{servo_8ino_afb7b19d5ec5c1046df4a261ca4ee9f70}{}\index{servo.\+ino@{servo.\+ino}!adjusted\+\_\+angles@{adjusted\+\_\+angles}}
 \index{adjusted\+\_\+angles@{adjusted\+\_\+angles}!servo.\+ino@{servo.\+ino}}
 \subsubsection[{adjusted\+\_\+angles}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t adjusted\+\_\+angles\mbox{[}{\bf S\+E\+R\+V\+O\+S}\mbox{]}\mbox{[}181\mbox{]}}\label{servo_8ino_afb7b19d5ec5c1046df4a261ca4ee9f70}
-The adjusted angles of the servos given the \hyperlink{settings_8h_ab48e069f24be713d91d0268626f2df7d}{limit} of each servo. A table calculated at initialization for optimization purposes. Its index corresponds to \hyperlink{servo_8ino_adf02be48d17da3f4a229ebfdfda2fa71}{servo}. The program uses the convention \char`\"{}angles\char`\"{}, but continuous rotation servos are technically compatible. \begin{DoxySeeAlso}{See also}
+The adjusted angles of the servos given the \hyperlink{rhand_8h_ab48e069f24be713d91d0268626f2df7d}{limit} of each servo. A table calculated at initialization for optimization purposes. Its index corresponds to \hyperlink{servo_8ino_adf02be48d17da3f4a229ebfdfda2fa71}{servo}. The program uses the convention \char`\"{}angles\char`\"{}, but continuous rotation servos are technically compatible. \begin{DoxySeeAlso}{See also}
 \hyperlink{servo_8ino_a4c944167f0f7eab9551650a150631cc6}{set\+Adjusted\+Angles} (), \hyperlink{servo_8ino_a20d430b6239d882e0f977aba9147454b}{get\+Adjusted\+Angle} () 
 \end{DoxySeeAlso}
 
 
-Definition at line 37 of file servo.\+ino.
+Definition at line 36 of file servo.\+ino.
 
 \hypertarget{servo_8ino_ae88c6e452cc6a2dc7af59897c42d8e1e}{}\index{servo.\+ino@{servo.\+ino}!current\+\_\+pos@{current\+\_\+pos}}
 \index{current\+\_\+pos@{current\+\_\+pos}!servo.\+ino@{servo.\+ino}}
 \subsubsection[{current\+\_\+pos}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t current\+\_\+pos\mbox{[}{\bf S\+E\+R\+V\+O\+S}\mbox{]} = \{ 0 \}}\label{servo_8ino_ae88c6e452cc6a2dc7af59897c42d8e1e}
 The current position of each servo. These are updated whenever a servos value is changed and retrieved upon \hyperlink{servo_8ino_a99fb83031ce9923c84392b4e92f956b5a31cd671c80d04a4acc2d8256ec960c90}{D\+U\+M\+P\+\_\+\+S\+I\+G\+N\+A\+L}. 
 
-Definition at line 42 of file servo.\+ino.
+Definition at line 41 of file servo.\+ino.
 
 \hypertarget{servo_8ino_adf02be48d17da3f4a229ebfdfda2fa71}{}\index{servo.\+ino@{servo.\+ino}!servo@{servo}}
 \index{servo@{servo}!servo.\+ino@{servo.\+ino}}
@@ -304,5 +303,5 @@ The representation of the servos. Used to keep track of pin assignments and send
 \end{DoxySeeAlso}
 
 
-Definition at line 27 of file servo.\+ino.
+Definition at line 26 of file servo.\+ino.
 

@@ -8,12 +8,11 @@ var searchData=
   ['serialwait',['serialWait',['../servo_8ino.html#a9cfb336c355574cb26d524cb65a4a7ec',1,'servo.ino']]],
   ['servo',['servo',['../servo_8ino.html#adf02be48d17da3f4a229ebfdfda2fa71',1,'servo.ino']]],
   ['servo_2eino',['servo.ino',['../servo_8ino.html',1,'']]],
-  ['servos',['SERVOS',['../rhand_8h.html#a7baed4559391f95790fea2b456a22b68',1,'SERVOS():&#160;rhand.h'],['../settings_8h.html#a7baed4559391f95790fea2b456a22b68',1,'SERVOS():&#160;settings.h']]],
+  ['servos',['SERVOS',['../rhand_8h.html#a7baed4559391f95790fea2b456a22b68',1,'rhand.h']]],
   ['servowrite',['servowrite',['../namespacerhand.html#a28d7482a563e91bdba673ac765bc3eaf',1,'rhand']]],
   ['setadjustedangles',['setAdjustedAngles',['../servo_8ino.html#a4c944167f0f7eab9551650a150631cc6',1,'servo.ino']]],
   ['setservofromid',['setServoFromID',['../servo_8ino.html#a3a39af320e5158e45d76e498553daa1c',1,'servo.ino']]],
   ['setservofromnum',['setServoFromNum',['../servo_8ino.html#ac3c8cef5edd5074a8219f281c192462f',1,'servo.ino']]],
-  ['settings_2eh',['settings.h',['../settings_8h.html',1,'']]],
   ['setup',['setup',['../servo_8ino.html#a4fc01d736fe50cf5b977f755b675f11d',1,'servo.ino']]],
   ['sweep',['sweep',['../namespacerhand.html#a2e8c6700bc1459e613d6909c647923df',1,'rhand']]]
 ];

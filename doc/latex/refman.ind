@@ -4,16 +4,13 @@
     \subitem {servo.\+ino}, \hyperpage{16}
   \item {arduino/settings/rhand.\+h}, \hyperpage{11}
   \item {arduino/src/servo/servo.\+ino}, \hyperpage{13}
-  \item {arduino/src/servo/settings.\+h}, \hyperpage{17}
 
   \indexspace
 
   \item {B\+O\+A\+R\+D\+\_\+\+I\+D}
     \subitem {rhand.\+h}, \hyperpage{12}
-    \subitem {settings.\+h}, \hyperpage{18}
   \item {B\+U\+F\+S\+I\+Z\+E}
     \subitem {rhand.\+h}, \hyperpage{11}
-    \subitem {settings.\+h}, \hyperpage{17}
 
   \indexspace
 
@@ -41,7 +38,6 @@
     \subitem {servo.\+ino}, \hyperpage{14}
   \item {default\+\_\+pos}
     \subitem {rhand.\+h}, \hyperpage{12}
-    \subitem {settings.\+h}, \hyperpage{18}
   \item {demo}
     \subitem {rhand}, \hyperpage{7}
   \item {dump}
@@ -56,7 +52,6 @@
     \subitem {servo.\+ino}, \hyperpage{14}
   \item {get\+Servo\+From\+I\+D}
     \subitem {rhand.\+h}, \hyperpage{12}
-    \subitem {settings.\+h}, \hyperpage{18}
   \item {grab}
     \subitem {rhand}, \hyperpage{7}
 
@@ -64,7 +59,6 @@
 
   \item {limit}
     \subitem {rhand.\+h}, \hyperpage{12}
-    \subitem {settings.\+h}, \hyperpage{18}
   \item {loop}
     \subitem {servo.\+ino}, \hyperpage{14}
 
@@ -84,7 +78,6 @@
     \subitem {rhand}, \hyperpage{8}
   \item {pin\+\_\+offset}
     \subitem {rhand.\+h}, \hyperpage{12}
-    \subitem {settings.\+h}, \hyperpage{18}
 
   \indexspace
 
@@ -92,7 +85,6 @@
     \subitem {rhand}, \hyperpage{8}
   \item {reverse}
     \subitem {rhand.\+h}, \hyperpage{12}
-    \subitem {settings.\+h}, \hyperpage{18}
   \item {rhand}, \hyperpage{5}
     \subitem {cmd}, \hyperpage{6}
     \subitem {connect}, \hyperpage{6}
@@ -128,11 +120,10 @@
 
   \item {S\+E\+R\+V\+O\+S}
     \subitem {rhand.\+h}, \hyperpage{11}
-    \subitem {settings.\+h}, \hyperpage{17}
   \item {ser}
     \subitem {rhand}, \hyperpage{9}
   \item {serial\+Get\+Byte}
-    \subitem {servo.\+ino}, \hyperpage{15}
+    \subitem {servo.\+ino}, \hyperpage{14}
   \item {serial\+Print}
     \subitem {servo.\+ino}, \hyperpage{15}
   \item {serial\+Print\+Int}
@@ -158,7 +149,7 @@
     \subitem {get\+Adjusted\+Angle}, \hyperpage{14}
     \subitem {loop}, \hyperpage{14}
     \subitem {M\+A\+X\+\_\+\+L\+I\+M}, \hyperpage{14}
-    \subitem {serial\+Get\+Byte}, \hyperpage{15}
+    \subitem {serial\+Get\+Byte}, \hyperpage{14}
     \subitem {serial\+Print}, \hyperpage{15}
     \subitem {serial\+Print\+Int}, \hyperpage{15}
     \subitem {serial\+Print\+Int\+Pretty}, \hyperpage{15}
@@ -166,7 +157,7 @@
     \subitem {servo}, \hyperpage{16}
     \subitem {set\+Adjusted\+Angles}, \hyperpage{15}
     \subitem {set\+Servo\+From\+I\+D}, \hyperpage{15}
-    \subitem {set\+Servo\+From\+Num}, \hyperpage{16}
+    \subitem {set\+Servo\+From\+Num}, \hyperpage{15}
     \subitem {setup}, \hyperpage{16}
     \subitem {W\+A\+I\+T\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E}, \hyperpage{14}
   \item {servowrite}
@@ -176,17 +167,7 @@
   \item {set\+Servo\+From\+I\+D}
     \subitem {servo.\+ino}, \hyperpage{15}
   \item {set\+Servo\+From\+Num}
-    \subitem {servo.\+ino}, \hyperpage{16}
-  \item {settings.\+h}
-    \subitem {B\+O\+A\+R\+D\+\_\+\+I\+D}, \hyperpage{18}
-    \subitem {B\+U\+F\+S\+I\+Z\+E}, \hyperpage{17}
-    \subitem {default\+\_\+pos}, \hyperpage{18}
-    \subitem {get\+Servo\+From\+I\+D}, \hyperpage{18}
-    \subitem {limit}, \hyperpage{18}
-    \subitem {pin\+\_\+offset}, \hyperpage{18}
-    \subitem {reverse}, \hyperpage{18}
-    \subitem {S\+E\+R\+V\+O\+S}, \hyperpage{17}
-    \subitem {V\+E\+R\+B\+O\+S\+E}, \hyperpage{18}
+    \subitem {servo.\+ino}, \hyperpage{15}
   \item {setup}
     \subitem {servo.\+ino}, \hyperpage{16}
   \item {sweep}
@@ -201,7 +182,6 @@
 
   \item {V\+E\+R\+B\+O\+S\+E}
     \subitem {rhand.\+h}, \hyperpage{12}
-    \subitem {settings.\+h}, \hyperpage{18}
 
   \indexspace
 

@@ -13,7 +13,6 @@ information servo IDs and other relevant values.
 **/
 
 // Arduino's servo library
-#include <Servo.h>
 #include <stdio.h>
 #include <stdint.h>
 
@@ -113,7 +112,7 @@ void loop()
         dump ();
         return;
     }
-    serialPrintIntPretty ("recieved servo number: ", servo_id, "\n");
+    serialPrintIntPretty ("recieved servo id: ", servo_id, "\n");
 
     servo_angle = serialGetByte ();
     if (servo_angle < 0)
