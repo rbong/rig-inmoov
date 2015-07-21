@@ -12,13 +12,19 @@ See @ref rhand.h for an example of a settings header, and @ref Arduino for
 information servo IDs and other relevant values.
 **/
 
+#ifndef SIMULATION
+// allow simulations to define their own servo libraries
 #include <Servo.h>
+// assume that simulation has its own callibration
+#include "settings.h"
+#else
+// prototyping is only required if not using arduino
+#include <servo.h>
+#endif
 
 // Arduino's servo library
 #include <stdio.h>
 #include <stdint.h>
-
-#include "settings.h"
 
 /**
 The representation of the servos.  Used to keep track of pin assignments and
@@ -53,16 +59,16 @@ enum
     DUMP_SIGNAL = 253, /// Incoming signal indicating that we are to print information to serial.
     DUMP_START_RESPONSE = 252, /// Beginning of our serial response to the dump signal.
     DUMP_END_RESPONSE = 251, /// End of our serial response to the dump signal.
-    DUMP_RESPONSE_LEN = SERVOS + 4, /// The length of the response to the dump signal.
+    DUMP_RESPONSE_LEN = SERVOS * 2 + 4, /// The length of the response to the dump signal.
 };
 
 /**
 The \b setup function is called at the beginning of the program. In it, we call
 @ref setAdjustedAngles for each servo and assign a pin to each @ref servo.
 **/
-void setup()
+void setup ()
 {
-    uint8_t angle, pin;
+    int angle, pin;
 
     Serial.begin(9600);
 
@@ -72,11 +78,21 @@ void setup()
         serialPrintIntPretty ("calibrating servo: ", servo_num, "\n");
         setAdjustedAngles (servo_num);
 
+// simulations don't have pins
+#ifndef SIMULATION
         serialPrintIntPretty ("assinging servo: ", servo_num, "\n");
-        pin = servo_num + pin_offset;
-        serialPrintIntPretty ("pin: ", pin, "\n");
-        servo [servo_num].attach (pin);
-        pinMode (pin, OUTPUT);
+        pin = getServoPinFromNum (servo_num);
+        if (pin < 0)
+        {
+            serialPrint ("invalid servo index.\n");
+        }
+        else
+        {
+            serialPrintIntPretty ("pin: ", pin, "\n");
+            servo [servo_num].attach (pin);
+            pinMode (pin, OUTPUT);
+        }
+#endif
 
         serialPrintIntPretty ("default: ", default_pos [servo_num], "\n");
         setServoFromNum (servo_num, default_pos [servo_num]);
@@ -92,7 +108,7 @@ If the @ref CANCEL_SIGNAL is recieved, it does nothing and continues. If, at
 the beginning of the function, there is no pending input, it transmits @ref
 WAIT_RESPONSE, then does nothing until input is available.
 **/
-void loop()
+void loop ()
 {
     static int servo_id, servo_angle;
 
@@ -202,6 +218,7 @@ void setAdjustedAngles (uint8_t servo_num)
 
     for (uint8_t angle = 0; angle <= 180; angle++)
     {
+        // arduino has its own map function, but it's broken on some systems
         // conversion to double avoids integer rounding errors
         dangle = angle;
         dmin = limit [servo_num] [MIN_LIM];
@@ -287,8 +304,8 @@ void setServoFromID (int servo_id, uint8_t servo_angle)
 /**
 Writes various information about the board to the serial port. Triggered on
 reception of @ref DUMP_RESPONSE_LEN. Transmits the ID of the board, the number
-of servos, and the current position of the servos.
-@see @ref Arduino, DUMP_START_RESPONSE, DUMP_END_RESPONSE, current_pos
+of servos, each servo ID, and the current position of the servos.
+@see @ref Arduino, DUMP_START_RESPONSE, DUMP_END_RESPONSE, current_pos, getIDFromServo()
 **/
 void dump ()
 {
@@ -305,6 +322,7 @@ void dump ()
     buf [i++] = SERVOS;
     for (int servo_num = 0; servo_num < SERVOS; servo_num++)
     {
+        buf [i++] = getIDFromServo (servo_num);
         buf [i++] = current_pos [servo_num];
     }
     buf [i++] = DUMP_END_RESPONSE;

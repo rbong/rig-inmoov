@@ -100,7 +100,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Macros</h2></td></tr>
 <tr class="memitem:a7baed4559391f95790fea2b456a22b68"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rhand_8h.html#a7baed4559391f95790fea2b456a22b68">SERVOS</a>&#160;&#160;&#160;6</td></tr>
 <tr class="separator:a7baed4559391f95790fea2b456a22b68"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeca034f67218340ecb2261a22c2f3dcd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rhand_8h.html#aeca034f67218340ecb2261a22c2f3dcd">BUFSIZE</a>&#160;&#160;&#160;16</td></tr>
+<tr class="memitem:aeca034f67218340ecb2261a22c2f3dcd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rhand_8h.html#aeca034f67218340ecb2261a22c2f3dcd">BUFSIZE</a>&#160;&#160;&#160;32</td></tr>
 <tr class="separator:aeca034f67218340ecb2261a22c2f3dcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
@@ -114,6 +114,10 @@ Enumerations</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:a13edec01163cd92d516634c36fe06aeb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rhand_8h.html#a13edec01163cd92d516634c36fe06aeb">getServoFromID</a> (uint8_t servo_id)</td></tr>
 <tr class="separator:a13edec01163cd92d516634c36fe06aeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5adc36e64b49d775d1ae2a2d025238aa"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rhand_8h.html#a5adc36e64b49d775d1ae2a2d025238aa">getIDFromServo</a> (uint8_t servo_num)</td></tr>
+<tr class="separator:a5adc36e64b49d775d1ae2a2d025238aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92eb8732672d01f8315327617ab05272"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rhand_8h.html#a92eb8732672d01f8315327617ab05272">getServoPinFromNum</a> (uint8_t servo_num)</td></tr>
+<tr class="separator:a92eb8732672d01f8315327617ab05272"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -121,7 +125,7 @@ Variables</h2></td></tr>
 <tr class="separator:ab48e069f24be713d91d0268626f2df7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af9e032ca502bd456fc642064811ca273"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rhand_8h.html#af9e032ca502bd456fc642064811ca273">default_pos</a> [<a class="el" href="rhand_8h.html#a7baed4559391f95790fea2b456a22b68">SERVOS</a>] = { 0, 0, 0, 0, 0, 0 }</td></tr>
 <tr class="separator:af9e032ca502bd456fc642064811ca273"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae858a0ba64b6875be7726f8cb68fc391"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rhand_8h.html#ae858a0ba64b6875be7726f8cb68fc391">reverse</a> [<a class="el" href="rhand_8h.html#a7baed4559391f95790fea2b456a22b68">SERVOS</a>] = { 0, 0, 0, 0, 0, 1 }</td></tr>
+<tr class="memitem:ae858a0ba64b6875be7726f8cb68fc391"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rhand_8h.html#ae858a0ba64b6875be7726f8cb68fc391">reverse</a> [<a class="el" href="rhand_8h.html#a7baed4559391f95790fea2b456a22b68">SERVOS</a>] = { 1, 0, 0, 0, 0, 1 }</td></tr>
 <tr class="separator:ae858a0ba64b6875be7726f8cb68fc391"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6369c9657b975e4dfe967c7284c1f1b"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rhand_8h.html#ae6369c9657b975e4dfe967c7284c1f1b">pin_offset</a> = 2</td></tr>
 <tr class="separator:ae6369c9657b975e4dfe967c7284c1f1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -137,7 +141,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define BUFSIZE&#160;&#160;&#160;16</td>
+          <td class="memname">#define BUFSIZE&#160;&#160;&#160;32</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -186,6 +190,25 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a5adc36e64b49d775d1ae2a2d025238aa"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int getIDFromServo </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>servo_num</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function gets servo ID using its array index. If the servo index is out of bounds, it returns -1. This must correspond with <a class="el" href="rhand_8h.html#a13edec01163cd92d516634c36fe06aeb">getServoFromID()</a>. </p>
+
+<p>Definition at line <a class="el" href="rhand_8h_source.html#l00073">73</a> of file <a class="el" href="rhand_8h_source.html">rhand.h</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a13edec01163cd92d516634c36fe06aeb"></a>
 <div class="memitem">
 <div class="memproto">
@@ -199,9 +222,28 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>This function gets array index of a servo using its ID. If the servo does not belong to this board, it returns -1. It is recommended that boards with complex ID assignments use a switch statement or a similar solution to save resources. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="index.html#Values">Values</a> </dd></dl>
+<p>This function gets array index of a servo using its ID. If the servo does not belong to this board, it returns -1. It is recommended that boards with complex ID assignments use a switch statement or a similar solution to save resources. This function must correspond with <a class="el" href="rhand_8h.html#a5adc36e64b49d775d1ae2a2d025238aa">getIDFromServo()</a>. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="index.html#Values">Values</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="rhand_8h_source.html#l00059">59</a> of file <a class="el" href="rhand_8h_source.html">rhand.h</a>.</p>
+<p>Definition at line <a class="el" href="rhand_8h_source.html#l00060">60</a> of file <a class="el" href="rhand_8h_source.html">rhand.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a92eb8732672d01f8315327617ab05272"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int getServoPinFromNum </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>servo_num</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function returns the desired pin of a servo given its index number, allows complex pin assignment. If the servo idex is not valid, returns -1. </p>
+
+<p>Definition at line <a class="el" href="rhand_8h_source.html#l00086">86</a> of file <a class="el" href="rhand_8h_source.html">rhand.h</a>.</p>
 
 </div>
 </div>
@@ -231,8 +273,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">= {</div>
-<div class="line">    { 15, 114 }, { 10, 123 }, { 17, 100 },</div>
-<div class="line">    { 25, 122 }, { 22, 112 }, { 82, 160 },</div>
+<div class="line">    { 15, 55 }, { 15, 102 }, { 15, 140 },</div>
+<div class="line">    { 15, 135 }, { 15, 135 }, { 60, 155 },</div>
 <div class="line">}</div>
 </div><!-- fragment --><p>This is the callibration for each servo- its minimum then maximum angle (for positional servos) or its minimum then maximum speed (for continuous rotation servos). Its index corresponds with <a class="el" href="servo_8ino.html#adf02be48d17da3f4a229ebfdfda2fa71">servo</a>. </p>
 
@@ -249,7 +291,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Pin value to begin assigning pins at. It may be necessary to eventually implement a similar pin retrieval system to <a class="el" href="rhand_8h.html#a13edec01163cd92d516634c36fe06aeb">getServoFromID()</a>. </p>
+<p>Pin value to begin assigning pins at. Unique to this settings file. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="rhand_8h.html#a92eb8732672d01f8315327617ab05272">getServoPinFromNum()</a> </dd></dl>
 
 <p>Definition at line <a class="el" href="rhand_8h_source.html#l00043">43</a> of file <a class="el" href="rhand_8h_source.html">rhand.h</a>.</p>
 
@@ -260,7 +302,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint8_t reverse[<a class="el" href="rhand_8h.html#a7baed4559391f95790fea2b456a22b68">SERVOS</a>] = { 0, 0, 0, 0, 0, 1 }</td>
+          <td class="memname">uint8_t reverse[<a class="el" href="rhand_8h.html#a7baed4559391f95790fea2b456a22b68">SERVOS</a>] = { 1, 0, 0, 0, 0, 1 }</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -273,7 +315,7 @@ Variables</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jul 20 2015 09:50:26 for RIG InMoov Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jul 21 2015 16:01:17 for RIG InMoov Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

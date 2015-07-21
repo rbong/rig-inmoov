@@ -122,12 +122,12 @@ is experiencing difficulties or the board may have crashed.
 @par DUMP_SIGNAL
 This signal makes the board return various information about itself and its
 servos. As of writing, it returns \b DUMP_START_RESPONSE, an ID, its number of
-servos, the values last sent to its servos, and \b DUMP_END_RESPONSE.
-Board IDs start from 181 and go up. It is recommended that if we build more
-modular bots such as this one in the future using the same protocol, they
-recieve unique board identifiers.
+servos, the IDs of each servo followed by the value last sent to that servo,
+and \b DUMP_END_RESPONSE.  Board IDs start from 181 and go up. It is
+recommended that if we build more modular bots such as this one in the future
+using the same protocol, they recieve unique board identifiers.
 The response is likely to change in the near future as we add sensors and other
-types of devices.
+types of devices. Be sure to regularly check this document.
 
 @subsection Examples
 @code{.sh}
@@ -146,7 +146,7 @@ CANCEL_SIGNAL 0 0 1 45 2 90 3 135 4 180 DUMP_SIGNAL
 On a board with ID \b BOARD_ID and 5 servos identified as 0-4, this would
 return the response
 @code{.sh}
-DUMP_START_RESPONSE BOARD_ID 4 0 45 90 135 180 DUMP_END_RESPONSE WAIT_RESPONSE
+DUMP_START_RESPONSE BOARD_ID 4 0 0 1 45 2 90 3 135 4 180 DUMP_END_RESPONSE WAIT_RESPONSE
 @endcode
 @code{.sh}
 CANCEL_SIGNAL 0 0 0 45 0 90 0 135 0 180

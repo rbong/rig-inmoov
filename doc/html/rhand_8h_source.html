@@ -91,14 +91,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="rhand_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
 <div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="rhand_8h.html#a7baed4559391f95790fea2b456a22b68">   14</a></span>&#160;<span class="preprocessor">#define SERVOS 6</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="rhand_8h.html#aeca034f67218340ecb2261a22c2f3dcd">   18</a></span>&#160;<span class="preprocessor">#define BUFSIZE 16</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="rhand_8h.html#aeca034f67218340ecb2261a22c2f3dcd">   18</a></span>&#160;<span class="preprocessor">#define BUFSIZE 32</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
 <div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="rhand_8h.html#ab48e069f24be713d91d0268626f2df7d">   25</a></span>&#160;uint8_t <a class="code" href="rhand_8h.html#ab48e069f24be713d91d0268626f2df7d">limit</a> [<a class="code" href="rhand_8h.html#a7baed4559391f95790fea2b456a22b68">SERVOS</a>] [2] = {</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    { 15, 114 }, { 10, 123 }, { 17, 100 },</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    { 25, 122 }, { 22, 112 }, { 82, 160 },</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    { 15, 55 }, { 15, 102 }, { 15, 140 },</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    { 15, 135 }, { 15, 135 }, { 60, 155 },</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;};</div>
 <div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="rhand_8h.html#af9e032ca502bd456fc642064811ca273">   33</a></span>&#160;uint8_t <a class="code" href="rhand_8h.html#af9e032ca502bd456fc642064811ca273">default_pos</a> [<a class="code" href="rhand_8h.html#a7baed4559391f95790fea2b456a22b68">SERVOS</a>] = { 0, 0, 0, 0, 0, 0 };</div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="rhand_8h.html#ae858a0ba64b6875be7726f8cb68fc391">   38</a></span>&#160;uint8_t <a class="code" href="rhand_8h.html#ae858a0ba64b6875be7726f8cb68fc391">reverse</a> [<a class="code" href="rhand_8h.html#a7baed4559391f95790fea2b456a22b68">SERVOS</a>] = { 0, 0, 0, 0, 0, 1 };</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="rhand_8h.html#ae858a0ba64b6875be7726f8cb68fc391">   38</a></span>&#160;uint8_t <a class="code" href="rhand_8h.html#ae858a0ba64b6875be7726f8cb68fc391">reverse</a> [<a class="code" href="rhand_8h.html#a7baed4559391f95790fea2b456a22b68">SERVOS</a>] = { 1, 0, 0, 0, 0, 1 };</div>
 <div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="rhand_8h.html#ae6369c9657b975e4dfe967c7284c1f1b">   43</a></span>&#160;uint8_t <a class="code" href="rhand_8h.html#ae6369c9657b975e4dfe967c7284c1f1b">pin_offset</a> = 2;</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keyword">enum</span></div>
@@ -107,14 +107,32 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="rhand_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba3500b6e5566b426111c65403e81a27b4">   50</a></span>&#160;    <a class="code" href="rhand_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba3500b6e5566b426111c65403e81a27b4">BOARD_ID</a> = 181,</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;};</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="rhand_8h.html#a13edec01163cd92d516634c36fe06aeb">   59</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="rhand_8h.html#a13edec01163cd92d516634c36fe06aeb">getServoFromID</a> (uint8_t servo_id)</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;{</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordflow">if</span> (servo_id &gt;= <a class="code" href="rhand_8h.html#a7baed4559391f95790fea2b456a22b68">SERVOS</a> || servo_id &lt; 0)</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    {</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keywordflow">return</span> -1;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    }</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordflow">return</span> servo_id;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;}</div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="rhand_8h.html#a13edec01163cd92d516634c36fe06aeb">   60</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="rhand_8h.html#a13edec01163cd92d516634c36fe06aeb">getServoFromID</a> (uint8_t servo_id)</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;{</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordflow">if</span> (servo_id &gt;= <a class="code" href="rhand_8h.html#a7baed4559391f95790fea2b456a22b68">SERVOS</a> || servo_id &lt; 0)</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    {</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keywordflow">return</span> -1;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    }</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordflow">return</span> servo_id;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;}</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="rhand_8h.html#a5adc36e64b49d775d1ae2a2d025238aa">   73</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="rhand_8h.html#a5adc36e64b49d775d1ae2a2d025238aa">getIDFromServo</a> (uint8_t servo_num)</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;{</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordflow">if</span> (servo_num &gt;= <a class="code" href="rhand_8h.html#a7baed4559391f95790fea2b456a22b68">SERVOS</a> || servo_num &lt; 0)</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    {</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordflow">return</span> -1;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    }</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordflow">return</span> servo_num;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;}</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
+<div class="line"><a name="l00086"></a><span class="lineno"><a class="line" href="rhand_8h.html#a92eb8732672d01f8315327617ab05272">   86</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="rhand_8h.html#a92eb8732672d01f8315327617ab05272">getServoPinFromNum</a> (uint8_t servo_num)</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;{</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keywordflow">if</span> (servo_num &gt;= <a class="code" href="rhand_8h.html#a7baed4559391f95790fea2b456a22b68">SERVOS</a> || servo_num &lt; 0)</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    {</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <span class="keywordflow">return</span> -1;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    }</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keywordflow">return</span> servo_num + <a class="code" href="rhand_8h.html#ae6369c9657b975e4dfe967c7284c1f1b">pin_offset</a>;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;}</div>
 <div class="ttc" id="rhand_8h_html_ab48e069f24be713d91d0268626f2df7d"><div class="ttname"><a href="rhand_8h.html#ab48e069f24be713d91d0268626f2df7d">limit</a></div><div class="ttdeci">uint8_t limit[SERVOS][2]</div><div class="ttdef"><b>Definition:</b> <a href="rhand_8h_source.html#l00025">rhand.h:25</a></div></div>
 <div class="ttc" id="rhand_8h_html_ae6369c9657b975e4dfe967c7284c1f1b"><div class="ttname"><a href="rhand_8h.html#ae6369c9657b975e4dfe967c7284c1f1b">pin_offset</a></div><div class="ttdeci">uint8_t pin_offset</div><div class="ttdef"><b>Definition:</b> <a href="rhand_8h_source.html#l00043">rhand.h:43</a></div></div>
 <div class="ttc" id="rhand_8h_html_a06fc87d81c62e9abb8790b6e5713c55ba3500b6e5566b426111c65403e81a27b4"><div class="ttname"><a href="rhand_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba3500b6e5566b426111c65403e81a27b4">BOARD_ID</a></div><div class="ttdoc">The unique identification for this board. </div><div class="ttdef"><b>Definition:</b> <a href="rhand_8h_source.html#l00050">rhand.h:50</a></div></div>
@@ -122,11 +140,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="rhand_8h_html_a7baed4559391f95790fea2b456a22b68"><div class="ttname"><a href="rhand_8h.html#a7baed4559391f95790fea2b456a22b68">SERVOS</a></div><div class="ttdeci">#define SERVOS</div><div class="ttdef"><b>Definition:</b> <a href="rhand_8h_source.html#l00014">rhand.h:14</a></div></div>
 <div class="ttc" id="rhand_8h_html_af9e032ca502bd456fc642064811ca273"><div class="ttname"><a href="rhand_8h.html#af9e032ca502bd456fc642064811ca273">default_pos</a></div><div class="ttdeci">uint8_t default_pos[SERVOS]</div><div class="ttdef"><b>Definition:</b> <a href="rhand_8h_source.html#l00033">rhand.h:33</a></div></div>
 <div class="ttc" id="rhand_8h_html_ae858a0ba64b6875be7726f8cb68fc391"><div class="ttname"><a href="rhand_8h.html#ae858a0ba64b6875be7726f8cb68fc391">reverse</a></div><div class="ttdeci">uint8_t reverse[SERVOS]</div><div class="ttdef"><b>Definition:</b> <a href="rhand_8h_source.html#l00038">rhand.h:38</a></div></div>
-<div class="ttc" id="rhand_8h_html_a13edec01163cd92d516634c36fe06aeb"><div class="ttname"><a href="rhand_8h.html#a13edec01163cd92d516634c36fe06aeb">getServoFromID</a></div><div class="ttdeci">int getServoFromID(uint8_t servo_id)</div><div class="ttdef"><b>Definition:</b> <a href="rhand_8h_source.html#l00059">rhand.h:59</a></div></div>
+<div class="ttc" id="rhand_8h_html_a92eb8732672d01f8315327617ab05272"><div class="ttname"><a href="rhand_8h.html#a92eb8732672d01f8315327617ab05272">getServoPinFromNum</a></div><div class="ttdeci">int getServoPinFromNum(uint8_t servo_num)</div><div class="ttdef"><b>Definition:</b> <a href="rhand_8h_source.html#l00086">rhand.h:86</a></div></div>
+<div class="ttc" id="rhand_8h_html_a5adc36e64b49d775d1ae2a2d025238aa"><div class="ttname"><a href="rhand_8h.html#a5adc36e64b49d775d1ae2a2d025238aa">getIDFromServo</a></div><div class="ttdeci">int getIDFromServo(uint8_t servo_num)</div><div class="ttdef"><b>Definition:</b> <a href="rhand_8h_source.html#l00073">rhand.h:73</a></div></div>
+<div class="ttc" id="rhand_8h_html_a13edec01163cd92d516634c36fe06aeb"><div class="ttname"><a href="rhand_8h.html#a13edec01163cd92d516634c36fe06aeb">getServoFromID</a></div><div class="ttdeci">int getServoFromID(uint8_t servo_id)</div><div class="ttdef"><b>Definition:</b> <a href="rhand_8h_source.html#l00060">rhand.h:60</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jul 20 2015 09:50:26 for RIG InMoov Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jul 21 2015 16:01:17 for RIG InMoov Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

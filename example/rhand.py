@@ -211,8 +211,8 @@ def dump (servos=6):
     We may need to increase the response delay on the Arduino if you are unable
     to recieve a response. View the source of this function to understand how
     it works, but keep in mind it is untested. Also keep in mind that the
-    function is very non-general as it always reads 10 bytes instead of looking
-    for the end signal.
+    function is very non-general as it always reads the same amount of bytes
+    instead of looking for the end signal.
 
     @note While this function could be used to change dynamically between
     gestures instead of resetting the servos to 0, this function did not exist
@@ -227,7 +227,7 @@ def dump (servos=6):
 
     # read 10 bytes- the begin byte, the id of the board, the number of servos,
     # the positions of the servos (6 servos on the hand), and the end byte
-    response = ser.read (servos + 4)
+    response = ser.read (servos * 2 + 4)
     # convert the list of bytes into a list of ints
     response = list (response)
 
@@ -241,9 +241,9 @@ def dump (servos=6):
     print ('servos: ' + str (response [2]))
     servos = response [2]
     i = 0
-    while i < servos:
-        print ('servo ' + str (i) + ': ' +  str (response [i + 3]))
-        i += 1
+    while i < servos * 2:
+        print ('servo ' + str (response [i + 3]) + ': ' +  str (response [i + 4]))
+        i += 2
 
 # movements and gestures
 

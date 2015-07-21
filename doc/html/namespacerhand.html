@@ -273,7 +273,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="names
 <p>Retrieves information about the board. </p>
 <p>The command sends the <a class="el" href="namespacerhand.html#ad3b284028dfecade760db3a71725c916">DUMP_SIGNAL</a> to the serial port and reads back the response. The response is described in <a class="el" href="servo_8ino.html">servo.ino</a>.</p>
 <p>When you write your own similar function, timing is important.</p>
-<p>We may need to increase the response delay on the Arduino if you are unable to recieve a response. View the source of this function to understand how it works, but keep in mind it is untested. Also keep in mind that the function is very non-general as it always reads 10 bytes instead of looking for the end signal.</p>
+<p>We may need to increase the response delay on the Arduino if you are unable to recieve a response. View the source of this function to understand how it works, but keep in mind it is untested. Also keep in mind that the function is very non-general as it always reads the same amount of bytes instead of looking for the end signal.</p>
 <dl class="section note"><dt>Note</dt><dd>While this function could be used to change dynamically between gestures instead of resetting the servos to 0, this function did not exist when this script was first written. </dd></dl>
 
 <p>Definition at line <a class="el" href="rhand_8py_source.html#l00204">204</a> of file <a class="el" href="rhand_8py_source.html">rhand.py</a>.</p>
@@ -647,7 +647,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="names
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jul 20 2015 09:50:27 for RIG InMoov Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jul 21 2015 16:01:17 for RIG InMoov Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

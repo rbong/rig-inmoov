@@ -15,7 +15,7 @@ Number of servos to assign.
 /**
 Size of the print buffer (must be large enough to hold @ref DUMP_RESPONSE_LEN).
 **/
-#define BUFSIZE 16
+#define BUFSIZE 32
 
 /**
 This is the callibration for each servo- its minimum then maximum angle (for
@@ -23,8 +23,8 @@ positional servos) or its minimum then maximum speed (for continuous rotation
 servos). Its index corresponds with @ref servo.
 **/
 uint8_t limit [SERVOS] [2] = {
-    { 15, 114 }, { 10, 123 }, { 17, 100 },
-    { 25, 122 }, { 22, 112 }, { 82, 160 },
+    { 15, 55 }, { 15, 102 }, { 15, 140 },
+    { 15, 135 }, { 15, 135 }, { 60, 155 },
 };
 /**
 The default position to set each servo to. Its index corresponds with @ref
@@ -35,10 +35,10 @@ uint8_t default_pos [SERVOS] = { 0, 0, 0, 0, 0, 0 };
 Indicates whether to reverse the angles for each servo, for servos that turn
 the wrong way. Its index corresponds with @ref servo.
 **/
-uint8_t reverse [SERVOS] = { 0, 0, 0, 0, 0, 1 };
+uint8_t reverse [SERVOS] = { 1, 0, 0, 0, 0, 1 };
 /**
-Pin value to begin assigning pins at. It may be necessary to eventually
-implement a similar pin retrieval system to @ref getServoFromID().
+Pin value to begin assigning pins at. Unique to this settings file.
+@see getServoPinFromNum()
 **/
 uint8_t pin_offset = 2;
 
@@ -54,6 +54,7 @@ enum
 This function gets array index of a servo using its ID. If the servo does not
 belong to this board, it returns -1. It is recommended that boards with complex
 ID assignments use a switch statement or a similar solution to save resources.
+This function must correspond with getIDFromServo().
 @see @ref Values
 **/
 int getServoFromID (uint8_t servo_id)
@@ -63,4 +64,30 @@ int getServoFromID (uint8_t servo_id)
         return -1;
     }
     return servo_id;
+}
+
+/**
+This function gets servo ID using its array index. If the servo index is out of
+bounds, it returns -1. This must correspond with getServoFromID().
+**/
+int getIDFromServo (uint8_t servo_num)
+{
+    if (servo_num >= SERVOS || servo_num < 0)
+    {
+        return -1;
+    }
+    return servo_num;
+}
+
+/**
+This function returns the desired pin of a servo given its index number,
+allows complex pin assignment. If the servo idex is not valid, returns -1.
+**/
+int getServoPinFromNum (uint8_t servo_num)
+{
+    if (servo_num >= SERVOS || servo_num < 0)
+    {
+        return -1;
+    }
+    return servo_num + pin_offset;
 }

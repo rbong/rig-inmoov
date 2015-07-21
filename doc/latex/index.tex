@@ -65,7 +65,7 @@ This signal exists to cancel all pending input and syncronize the host and maste
 This signal indicates that the board has no bytes left to read and is ready for input. A host does not need to wait for this signal, but it may want to if it is experiencing difficulties or the board may have crashed.
 \end{DoxyParagraph}
 \begin{DoxyParagraph}{D\+U\+M\+P\+\_\+\+S\+I\+G\+N\+A\+L}
-This signal makes the board return various information about itself and its servos. As of writing, it returns {\bfseries D\+U\+M\+P\+\_\+\+S\+T\+A\+R\+T\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E}, an I\+D, its number of servos, the values last sent to its servos, and {\bfseries D\+U\+M\+P\+\_\+\+E\+N\+D\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E}. Board I\+Ds start from 181 and go up. It is recommended that if we build more modular bots such as this one in the future using the same protocol, they recieve unique board identifiers. The response is likely to change in the near future as we add sensors and other types of devices.
+This signal makes the board return various information about itself and its servos. As of writing, it returns {\bfseries D\+U\+M\+P\+\_\+\+S\+T\+A\+R\+T\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E}, an I\+D, its number of servos, the I\+Ds of each servo followed by the value last sent to that servo, and {\bfseries D\+U\+M\+P\+\_\+\+E\+N\+D\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E}. Board I\+Ds start from 181 and go up. It is recommended that if we build more modular bots such as this one in the future using the same protocol, they recieve unique board identifiers. The response is likely to change in the near future as we add sensors and other types of devices. Be sure to regularly check this document.
 \end{DoxyParagraph}
 \hypertarget{index_Examples}{}\subsection{Examples}\label{index_Examples}
 
@@ -82,7 +82,7 @@ This signal makes the board return various information about itself and its serv
 \end{DoxyCode}
  On a board with I\+D {\bfseries B\+O\+A\+R\+D\+\_\+\+I\+D} and 5 servos identified as 0-\/4, this would return the response 
 \begin{DoxyCode}
-1 DUMP\_START\_RESPONSE BOARD\_ID 4 0 45 90 135 180 DUMP\_END\_RESPONSE WAIT\_RESPONSE
+1 DUMP\_START\_RESPONSE BOARD\_ID 4 0 0 1 45 2 90 3 135 4 180 DUMP\_END\_RESPONSE WAIT\_RESPONSE
 \end{DoxyCode}
  
 \begin{DoxyCode}
