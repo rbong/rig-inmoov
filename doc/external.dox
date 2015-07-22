@@ -21,7 +21,7 @@ Make</a> (if you wish to build the project).
 
 @section Quick_Start Quick Start
 To quickly demo the right hand, do the following. Copy the file
-\b arduino/settings/rhand.h to \b arduino/src/servo/settings.h. Copy the \b
+\b arduino/servo/settings/rhand.h to \b arduino/servo/servo/settings.h. Copy the \b
 servo folder to your Arduino sketch folder. Open the Arduino software. Select
 your board and the port it is connected to. Open your sketch, and hit upload.
 Instructions for the Arduino software are located

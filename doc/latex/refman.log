@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/Arch Linux) (preloaded format=pdflatex 2015.6.7)  21 JUL 2015 16:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/Arch Linux) (preloaded format=pdflatex 2015.6.7)  22 JUL 2015 11:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1086,10 +1086,9 @@ LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 LaTeX Font Info:    Font shape `T1/phv/bc/n' will be
 (Font)              scaled to size 12.9599pt on input line 1.
 
-Overfull \hbox (25.18646pt too wide) in paragraph at lines 3--4
+Underfull \hbox (badness 2503) in paragraph at lines 3--4
 \T1/phv/m/n/10 To quickly demo the right hand, do the fol-low-ing. Copy the fil
-e [][]\T1/phv/b/n/10 arduino/settings/rhand.[]h[][] \T1/phv/m/n/10 to \T1/phv/b
-/n/10 arduino/src/servo/settings.[]
+e [][]\T1/phv/b/n/10 arduino/servo/settings/rhand.[]h[][] \T1/phv/m/n/10 to
  []
 
 [1
@@ -1259,101 +1258,101 @@ Underfull \hbox (badness 10000) detected at line 435
 
 ) [10]
 Chapter 3.
-(./rhand_8h.tex [11
+(./servo_8ino.tex
+Underfull \hbox (badness 10000) in paragraph at lines 3--6
+
+ []
+
+[11
 
 ]
-Underfull \hbox (badness 10000) detected at line 64
+Underfull \hbox (badness 10000) detected at line 76
 [][][]
  []
 
 LaTeX Font Info:    Font shape `T1/phv/bx/it' in size <10> not available
-(Font)              Font shape `T1/phv/b/it' tried instead on input line 68.
+(Font)              Font shape `T1/phv/b/it' tried instead on input line 80.
 LaTeX Font Info:    Font shape `T1/phv/b/it' in size <10> not available
-(Font)              Font shape `T1/phv/b/sl' tried instead on input line 68.
+(Font)              Font shape `T1/phv/b/sl' tried instead on input line 80.
 LaTeX Font Info:    Font shape `T1/phv/b/sl' will be
-(Font)              scaled to size 8.99994pt on input line 68.
+(Font)              scaled to size 8.99994pt on input line 80.
 LaTeX Font Info:    Font shape `T1/phv/bx/it' in size <7> not available
-(Font)              Font shape `T1/phv/b/it' tried instead on input line 68.
+(Font)              Font shape `T1/phv/b/it' tried instead on input line 80.
 LaTeX Font Info:    Font shape `T1/phv/b/it' in size <7> not available
-(Font)              Font shape `T1/phv/b/sl' tried instead on input line 68.
+(Font)              Font shape `T1/phv/b/sl' tried instead on input line 80.
 LaTeX Font Info:    Font shape `T1/phv/b/sl' will be
-(Font)              scaled to size 6.29996pt on input line 68.
+(Font)              scaled to size 6.29996pt on input line 80.
+
+Underfull \hbox (badness 10000) detected at line 108
+[][][]
+ []
+
 LaTeX Font Info:    Font shape `T1/phv/bc/it' in size <7> not available
-(Font)              Font shape `T1/phv/bc/sl' tried instead on input line 85.
+(Font)              Font shape `T1/phv/bc/sl' tried instead on input line 122.
 LaTeX Font Info:    Font shape `T1/phv/bc/sl' will be
-(Font)              scaled to size 6.29996pt on input line 85.
+(Font)              scaled to size 6.29996pt on input line 122.
+
+Underfull \hbox (badness 10000) detected at line 123
+[][][]
+ []
+
+[12]
+LaTeX Font Info:    Font shape `T1/phv/m/it' in size <7> not available
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 128.
+LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
+(Font)              scaled to size 6.29996pt on input line 128.
+
+Underfull \hbox (badness 10000) detected at line 133
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 158
+[][][]
+ []
+
+[13] [14]
+Underfull \hbox (badness 10000) detected at line 223
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 238
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 260
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 284
+[][][]
+ []
+
+[15]
+Underfull \hbox (badness 10000) detected at line 301
+[][][]
+ []
+
+) (./rhand_8h.tex [16]
+Underfull \hbox (badness 10000) detected at line 64
+[][][]
+ []
+
 
 Underfull \hbox (badness 10000) detected at line 97
 [][][]
  []
 
-[12]
+[17]
 Underfull \hbox (badness 10000) detected at line 142
 [][][]
  []
 
-) (./servo_8ino.tex
-Underfull \hbox (badness 10000) in paragraph at lines 3--7
+) [18] (./refman.ind [19
 
- []
-
-[13]
-Underfull \hbox (badness 10000) detected at line 77
-[][][]
- []
-
-[14]
-Underfull \hbox (badness 10000) detected at line 109
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 124
-[][][]
- []
-
-LaTeX Font Info:    Font shape `T1/phv/m/it' in size <7> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 129.
-LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
-(Font)              scaled to size 6.29996pt on input line 129.
-
-Underfull \hbox (badness 10000) detected at line 134
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 159
-[][][]
- []
-
-[15]
-Underfull \hbox (badness 10000) detected at line 224
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 239
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 261
-[][][]
- []
-
-[16]
-Underfull \hbox (badness 10000) detected at line 285
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 302
-[][][]
- []
-
-) [17] [18
-
-] (./refman.ind [19
 
 
 ] [20])
@@ -1363,7 +1362,7 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 158.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 158.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 158.
 Package rerunfilecheck Info: File `refman.out' has not changed.
-(rerunfilecheck)             Checksum: EE29A0C577B1B6B5A77794E5D362E9EB;11674.
+(rerunfilecheck)             Checksum: 5030A2B980B2DD10B26A1647B07C5D95;11714.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -1373,7 +1372,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 158.
 Here is how much of TeX's memory you used:
  13282 strings out of 493109
  186980 string characters out of 6140857
- 286727 words of memory out of 5000000
+ 286734 words of memory out of 5000000
  16341 multiletter control sequences out of 15000+600000
  69596 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1391,10 +1390,10 @@ uhvb8ac.pfb></usr/share/texmf-dist/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/s
 hare/texmf-dist/fonts/type1/urw/helvetic/uhvbo8ac.pfb></usr/share/texmf-dist/fo
 nts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/helvet
 ic/uhvro8a.pfb>
-Output written on refman.pdf (24 pages, 162550 bytes).
+Output written on refman.pdf (24 pages, 162562 bytes).
 PDF statistics:
- 873 PDF objects out of 1000 (max. 8388607)
- 827 compressed objects within 9 object streams
+ 872 PDF objects out of 1000 (max. 8388607)
+ 826 compressed objects within 9 object streams
  170 named destinations out of 1000 (max. 500000)
  545 words of extra memory for PDF output out of 10000 (max. 10000000)
 

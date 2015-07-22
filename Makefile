@@ -1,4 +1,4 @@
-BOARD=arduino:avr:diecimila
+BOARD=arduino:avr:nano
 PORT='/dev/ttyUSB0'
 
 documentation: docclean
@@ -8,17 +8,17 @@ documentation: docclean
 	ln -s doc/html/index.html readme.html
 
 rhand:
-	cp arduino/settings/rhand.h arduino/src/servo/settings.h
-	arduino --upload --port $(PORT) --board $(BOARD) arduino/src/servo/servo.ino
+	cp arduino/servo/settings/rhand.h arduino/servo/servo/settings.h
+	arduino --upload --port $(PORT) --board $(BOARD) arduino/servo/servo/servo.ino
 
 rhand_verify:
-	cp arduino/settings/rhand.h arduino/src/servo/settings.h
-	arduino --verify arduino/src/servo/servo.ino
+	cp arduino/servo/settings/rhand.h arduino/servo/servo/settings.h
+	arduino --verify arduino/servo/servo/servo.ino
 
 clean: docclean arduinoclean
 
 arduinoclean:
-	rm -f arduino/src/servo/settings.h &> /dev/null
+	rm -f arduino/servo/servo/settings.h &> /dev/null
 
 docclean:
 	rm -rf readme.pdf readme.html doc/html doc/latex &> /dev/null
