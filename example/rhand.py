@@ -29,20 +29,11 @@ understand how you might produce commands. Also try demo() while connected.
 
 The movements included are quickly written and for demo purposes only.
 
-@see servo.ino
+@see servo.ino Values
 
 @var ser
 The serial connection for input and output. Must be initialized.
 @see connect()
-@var CANCEL_SIGNAL
-The signal to send to terminate any pending input.
-@var DUMP_SIGNAL
-The signal to send to retrieve information about the board.
-@see servo.ino
-@var DUMP_START_RESPONSE
-The signal recieved indicating the beginning of information about the board.
-@var DUMP_END_RESPONSE
-The signal recieved indicating the end of information about the board.
 @var RHAND_ID
 The identification byte of the right hand board.
 """
@@ -53,8 +44,8 @@ from time import sleep
 # Serial signals and responses
 CANCEL_SIGNAL = 255
 DUMP_SIGNAL = 253
-DUMP_START_RESPONSE = 252
-DUMP_END_RESPONSE = 251
+START_RESPONSE = 252
+END_RESPONSE = 251
 RHAND_ID = 181
 
 global ser
@@ -232,7 +223,7 @@ def dump (servos=6):
     response = list (response)
 
     # terminate if the start or end byte is not correct
-    if not (response [0] == DUMP_START_RESPONSE and response [-1] == DUMP_END_RESPONSE):
+    if not (response [0] == START_RESPONSE and response [-1] == END_RESPONSE):
         return
 
     print ('id: ' + str (response [1]))

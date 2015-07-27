@@ -4,7 +4,6 @@
 uint8_t limit [SERVOS] [2] = { { 0, 180 }, };
 uint8_t default_pos [SERVOS] = { 0, };
 uint8_t reverse [SERVOS] = { 0, };
-uint8_t pin_offset = 2;
 
 enum
 { 
@@ -21,20 +20,20 @@ int getServoFromID (uint8_t servo_id)
     return servo_id;
 }
 
-int getIDFromServo (uint8_t servo_num)
+int getIDFromServo (uint8_t servo_index)
 {
-    if (servo_num >= SERVOS || servo_num < 0)
+    if (servo_index >= SERVOS || servo_index < 0)
     {
         return -1;
     }
-    return servo_num;
+    return servo_index;
 }
 
-int getServoPinFromNum (uint8_t servo_num)
+int getServoPinFromIndex (uint8_t servo_index)
 {
-    if (servo_num >= SERVOS || servo_num < 0)
+    if (servo_index >= SERVOS || servo_index < 0)
     {
         return -1;
     }
-    return servo_num;
+    return servo_index;
 }

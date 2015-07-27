@@ -1,0 +1,12 @@
+void setup();
+void loop();
+void serialPrint (const char* s);
+void serialPrintInt (uint8_t i);
+void serialPrintIntPretty (const char* pre, uint8_t i, const char* post);
+int serialGetByte ();
+void setAdjustedAngles (uint8_t servo_index);
+uint8_t getAdjustedAngle (uint8_t servo_index, uint8_t servo_angle);
+void setServoFromIndex (uint8_t servo_index, uint8_t servo_angle);
+void setServoFromID (int servo_id, uint8_t servo_angle);
+void dump ();
+void serialWait ();
