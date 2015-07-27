@@ -19,7 +19,7 @@ enum
     SERIAL_BAUDRATE = 9600,
 };
 
-int getServoFromID (uint8_t servo_id)
+int getServoIndexFromID (uint8_t servo_id)
 {
     if (servo_id >= SERVOS || servo_id < 0)
     {
@@ -28,7 +28,7 @@ int getServoFromID (uint8_t servo_id)
     return servo_id;
 }
 
-int getIDFromServo (uint8_t servo_index)
+int getServoIDFromIndex (uint8_t servo_index)
 {
     if (servo_index >= SERVOS || servo_index < 0)
     {
