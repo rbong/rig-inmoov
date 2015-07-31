@@ -2,3 +2,6 @@ settings.h
 .swp
 .swo
 doc/html
+doc/latex
+readme.pdf
+readme.html
