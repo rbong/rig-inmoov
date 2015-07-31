@@ -62,37 +62,37 @@ void setup ()
 {
     int angle, pin;
 
-    Serial.begin(SERIAL_BAUDRATE);
+    serialSetup ();
 
-    serialPrint ("starting...\n");
+    serialDebugPrint ("starting...\n");
     for (uint8_t servo_index = 0; servo_index < SERVOS; servo_index++)
     {
-        serialPrintIntPretty ("calibrating servo: ", servo_index, "\n");
+        serialDebugPrintIntPretty ("calibrating servo: ", servo_index, "\n");
         setAdjustedAngles (servo_index);
 
 // simulations don't have pins
-        serialPrintIntPretty ("assinging servo: ", servo_index, "\n");
+        serialDebugPrintIntPretty ("assinging servo: ", servo_index, "\n");
         pin = getServoPinFromIndex (servo_index);
         if (pin < 0)
         {
-            serialPrint ("invalid servo index.\n");
+            serialDebugPrint ("invalid servo index.\n");
         }
         else
         {
-            serialPrintIntPretty ("pin: ", pin, "\n");
+            serialDebugPrintIntPretty ("pin: ", pin, "\n");
             servo [servo_index].attach (pin);
             pinMode (pin, OUTPUT);
         }
 
-        serialPrintIntPretty ("default: ", default_pos [servo_index], "\n");
+        serialDebugPrintIntPretty ("default: ", default_pos [servo_index], "\n");
         setServoFromIndex (servo_index, default_pos [servo_index]);
     }
 }
 
 /**
-The \b loop function is called continually until the program exits.  It
+The \b loop function is called continually until the program exits. It
 performs actions based on @ref Arduino. Recieves two unsigned 8-bit
-integers, a servo id and a servo angle, then calls @ref setServoFromID().  If
+integers, a servo id and a servo angle, then calls @ref setServoFromID(). If
 the @ref DUMP_SIGNAL is recieved at any time, calls @ref dump() and continues.
 If the @ref CANCEL_SIGNAL is recieved, it does nothing and continues. If, at
 the beginning of the function, there is no pending input, it transmits @ref
@@ -103,13 +103,13 @@ void loop ()
     static int servo_id, servo_angle;
 
     // indicate that we are waiting for input
-    if (! Serial.available ())
+    if (! serialCmdAvailable ())
     {
-        serialPrint ("WAIT\n");
-        Serial.write (WAIT_RESPONSE);
+        serialDebugPrint ("WAIT\n");
+        serialCmdWrite (WAIT_RESPONSE);
     }
 
-    servo_id = serialGetByte ();
+    servo_id = serialCmdGetByte ();
     // WAIT_SIGNAL recieved
     if (servo_id < 0)
     {
@@ -120,9 +120,9 @@ void loop ()
         dump ();
         return;
     }
-    serialPrintIntPretty ("recieved servo id: ", servo_id, "\n");
+    serialDebugPrintIntPretty ("recieved servo id: ", servo_id, "\n");
 
-    servo_angle = serialGetByte ();
+    servo_angle = serialCmdGetByte ();
     if (servo_angle < 0)
     {
         return;
@@ -132,65 +132,9 @@ void loop ()
         dump ();
         return;
     }
-    serialPrintIntPretty ("recieved servo value: ", servo_angle, "\n");
+    serialDebugPrintIntPretty ("recieved servo value: ", servo_angle, "\n");
 
     setServoFromID (servo_id, servo_angle);
-}
-
-/**
-Prints a string to the serial port if @ref VERBOSE is enabled.
-**/
-void serialPrint (const char* s)
-{
-    if (VERBOSE)
-    {
-        Serial.print (s);
-    }
-}
-
-/**
-Prints an integer to the serial port as a string if @ref VERBOSE is enabled.
-**/
-void serialPrintInt (uint8_t i)
-{
-    if (VERBOSE)
-    {
-        Serial.print (i, DEC);
-    }
-}
-
-/**
-Prints an integer as a string surrounded by two strings to the serial port if
-@ref VERBOSE is enabled.
-**/
-void serialPrintIntPretty (const char* pre, uint8_t i, const char* post)
-{
-    if (VERBOSE)
-    {
-        Serial.write (pre);
-        serialPrintInt (i);
-        Serial.write (post);
-    }
-}
-
-/**
-Retrieves a byte from the serial port.
-@return If a normal value is recieved, returns that value as an integer.
-If @ref CANCEL_SIGNAL is recieved, returns -1.
-**/
-int serialGetByte ()
-{
-    int i;
-
-    serialWait ();
-    i = Serial.read ();
-    if (i == CANCEL_SIGNAL)
-    {
-        serialPrint ("CANCEL_SIGNAL\n");
-        return -1;
-    }
-
-    return i;
 }
 
 /**
@@ -244,7 +188,7 @@ void setServoFromIndex (uint8_t servo_index, uint8_t servo_angle)
 {
     if (servo_index >= SERVOS || servo_index < 0)
     {
-        serialPrint ("servo index out of range.\n");
+        serialDebugPrint ("servo index out of range.\n");
         return;
     }
 
@@ -262,11 +206,11 @@ void setServoFromIndex (uint8_t servo_index, uint8_t servo_angle)
     if (reverse [servo_index])
     {
         servo_angle = 180 - servo_angle;
-        serialPrintIntPretty ("reversing angle, now is: ", servo_angle, "\n");
+        serialDebugPrintIntPretty ("reversing angle, now is: ", servo_angle, "\n");
     }
 
     servo_angle = getAdjustedAngle (servo_index, servo_angle);
-    serialPrintIntPretty ("readjusted value: ", servo_angle, "\n");
+    serialDebugPrintIntPretty ("readjusted value: ", servo_angle, "\n");
 
     servo [servo_index].write (servo_angle);
 }
@@ -282,7 +226,7 @@ void setServoFromID (int servo_id, uint8_t servo_angle)
     servo_index = getServoIndexFromID (servo_id);
     if (servo_index < 0)
     {
-        serialPrint ("servo ID not valid.\n");
+        serialDebugPrint ("servo ID not valid.\n");
         return;
     }
 

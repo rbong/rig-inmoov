@@ -6,12 +6,18 @@ uint8_t default_pos [SERVOS] = { 0, };
 uint8_t reverse [SERVOS] = { 0, };
 
 enum
-{ 
+{
     VERBOSE = 0,
-    BOARD_ID = 0,
+    BOARD_ID = 181,
+    DEBUG_RX_PIN = 1,
+    DEBUG_TX_PIN = 0,
+    CMD_RX_PIN = 1,
+    CMD_TX_PIN = 0,
+    CMD_SERIAL_BAUDRATE = 9600,
+    DEBUG_SERIAL_BAUDRATE = 9600,
 };
 
-int getServoFromID (uint8_t servo_id)
+int getServoIndexFromID (uint8_t servo_id)
 {
     if (servo_id >= SERVOS || servo_id < 0)
     {
@@ -20,7 +26,7 @@ int getServoFromID (uint8_t servo_id)
     return servo_id;
 }
 
-int getIDFromServo (uint8_t servo_index)
+int getServoIDFromIndex (uint8_t servo_index)
 {
     if (servo_index >= SERVOS || servo_index < 0)
     {
@@ -35,5 +41,5 @@ int getServoPinFromIndex (uint8_t servo_index)
     {
         return -1;
     }
-    return servo_index;
+    return servo_index + pin_offset;
 }

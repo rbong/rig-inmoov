@@ -57,8 +57,12 @@ enum
     VERBOSE = 0,
     /// The unique identification for this board.
     BOARD_ID = 181,
-    /// The baudrate to use for this board.
-    SERIAL_BAUDRATE = 9600,
+    DEBUG_RX_PIN = 1,
+    DEBUG_TX_PIN = 0,
+    CMD_RX_PIN = 1,
+    CMD_TX_PIN = 0,
+    CMD_SERIAL_BAUDRATE = 9600,
+    DEBUG_SERIAL_BAUDRATE = 9600,
 };
 
 /**

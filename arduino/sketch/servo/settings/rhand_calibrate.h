@@ -5,18 +5,21 @@ uint8_t limit [SERVOS] [2] = {
     { 15, 55 }, { 0, 180 }, { 0, 180 },
     { 0, 180 }, { 0, 180 }, { 0, 180 },
 };
+
 uint8_t default_pos [SERVOS] = { 0, 90, 90, 90, 90, 90 };
 uint8_t reverse [SERVOS] = { 1, 0, 0, 0, 0, 0 };
 uint8_t pin_offset = 2;
 
 enum
 {
-    /// Whether to print debug output to the serial port.
-    VERBOSE = 1,
-    /// The unique identification for this board.
+    VERBOSE = 0,
     BOARD_ID = 181,
-    /// The baudrate to use for this board.
-    SERIAL_BAUDRATE = 9600,
+    DEBUG_RX_PIN = 1,
+    DEBUG_TX_PIN = 0,
+    CMD_RX_PIN = 1,
+    CMD_TX_PIN = 0,
+    CMD_SERIAL_BAUDRATE = 9600,
+    DEBUG_SERIAL_BAUDRATE = 9600,
 };
 
 int getServoIndexFromID (uint8_t servo_id)

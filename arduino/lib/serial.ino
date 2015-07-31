@@ -35,6 +35,21 @@ uint8_t serialCmdRead ()
     return cmd_serial.read ();
 }
 
+int serialCmdGetByte ()
+{
+    int i;
+
+    serialCmdWait ();
+    i = serialCmdRead ();
+    if (i == CANCEL_SIGNAL)
+    {
+        serialDebugPrint ("CANCEL_SIGNAL\n");
+        return -1;
+    }
+
+    return i;
+}
+
 void serialDebugPrint (const char* s)
 {
     if (VERBOSE)

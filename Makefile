@@ -50,4 +50,4 @@ flex.ino: $(BUILD_DIR)/flex/serial.ino
 
 ## cleanup
 clean:
-	rm -rf doc $(BUILD_DIR)
+	rm -rf doc/html doc/latex readme.pdf readme.html $(BUILD_DIR)
