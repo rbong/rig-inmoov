@@ -20,18 +20,21 @@ remake the documentation) and <a href="http://www.gnu.org/software/make/">
 Make</a> (if you wish to build the project).
 
 @section Quick_Start Quick Start
-To quickly demo the right hand, do the following. Copy the file
-\b arduino/servo/settings/rhand.h to \b arduino/servo/settings.h. Copy the \b
-servo folder to your Arduino sketch folder. Open the Arduino software. Select
-your board and the port it is connected to. Open your sketch, and hit upload.
-Instructions for the Arduino software are located
+To quickly upload to the right hand, do the following. Copy the \b
+arduino/servo folder to your Arduino sketch folder. Copy \b
+servo/settings/rhand.h to \b servo/settings.h in the sketch directory. Copy \b
+arduino/lib/serial.ino to \b servo/serial.ino in the sketch directory. Open
+the Arduino software. Select your board and the port it is connected to. Open
+your sketch, and hit upload. Instructions for the Arduino software are located
 <a href="http://www.arduino.cc">on its website</a>.
+Other Arduino files on the bot can be built in a similar way, or the \b make
+system command can be used.
 
 To transmit commands to the board, run this from the command line.
 @code{.sh}
 python -i example/rhand.py
 @endcode
-You can now run commands defined in that python script.
+You can now run commands defined in @ref rhand.
 
 The python script needs the pyserial library. Its website is located
 <a href="http://pyserial.sourceforge.net/">here.</a>
@@ -44,8 +47,9 @@ connect ('COM0')
 
 To demo some movements, run this.
 @code{.py}
-demo()
+demo ()
 @endcode
+Note that some movements require input before continuing (press enter).
 
 Read the @ref rhand documentation for more. Read the @ref
 Examples section to understand how it formulates commands.
@@ -57,14 +61,43 @@ make documentation
 @endcode
 from the root directory.
 
-To upload the right hand code to the connected Arduino, run
+To upload the right hand servo code to the connected Arduino, run
 @code{.sh}
-make rhand
+make servo.ino SETTINGS=rhand ARDUINO_DO=--upload BOARD=nano
 @endcode
-Be sure to customize the \b PORT and \b BOARD variables in the \b Makefile.
+Assuming the board is the arduino nano.
 
-The build system is in its infancy, so please feel free to modify it as needed
-and add support for other build systems.
+@section Build Build System
+## Arduino Directory Structure
+The Arduino IDE abstracts many tools for working with Arduino hardware. We
+choose to use it because of its familiarity and cross system compatibility.
+However, the Arduino IDE isn't made for command line compilation, and
+replicating its process requires complex tools not appropriate for this
+project.
+
+To share code among certain boards, general code is kept in the \b
+arduino/sketch subdirectories. Inside each subdirectory is an \b .ino file of
+the same name, which is the source for the sketch. There is also a \b settings
+folder in which various headers are kept. These headers are to be moved to \b
+settings.h inside the sketch folder. For example, code to be shared among
+servos is kept in \b arduino/sketch/servo/servo.ino, the configuration for the
+right hand is kept in \b arduino/sketch/servo/settings/rhand.h, and you would
+move it to \b arduino/sketch/servo/settings.h to use it.
+
+Some sketches require shared code that use Arduino libraries, which means that
+they need to be contained in \b .ino files. Arduino includes any \b .ino files
+inside a sketch subdirectory. We keep such files in \b arduino/lib. For
+example, servo boards require serial communication, so we would move \b
+arduino/lib/serial.ino to the \b arduino/sketch/servo directory.
+
+The reason that shared code among the same board types is treated differently
+than shared code among different board types is to allow us to keep the
+settings files short, and also to use them elsewhere in the project that is not
+necessarily Arduino code.
+
+This is all automated by the build system. If you wish to use the Arduino IDE,
+either link the appropriate files to your Arduino sketch directory or copy them
+to the sketch directory and write the changes back later.
 
 @section Arduino Arduino Protocol
 The Arduinos controlling the various parts of the bot communicate over their
@@ -127,12 +160,12 @@ This signal makes the board return various information about itself and its
 servos. As of writing, it returns \b START_RESPONSE, an ID, its number of
 servos, the IDs of each servo followed by the value last sent to that servo,
 and \b END_RESPONSE. If a serial connection is connected to other boards and is
-able to send it commands, it may send more servo IDs and servo positions. Board
-IDs start from 181 and go up. It is recommended that if we build more modular
-bots such as this one in the future using the same protocol, they recieve
-unique board identifiers. The response is likely to change in the near future
-as we add sensors and other types of devices. Be sure to regularly check this
-document.
+able to send it commands, it may send more servo IDs and servo positions before
+\b END_RESPONSE. Board IDs start from 181 and go up. It is recommended that if
+we build more modular bots such as this one in the future using the same
+protocol, they recieve unique board identifiers. The response is likely to
+change in the near future as we add sensors and other types of devices. Be sure
+to regularly check this document.
 
 @subsection Examples
 @code{.sh}
@@ -176,8 +209,12 @@ other systems.
 ### Board IDs
 <table>
     <tr>
-        <td>Right hand</td>
+        <td>Right hand servo board</td>
         <td>181</td>
+    </tr>
+    <tr>
+        <td>Right hand flex sensor board</td>
+        <td>182</td>
     </tr>
 </table>
 ### Servo IDs
