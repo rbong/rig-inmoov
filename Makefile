@@ -1,36 +1,53 @@
-BOARD=arduino:avr:uno
+## variables expected to be set on the command line and related
+# arduino board architecture
+BOARD_TYPE=arduino:avr:
+# arduino board
+BOARD=uno
+# arduino upload port
 PORT='/dev/ttyACM0'
+# arduino settings header to use
+SETTINGS=rhand
+# arduino action
+ARDUINO_DO=--upload
+# arduino flags
+ARDUINO_FLAGS=$(ARDUINO_DO) --port $(PORT) --board $(BOARD_TYPE)$(BOARD)
 
-documentation: docclean
+## relevant directories
+SKETCH_DIR=arduino/sketch
+ARDUINO_LIB_DIR=arduino/lib
+BUILD_DIR=build
+
+## command wrappers
+CP=cp $(CP_FLAGS)
+MKDIR=mkdir $(MKDIR_FLAGS)
+ARDUINO=arduino $(ARDUINO_FLAGS)
+
+## function macros
+BUILD_BASE=$(BUILD_DIR)/$(basename $@)
+
+## pattern targets
+# shared arduino files -- updates on any changes to the arduino shared folder
+$(BUILD_DIR)/%.ino: $(ARDUINO_LIB_DIR)
+	$(MKDIR) -p $(dir $@)
+	$(CP) $(ARDUINO_LIB_DIR)/$(notdir $@) $@
+# make arduino files -- assumes you mean a sketch
+%.ino: $(SKETCH_DIR)/*/%.ino
+	$(MKDIR) -p $(BUILD_BASE)
+	$(CP) $< $(BUILD_BASE)/$@
+	$(CP) $(dir $<)settings/$(SETTINGS).h $(BUILD_BASE)/settings.h
+	$(ARDUINO) $(BUILD_BASE)/$@
+
+## implicit targets
+documentation:
 	doxygen doc/Doxyfile
 	cd doc/latex && make pdf
 	mv doc/latex/refman.pdf readme.pdf
 	ln -s doc/html/index.html readme.html
 
-rhand_servo:
-	cp arduino/servo/settings/rhand.h arduino/servo/settings.h
-	arduino --upload --port $(PORT) --board $(BOARD) arduino/servo/servo.ino
+## implicit arduino targets -- put dependencies here
+servo.ino: $(BUILD_DIR)/servo/serial.ino
+flex.ino: $(BUILD_DIR)/flex/serial.ino
 
-rhand_servo_calibrate:
-	cp arduino/servo/settings/rhand_calibrate.h arduino/servo/settings.h
-	arduino --upload --port $(PORT) --board $(BOARD) arduino/servo/servo.ino
-
-rhand_servo_verify:
-	cp arduino/servo/settings/rhand.h arduino/servo/settings.h
-	arduino --verify arduino/servo/servo.ino
-
-rhand_flex:
-	cp arduino/flex/settings/rhand.h arduino/flex/flex/settings.h
-	arduino --upload --port $(PORT) --board $(BOARD) arduino/flex/flex/flex.ino
-
-rhand_flex_verify:
-	cp arduino/flex/settings/rhand.h arduino/flex/settings.h
-	arduino --verify arduino/flex/flex.ino
-
-clean: docclean arduinoclean
-
-arduinoclean:
-	rm -f arduino/*/settings.h &> /dev/null
-
-docclean:
-	rm -rf readme.pdf readme.html doc/html doc/latex &> /dev/null
+## cleanup
+clean:
+	rm -rf doc $(BUILD_DIR)

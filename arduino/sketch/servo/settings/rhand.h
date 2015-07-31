@@ -17,6 +17,15 @@ Size of the print buffer (must be large enough to hold @ref DUMP_RESPONSE_LEN).
 **/
 #define BUFSIZE 32
 
+#ifdef SIMULATION
+const char* urdf_name = URDF_PATH "rhand.urdf";
+const char* joint_name [SERVOS] =
+{
+    "right_arm_to_wrist", "right_palm_to_thumb", "right_palm_to_index",
+    "right_palm_to_medius", "right_palm_to_ring", "right_palm_to_pinky",
+};
+#endif
+
 /**
 This is the callibration for each servo- its minimum then maximum angle (for
 positional servos) or its minimum then maximum speed (for continuous rotation
@@ -38,7 +47,7 @@ the wrong way. Its index corresponds with @ref servo.
 uint8_t reverse [SERVOS] = { 1, 0, 0, 0, 0, 1 };
 /**
 Pin value to begin assigning pins at. Unique to this settings file.
-@see getServoPinFromNum()
+@see getServoPinFromIndex()
 **/
 uint8_t pin_offset = 2;
 

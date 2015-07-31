@@ -13,15 +13,8 @@ See @ref rhand.h for an example of a settings header, and @ref Arduino for
 information servo IDs and other relevant values.
 **/
 
-#ifndef SIMULATION
-// allow simulations to define their own servo libraries
 #include <Servo.h>
-// assume that simulation has its own callibration
 #include "settings.h"
-#else
-// prototyping is only required if not using arduino
-#include <servo.h>
-#endif
 
 #include <stdint.h>
 
@@ -78,7 +71,6 @@ void setup ()
         setAdjustedAngles (servo_index);
 
 // simulations don't have pins
-#ifndef SIMULATION
         serialPrintIntPretty ("assinging servo: ", servo_index, "\n");
         pin = getServoPinFromIndex (servo_index);
         if (pin < 0)
@@ -91,7 +83,6 @@ void setup ()
             servo [servo_index].attach (pin);
             pinMode (pin, OUTPUT);
         }
-#endif
 
         serialPrintIntPretty ("default: ", default_pos [servo_index], "\n");
         setServoFromIndex (servo_index, default_pos [servo_index]);

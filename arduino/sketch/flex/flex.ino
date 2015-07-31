@@ -1,8 +1,5 @@
-#include <SoftwareSerial.h>
-
 #include "settings.h"
 
-SoftwareSerial soft_serial (RX_pin, TX_pin);
 int current_pos [6] = { 0 };
 
 enum
@@ -19,38 +16,40 @@ enum
 
 void setup ()
 {
-    int angle, pin;
-
-    Serial.begin (SERIAL_BAUDRATE);
-    soft_serial.begin (SOFT_SERIAL_BAUDRATE);
+    serialSetup ();
 }
 
 void loop ()
 {
     static int flex_amount, servo_id, servo_angle;
 
-    if (Serial.available ())
+    if (serialCmdAvailable ())
     {
-        switch (Serial.read ())
+        switch (serialCmdRead ())
         {
             case MIN_SIGNAL:
                 for (int flex_index = 0; flex_index < FLEXS; flex_index++)
                 {
-                    serialPrintIntPretty ("Flex: ", getFlexIDFromIndex (flex_index), "\n");
+                    serialDebugPrintIntPretty ("Flex: ", getFlexIDFromIndex (flex_index), "\n");
                     limit [flex_index] [MIN_LIM] = analogGetInt (flex_index);
-                    serialPrintIntPretty ("Min: ", limit [flex_index] [MIN_LIM], "\n");
+                    serialDebugPrintIntPretty ("Min: ", limit [flex_index] [MIN_LIM], "\n");
                 }
+                break;
             case MAX_SIGNAL:
                 for (int flex_index = 0; flex_index < FLEXS; flex_index++)
                 {
-                    serialPrintIntPretty ("Flex: ", getFlexIDFromIndex (flex_index), "\n");
+                    serialDebugPrintIntPretty ("Flex: ", getFlexIDFromIndex (flex_index), "\n");
                     limit [flex_index] [MAX_LIM] = analogGetInt (flex_index);
-                    serialPrintIntPretty ("Max: ", limit [flex_index] [MIN_LIM], "\n");
+                    serialDebugPrintIntPretty ("Max: ", limit [flex_index] [MIN_LIM], "\n");
                 }
+                break;
+            default:
+                serialDebugPrint ("Unknown signal.");
+                break;
         }
     }
 
-    soft_serial.write (CANCEL_SIGNAL);
+    serialCmdWrite (CANCEL_SIGNAL);
     for (int flex_index = 0; flex_index < FLEXS; flex_index++)
     {
         flex_amount = analogGetInt (flex_index);
@@ -73,11 +72,11 @@ void loop ()
 
         softSerialServoCmd (servo_id, servo_angle);
 
-        serialPrintIntPretty ("flex sensor: ", flex_index, "\n");
-        serialPrintIntPretty ("flex pin: ", getFlexPinFromIndex (flex_index), "\n");
-        serialPrintIntPretty ("flex amount: ", flex_amount, "\n");
-        serialPrintIntPretty ("servo: ", servo_id, "\n");
-        serialPrintIntPretty ("servo angle: ", servo_angle, "\n");
+        serialDebugPrintIntPretty ("flex sensor: ", flex_index, "\n");
+        serialDebugPrintIntPretty ("flex pin: ", getFlexPinFromIndex (flex_index), "\n");
+        serialDebugPrintIntPretty ("flex amount: ", flex_amount, "\n");
+        serialDebugPrintIntPretty ("servo: ", servo_id, "\n");
+        serialDebugPrintIntPretty ("servo angle: ", servo_angle, "\n");
     }
     delay (DELAY_MS);
 }
@@ -166,32 +165,6 @@ void softSerialServoCmd (uint8_t servo_id, int servo_angle)
         current_pos [servo_index] = servo_angle;
     }
 
-    soft_serial.write (servo_id);
-    soft_serial.write (servo_angle);
-}
-
-void serialPrint (const char* s)
-{
-    if (VERBOSE)
-    {
-        Serial.print (s);
-    }
-}
-
-void serialPrintInt (int i)
-{
-    if (VERBOSE)
-    {
-        Serial.print (i, DEC);
-    }
-}
-
-void serialPrintIntPretty (const char* pre, int i, const char* post)
-{
-    if (VERBOSE)
-    {
-        Serial.write (pre);
-        serialPrintInt (i);
-        Serial.write (post);
-    }
+    serialCmdWrite (servo_id);
+    serialCmdWrite (servo_angle);
 }
