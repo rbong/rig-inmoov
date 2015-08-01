@@ -1,4 +1,4 @@
-"""! Documentation for the rhand.py script.
+"""! Documentation for the servo_demo.py script.
 An example script for controlling the right hand.
 This script requires python with a library called pyserial.
 After instally python 3.4, pyserial can be installed by calling
@@ -14,13 +14,13 @@ See the <a href="http://www.python.org/">python</a> and
 To run the script, execute
 
 @code{.sh}
-python -i rhand.py
+python -i servo_demo.py
 @endcode
 
 or in python
 
 @code{.py}
-import rhand
+import servo_demo
 @endcode
 
 This will allow you to call the functions from a command interpreter.
@@ -34,6 +34,7 @@ The movements included are quickly written and for demo purposes only.
 @var ser
 The serial connection for input and output. Must be initialized.
 @see connect()
+import pdb; pdb.set_trace()  # XXX BREAKPOINT
 @var RHAND_ID
 The identification byte of the right hand board.
 """

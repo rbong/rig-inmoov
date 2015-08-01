@@ -18,7 +18,7 @@ Size of the print buffer (must be large enough to hold @ref DUMP_RESPONSE_LEN).
 #define BUFSIZE 32
 
 #ifdef SIMULATION
-const char* urdf_name = URDF_PATH "rhand.urdf";
+const char* urdf_name = URDF_PATH "rhand_model.urdf";
 const char* joint_name [SERVOS] =
 {
     "right_arm_to_wrist", "right_palm_to_thumb", "right_palm_to_index",

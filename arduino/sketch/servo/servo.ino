@@ -9,7 +9,7 @@ as this file and named \b settings.h. A better build system in the future could
 use the tools \b avrdude or \b ino. Other Arduino boards in the project, such
 as flex sensor boards, use an identical folder structure and include process.
 
-See @ref rhand.h for an example of a settings header, and @ref Arduino for
+See @ref servo_rhand.h for an example of a settings header, and @ref Arduino for
 information servo IDs and other relevant values.
 **/
 

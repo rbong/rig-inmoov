@@ -22,19 +22,19 @@ Make</a> (if you wish to build the project).
 @section Quick_Start Quick Start
 To quickly upload to the right hand, do the following. Copy the \b
 arduino/servo folder to your Arduino sketch folder. Copy \b
-servo/settings/rhand.h to \b servo/settings.h in the sketch directory. Copy \b
-arduino/lib/serial.ino to \b servo/serial.ino in the sketch directory. Open
-the Arduino software. Select your board and the port it is connected to. Open
-your sketch, and hit upload. Instructions for the Arduino software are located
-<a href="http://www.arduino.cc">on its website</a>.
+servo/settings/servo_rhand.h to \b servo/settings.h in the sketch directory.
+Copy \b arduino/lib/serial.ino to \b servo/serial.ino in the sketch directory.
+Open the Arduino software. Select your board and the port it is connected to.
+Open your sketch, and hit upload. Instructions for the Arduino software are
+located <a href="http://www.arduino.cc">on its website</a>.
 Other Arduino files on the bot can be built in a similar way, or the \b make
 system command can be used.
 
 To transmit commands to the board, run this from the command line.
 @code{.sh}
-python -i example/rhand.py
+python -i example/servo_demo.py
 @endcode
-You can now run commands defined in @ref rhand.
+You can now run commands defined in @ref servo_demo.
 
 The python script needs the pyserial library. Its website is located
 <a href="http://pyserial.sourceforge.net/">here.</a>
@@ -51,7 +51,7 @@ demo ()
 @endcode
 Note that some movements require input before continuing (press enter).
 
-Read the @ref rhand documentation for more. Read the @ref
+Read the @ref servo_demo documentation for more. Read the @ref
 Examples section to understand how it formulates commands.
 
 @section Installation Installation
@@ -63,7 +63,7 @@ from the root directory.
 
 To upload the right hand servo code to the connected Arduino, run
 @code{.sh}
-make servo.ino SETTINGS=rhand ARDUINO_DO=--upload BOARD=nano
+make servo.ino SETTINGS=servo_rhand ARDUINO_DO=--upload BOARD=nano
 @endcode
 Assuming the board is the arduino nano.
 
@@ -81,8 +81,8 @@ the same name, which is the source for the sketch. There is also a \b settings
 folder in which various headers are kept. These headers are to be moved to \b
 settings.h inside the sketch folder. For example, code to be shared among
 servos is kept in \b arduino/sketch/servo/servo.ino, the configuration for the
-right hand is kept in \b arduino/sketch/servo/settings/rhand.h, and you would
-move it to \b arduino/sketch/servo/settings.h to use it.
+right hand is kept in \b arduino/sketch/servo/settings/servo_rhand.h, and you
+would move it to \b arduino/sketch/servo/settings.h to use it.
 
 Some sketches require shared code that use Arduino libraries, which means that
 they need to be contained in \b .ino files. Arduino includes any \b .ino files
@@ -267,6 +267,4 @@ other systems.
         <td>251</td>
     </tr>
 </table>
-
-@see servo.ino rhand
 **/

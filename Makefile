@@ -6,7 +6,7 @@ BOARD=uno
 # arduino upload port
 PORT='/dev/ttyACM0'
 # arduino settings header to use
-SETTINGS=rhand
+SETTINGS=servo_rhand
 # arduino action
 ARDUINO_DO=--upload
 # arduino flags
