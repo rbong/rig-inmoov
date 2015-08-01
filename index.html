@@ -95,25 +95,25 @@ Dependencies</h1>
 <p>The project currently depends on <a href="http://www.python.org">Python</a> for an example script, <a href="http://www.arduino.cc">Arduino</a>, <a href="http://www.stack.nl/~dimitri/doxygen/">Doxygen</a> (if you wish to remake the documentation) and <a href="http://www.gnu.org/software/make/">Make</a> (if you wish to build the project).</p>
 <h1><a class="anchor" id="Quick_Start"></a>
 Quick Start</h1>
-<p>To quickly upload to the right hand, do the following. Copy the <b>arduino/servo</b> folder to your Arduino sketch folder. Copy <b><a class="el" href="servo_2settings_2rhand_8h.html">servo/settings/rhand.h</a></b> to <b>servo/settings.h</b> in the sketch directory. Copy <b><a class="el" href="serial_8ino_source.html">arduino/lib/serial.ino</a></b> to <b>servo/serial.ino</b> in the sketch directory. Open the Arduino software. Select your board and the port it is connected to. Open your sketch, and hit upload. Instructions for the Arduino software are located <a href="http://www.arduino.cc">on its website</a>. Other Arduino files on the bot can be built in a similar way, or the <b>make</b> system command can be used.</p>
-<p>To transmit commands to the board, run this from the command line. </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;python -i example/rhand.py</div>
-</div><!-- fragment --><p> You can now run commands defined in <a class="el" href="namespacerhand.html">rhand</a>.</p>
+<p>To quickly upload to the right hand, do the following. Copy the <b>arduino/servo</b> folder to your Arduino sketch folder. Copy <b><a class="el" href="servo__rhand_8h.html">servo/settings/servo_rhand.h</a></b> to <b>servo/settings.h</b> in the sketch directory. Copy <b><a class="el" href="serial_8ino_source.html">arduino/lib/serial.ino</a></b> to <b>servo/serial.ino</b> in the sketch directory. Open the Arduino software. Select your board and the port it is connected to. Open your sketch, and hit upload. Instructions for the Arduino software are located <a href="http://www.arduino.cc">on its website</a>. Other Arduino files on the bot can be built in a similar way, or the <b>make</b> system command can be used.</p>
+<p>To transmit commands to the board, run this from the command line. </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;python -i example/servo_demo.py</div>
+</div><!-- fragment --><p> You can now run commands defined in <a class="el" href="namespaceservo__demo.html">servo_demo</a>.</p>
 <p>The python script needs the pyserial library. Its website is located <a href="http://pyserial.sourceforge.net/">here.</a></p>
 <p>Call this to connect to the board (replace COM0 with the name of the port you set in Arduino). </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;connect (<span class="stringliteral">&#39;COM0&#39;</span>)</div>
 </div><!-- fragment --><p>To demo some movements, run this. </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;demo ()</div>
 </div><!-- fragment --><p> Note that some movements require input before continuing (press enter).</p>
-<p>Read the <a class="el" href="namespacerhand.html">rhand</a> documentation for more. Read the <a class="el" href="index.html#Examples">Examples</a> section to understand how it formulates commands.</p>
+<p>Read the <a class="el" href="namespaceservo__demo.html">servo_demo</a> documentation for more. Read the <a class="el" href="index.html#Examples">Examples</a> section to understand how it formulates commands.</p>
 <h1><a class="anchor" id="Installation"></a>
 Installation</h1>
 <p>You can build this documentation with the command </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;make documentation</div>
 </div><!-- fragment --><p> from the root directory.</p>
-<p>To upload the right hand servo code to the connected Arduino, run </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;make servo.ino SETTINGS=rhand ARDUINO_DO=--upload BOARD=nano</div>
+<p>To upload the right hand servo code to the connected Arduino, run </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;make servo.ino SETTINGS=servo_rhand ARDUINO_DO=--upload BOARD=nano</div>
 </div><!-- fragment --><p> Assuming the board is the arduino nano.</p>
 <h1><a class="anchor" id="Build"></a>
 Build System</h1>
 <h2>Arduino Directory Structure</h2>
 <p>The Arduino IDE abstracts many tools for working with Arduino hardware. We choose to use it because of its familiarity and cross system compatibility. However, the Arduino IDE isn't made for command line compilation, and replicating its process requires complex tools not appropriate for this project.</p>
-<p>To share code among certain boards, general code is kept in the <b>arduino/sketch</b> subdirectories. Inside each subdirectory is an <b></b>.ino file of the same name, which is the source for the sketch. There is also a <b>settings</b> folder in which various headers are kept. These headers are to be moved to <b>settings.h</b> inside the sketch folder. For example, code to be shared among servos is kept in <b><a class="el" href="servo_8ino.html">arduino/sketch/servo/servo.ino</a></b>, the configuration for the right hand is kept in <b><a class="el" href="servo_2settings_2rhand_8h.html">arduino/sketch/servo/settings/rhand.h</a></b>, and you would move it to <b>arduino/sketch/servo/settings.h</b> to use it.</p>
+<p>To share code among certain boards, general code is kept in the <b>arduino/sketch</b> subdirectories. Inside each subdirectory is an <b></b>.ino file of the same name, which is the source for the sketch. There is also a <b>settings</b> folder in which various headers are kept. These headers are to be moved to <b>settings.h</b> inside the sketch folder. For example, code to be shared among servos is kept in <b><a class="el" href="servo_8ino.html">arduino/sketch/servo/servo.ino</a></b>, the configuration for the right hand is kept in <b><a class="el" href="servo__rhand_8h.html">arduino/sketch/servo/settings/servo_rhand.h</a></b>, and you would move it to <b>arduino/sketch/servo/settings.h</b> to use it.</p>
 <p>Some sketches require shared code that use Arduino libraries, which means that they need to be contained in <b></b>.ino files. Arduino includes any <b></b>.ino files inside a sketch subdirectory. We keep such files in <b>arduino/lib</b>. For example, servo boards require serial communication, so we would move <b><a class="el" href="serial_8ino_source.html">arduino/lib/serial.ino</a></b> to the <b>arduino/sketch/servo</b> directory.</p>
 <p>The reason that shared code among the same board types is treated differently than shared code among different board types is to allow us to keep the settings files short, and also to use them elsewhere in the project that is not necessarily Arduino code.</p>
 <p>This is all automated by the build system. If you wish to use the Arduino IDE, either link the appropriate files to your Arduino sketch directory or copy them to the sketch directory and write the changes back later.</p>
@@ -130,7 +130,7 @@ Arduino Protocol</h1>
 <dl class="section user"><dt>CANCEL_SIGNAL</dt><dd>This signal exists to cancel all pending input and syncronize the host and master. If a host connects to an Arduino and does not know its current state, it can send this signal and know that the board is waiting on a servo ID.</dd></dl>
 <dl class="section user"><dt>WAIT_RESPONSE</dt><dd>This response indicates that the board has no bytes left to read and is ready for input. A host does not need to wait for this response, but it may want to if it is experiencing difficulties or the board may have crashed.</dd></dl>
 <dl class="section user"><dt>START_RESPONSE, END_RESPONSE</dt><dd>These responses mark the beginning and end of a reply to some signal.</dd></dl>
-<dl class="section user"><dt>DUMP_SIGNAL</dt><dd>This signal makes the board return various information about itself and its servos. As of writing, it returns <b>START_RESPONSE</b>, an ID, its number of servos, the IDs of each servo followed by the value last sent to that servo, and <b>END_RESPONSE</b>. If a serial connection has acceess to other boards and is able to send them commands, it may send more servo IDs and servo positions before <b>END_RESPONSE</b>. Board IDs start from 181 and go up. It is recommended that if we build more modular bots such as this one in the future using the same protocol, they recieve unique board identifiers. The response is likely to change in the near future as we add sensors and other types of devices. Be sure to regularly check this document.</dd></dl>
+<dl class="section user"><dt>DUMP_SIGNAL</dt><dd>This signal makes the board return various information about itself and its servos. As of writing, it returns <b>START_RESPONSE</b>, an ID, its number of servos, the IDs of each servo followed by the value last sent to that servo, and <b>END_RESPONSE</b>. If a serial connection has access to other boards and is able to send them commands, it may send more servo IDs and servo positions before <b>END_RESPONSE</b>. Board IDs start from 181 and go up. It is recommended that if we build more modular bots such as this one in the future using the same protocol, they recieve unique board identifiers. The response is likely to change in the near future as we add sensors and other types of devices. Be sure to regularly check this document.</dd></dl>
 <h2><a class="anchor" id="Examples"></a>
 Examples</h2>
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;CANCEL_SIGNAL 0 180 1 135 2 90</div>
@@ -177,11 +177,10 @@ Values</h2>
 <tr>
 <td><a class="el" href="servo_8ino.html#a99fb83031ce9923c84392b4e92f956b5a421b1241677a0bd8d03f213574751f8a">END_RESPONSE</a> </td><td>251  </td></tr>
 </table>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="servo_8ino.html">servo.ino</a> <a class="el" href="namespacerhand.html" title="Documentation for the rhand.py script. ">rhand</a> </dd></dl>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Aug 1 2015 10:43:59 for RIG InMoov Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Aug 1 2015 19:40:26 for RIG InMoov Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>
