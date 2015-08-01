@@ -121,7 +121,7 @@ Build System</h1>
 Arduino Protocol</h1>
 <p>The Arduinos controlling the various parts of the bot communicate over their serial ports. All information is sent and recieved using 8 bit unsigned raw integers instead of text. This allows extremely fast and simple code, but limits programs to 255 signals, identifiers, and values.</p>
 <p>However, the Arduino boards only have one function; to pass commands to their servos.</p>
-<dl class="section user"><dt>Servo Position</dt><dd>Unless otherwise instructed, the Arduino accepts two values at a time. First, it accepts a servo ID, and a value to write to the pin associated with that servo. </dd></dl>
+<dl class="section user"><dt>Servo ID</dt><dd>Unless otherwise instructed, the Arduino accepts two values at a time. First, it accepts a servo ID, and a value to write to the pin associated with that servo. </dd></dl>
 <dl class="section user"><dt></dt><dd>Servo IDs start at 0 and should be uniquely identified on every board, allowing a maximum of 255 servos on each bot, not including signals. They should be assigned different values because if commands are routed through a central board, it allows the protocol to remain the same. If an invalid servo ID is passed to any given board, the board will still read another value from the serial port to avoid syncing issues, but it will do nothing to its servos. </dd></dl>
 <dl class="section user"><dt>Servo Values</dt><dd>The value passed to the servo can be from 0-180. If it exceeds 180 and is not a valid signal, the board will change the angle to 180. On positional rotation servos, this number represents the servo's target angle. On continuous rotation servos, 90 represents stillness, 180 represents full speed in one direction, and 0 represents full speed in the other. </dd></dl>
 <dl class="section user"><dt></dt><dd>Each board has callibrations for each servo that scale the angles from 0-180 to some minimum angle and some maximum angle. The host program has no need to know these values. When the board reports current values, they are non-scaled. </dd></dl>
@@ -130,7 +130,7 @@ Arduino Protocol</h1>
 <dl class="section user"><dt>CANCEL_SIGNAL</dt><dd>This signal exists to cancel all pending input and syncronize the host and master. If a host connects to an Arduino and does not know its current state, it can send this signal and know that the board is waiting on a servo ID.</dd></dl>
 <dl class="section user"><dt>WAIT_RESPONSE</dt><dd>This response indicates that the board has no bytes left to read and is ready for input. A host does not need to wait for this response, but it may want to if it is experiencing difficulties or the board may have crashed.</dd></dl>
 <dl class="section user"><dt>START_RESPONSE, END_RESPONSE</dt><dd>These responses mark the beginning and end of a reply to some signal.</dd></dl>
-<dl class="section user"><dt>DUMP_SIGNAL</dt><dd>This signal makes the board return various information about itself and its servos. As of writing, it returns <b>START_RESPONSE</b>, an ID, its number of servos, the IDs of each servo followed by the value last sent to that servo, and <b>END_RESPONSE</b>. If a serial connection is connected to other boards and is able to send it commands, it may send more servo IDs and servo positions before <b>END_RESPONSE</b>. Board IDs start from 181 and go up. It is recommended that if we build more modular bots such as this one in the future using the same protocol, they recieve unique board identifiers. The response is likely to change in the near future as we add sensors and other types of devices. Be sure to regularly check this document.</dd></dl>
+<dl class="section user"><dt>DUMP_SIGNAL</dt><dd>This signal makes the board return various information about itself and its servos. As of writing, it returns <b>START_RESPONSE</b>, an ID, its number of servos, the IDs of each servo followed by the value last sent to that servo, and <b>END_RESPONSE</b>. If a serial connection has acceess to other boards and is able to send them commands, it may send more servo IDs and servo positions before <b>END_RESPONSE</b>. Board IDs start from 181 and go up. It is recommended that if we build more modular bots such as this one in the future using the same protocol, they recieve unique board identifiers. The response is likely to change in the near future as we add sensors and other types of devices. Be sure to regularly check this document.</dd></dl>
 <h2><a class="anchor" id="Examples"></a>
 Examples</h2>
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;CANCEL_SIGNAL 0 180 1 135 2 90</div>
@@ -181,7 +181,7 @@ Values</h2>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jul 31 2015 16:51:00 for RIG InMoov Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Aug 1 2015 10:36:33 for RIG InMoov Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>
