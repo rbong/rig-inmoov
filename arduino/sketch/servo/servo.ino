@@ -44,14 +44,22 @@ char buf [BUFSIZE]; /// The print buffer.
 
 enum
 {
-    MIN_LIM = 0, /// Index for the @ref limit variables.
-    MAX_LIM = 1, /// Index for the @ref limit variables.
-    CANCEL_SIGNAL = 255, /// Incoming signal commanding termination of the current loop.
-    WAIT_RESPONSE = 254, /// Outgoing signal indicating that we are waiting for input.
-    DUMP_SIGNAL = 253, /// Incoming signal indicating that we are to print information to serial.
-    START_RESPONSE = 252, /// Beginning of some multi-byte response.
-    END_RESPONSE = 251, /// End of some response.
-    DUMP_RESPONSE_LEN = SERVOS * 2 + 4, /// The length of the response to the dump signal.
+    /// Index for the @ref limit variables.
+    MIN_LIM = 0,
+    /// Index for the @ref limit variables.
+    MAX_LIM = 1,
+    /// Incoming signal commanding termination of the current loop.
+    CANCEL_SIGNAL = 255,
+    /// Outgoing signal indicating that we are waiting for input.
+    WAIT_RESPONSE = 254,
+    /// Incoming signal indicating that we are to print information to serial.
+    DUMP_SIGNAL = 253,
+    /// Beginning of some multi-byte response.
+    START_RESPONSE = 252,
+    /// End of some response.
+    END_RESPONSE = 251,
+    /// The length of the response to the dump signal.
+    DUMP_RESPONSE_LEN = SERVOS * 2 + 4,
 };
 
 /**

@@ -108,7 +108,7 @@ limits programs to 255 signals, identifiers, and values.
 However, the Arduino boards only have one function; to pass commands to
 their servos.
 
-@par Servo Position
+@par Servo ID
 Unless otherwise instructed, the Arduino accepts two values at a time. First,
 it accepts a servo ID, and a value to write to the pin associated with that
 servo.
@@ -159,11 +159,11 @@ These responses mark the beginning and end of a reply to some signal.
 This signal makes the board return various information about itself and its
 servos. As of writing, it returns \b START_RESPONSE, an ID, its number of
 servos, the IDs of each servo followed by the value last sent to that servo,
-and \b END_RESPONSE. If a serial connection is connected to other boards and is
-able to send it commands, it may send more servo IDs and servo positions before
-\b END_RESPONSE. Board IDs start from 181 and go up. It is recommended that if
-we build more modular bots such as this one in the future using the same
-protocol, they recieve unique board identifiers. The response is likely to
+and \b END_RESPONSE. If a serial connection has access to other boards and is
+able to send them commands, it may send more servo IDs and servo positions
+before \b END_RESPONSE. Board IDs start from 181 and go up. It is recommended
+that if we build more modular bots such as this one in the future using the
+same protocol, they recieve unique board identifiers. The response is likely to
 change in the near future as we add sensors and other types of devices. Be sure
 to regularly check this document.
 
