@@ -1,0 +1,407 @@
+
+<robot name="rhand">
+  <link name="base_link">
+  </link>
+
+  <link name="right_arm">
+    <visual>
+      <geometry>
+          <mesh filename="package://robot_description/meshes/arm/right/right arm.stl" scale="0.01 0.01 0.01"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="base_to_right_arm" type="fixed">
+    <parent link="base_link"/>
+    <child link="right_arm"/>
+    <origin xyz="0 0 0"/>
+  </joint>
+
+  <link name="right_wrist">
+    <visual>
+      <geometry>
+          <mesh filename="package://robot_description/meshes/arm/right/right wrist.stl" scale="0.01 0.01 0.01"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="right_arm_to_wrist" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-0.548" upper="0.0" velocity="0.5"/>
+    <parent link="right_arm"/>
+    <child link="right_wrist"/>
+    <origin xyz="-0.078839 -0.168514 2.748803"/>
+  </joint>
+
+  <link name="right_palm_bottom">
+    <visual>
+      <geometry>
+          <mesh filename="package://robot_description/meshes/arm/right/right palm bottom.stl" scale="0.01 0.01 0.01"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="right_wrist_to_palm_bottom" type="fixed">
+    <parent link="right_wrist"/>
+    <child link="right_palm_bottom"/>
+    <origin xyz="0.071514 0.028991 0.179882" rpy="0 0 0"/>
+  </joint>
+
+  <link name="right_palm_middle">
+    <visual>
+      <geometry>
+          <mesh filename="package://robot_description/meshes/arm/right/right palm middle.stl" scale="0.01 0.01 0.01"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="right_palm_to_middle" type="fixed">
+    <parent link="right_palm_bottom"/>
+    <child link="right_palm_middle"/>
+    <origin xyz="-0.006622 -0.00177 0.613541" rpy="0 -0.69079459150433376711 0"/>
+  </joint>
+
+  <link name="right_palm_side">
+    <visual>
+      <geometry>
+          <mesh filename="package://robot_description/meshes/arm/right/right palm side.stl" scale="0.01 0.01 0.01"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="right_palm_to_side" type="fixed">
+    <parent link="right_palm_middle"/>
+    <child link="right_palm_side"/>
+    <origin xyz="0 0 -0.306096" rpy="0 0 0"/>
+  </joint>
+
+  <link name="right_pinky_bottom">
+    <visual>
+      <geometry>
+          <mesh filename="package://robot_description/meshes/arm/right/fingers/right pinky bottom.stl" scale="0.01 0.01 0.01"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="right_palm_to_pinky" type="revolute">
+    <axis xyz="1 0 0"/>
+    <limit effort="1000.0" lower="-1.221730" upper="0.0" velocity="0.5"/>
+    <parent link="right_palm_side"/>
+    <child link="right_pinky_bottom"/>
+    <origin xyz="0.45516 0.002967 0.223583" rpy="0 0.94483815635526053051 0"/>
+  </joint>
+
+  <link name="right_pinky_middle">
+    <visual>
+      <geometry>
+          <mesh filename="package://robot_description/meshes/arm/right/fingers/right pinky middle.stl" scale="0.01 0.01 0.01"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="right_pinky_bottom_to_middle" type="revolute">
+    <axis xyz="1 0 0"/>
+    <limit effort="1000.0" lower="-1.221730" upper="0.0" velocity="0.5"/>
+    <mimic joint="right_palm_to_pinky"/>
+    <parent link="right_pinky_bottom"/>
+    <child link="right_pinky_middle"/>
+    <origin xyz="0 0 0.311358" rpy="0 0 0"/>
+  </joint>
+
+  <link name="right_pinky_top">
+    <visual>
+      <geometry>
+          <mesh filename="package://robot_description/meshes/arm/right/fingers/right pinky top.stl" scale="0.01 0.01 0.01"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="right_pinky_middle_to_top" type="revolute">
+    <axis xyz="1 0 0"/>
+    <limit effort="1000.0" lower="-1.221730" upper="0.0" velocity="0.5"/>
+    <mimic joint="right_palm_to_pinky"/>
+    <parent link="right_pinky_middle"/>
+    <child link="right_pinky_top"/>
+    <origin xyz="0 0 0.207196" rpy="0 0 0"/>
+  </joint>
+
+  <link name="right_ring_bottom">
+    <visual>
+      <geometry>
+          <mesh filename="package://robot_description/meshes/arm/right/fingers/right ring bottom.stl" scale="0.01 0.01 0.01"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="right_palm_to_ring" type="revolute">
+    <axis xyz="1 0 0"/>
+    <limit effort="1000.0" lower="-1.221730" upper="0.0" velocity="0.5"/>
+    <parent link="right_palm_middle"/>
+    <child link="right_ring_bottom"/>
+    <origin xyz="0.346576 0.015718 0.172509" rpy="0 0.76757204810204486466 0"/>
+  </joint>
+
+  <link name="right_ring_middle">
+    <visual>
+      <geometry>
+          <mesh filename="package://robot_description/meshes/arm/right/fingers/right ring middle.stl" scale="0.01 0.01 0.01"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="right_ring_bottom_to_middle" type="revolute">
+    <axis xyz="1 0 0"/>
+    <limit effort="1000.0" lower="-1.221730" upper="0.0" velocity="0.5"/>
+    <mimic joint="right_palm_to_ring"/>
+    <parent link="right_ring_bottom"/>
+    <child link="right_ring_middle"/>
+    <origin xyz="0 0 0.345744" rpy="0 0 0"/>
+  </joint>
+
+  <link name="right_ring_top">
+    <visual>
+      <geometry>
+          <mesh filename="package://robot_description/meshes/arm/right/fingers/right ring top.stl" scale="0.01 0.01 0.01"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="right_ring_middle_to_top" type="revolute">
+    <axis xyz="1 0 0"/>
+    <limit effort="1000.0" lower="-1.221730" upper="0.0" velocity="0.5"/>
+    <mimic joint="right_palm_to_ring"/>
+    <parent link="right_ring_middle"/>
+    <child link="right_ring_top"/>
+    <origin xyz="0 0 0.230079" rpy="0 0 0"/>
+  </joint>
+
+  <link name="right_medius_bottom">
+    <visual>
+      <geometry>
+          <mesh filename="package://robot_description/meshes/arm/right/fingers/right medius bottom.stl" scale="0.01 0.01 0.01"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="right_palm_to_medius" type="revolute">
+    <axis xyz="1 0 0"/>
+    <limit effort="1000.0" lower="-1.221730" upper="0.0" velocity="0.5"/>
+    <parent link="right_palm_bottom"/>
+    <child link="right_medius_bottom"/>
+    <origin xyz="-0.149558 0.014526 1.053441" rpy="0 0 0"/>
+  </joint>
+
+  <link name="right_medius_middle">
+    <visual>
+      <geometry>
+          <mesh filename="package://robot_description/meshes/arm/right/fingers/right medius middle.stl" scale="0.01 0.01 0.01"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="right_medius_bottom_to_middle" type="revolute">
+    <axis xyz="1 0 0"/>
+    <limit effort="1000.0" lower="-1.221730" upper="0.0" velocity="0.5"/>
+    <mimic joint="right_palm_to_medius"/>
+    <parent link="right_medius_bottom"/>
+    <child link="right_medius_middle"/>
+    <origin xyz="0 0 0.388467" rpy="0 0 0"/>
+  </joint>
+
+  <link name="right_medius_top">
+    <visual>
+      <geometry>
+          <mesh filename="package://robot_description/meshes/arm/right/fingers/right medius top.stl" scale="0.01 0.01 0.01"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="right_medius_middle_to_top" type="revolute">
+    <axis xyz="1 0 0"/>
+    <limit effort="1000.0" lower="-1.221730" upper="0.0" velocity="0.5"/>
+    <mimic joint="right_palm_to_medius"/>
+    <parent link="right_medius_middle"/>
+    <child link="right_medius_top"/>
+    <origin xyz="0 0 0.258509" rpy="0 0 0"/>
+  </joint>
+
+  <link name="right_index_bottom">
+    <visual>
+      <geometry>
+          <mesh filename="package://robot_description/meshes/arm/right/fingers/right index bottom.stl" scale="0.01 0.01 0.01"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="right_palm_to_index" type="revolute">
+    <axis xyz="1 0 0"/>
+    <limit effort="1000.0" lower="-1.221730" upper="0.0" velocity="0.5"/>
+    <parent link="right_palm_bottom"/>
+    <child link="right_index_bottom"/>
+    <origin xyz="-0.419402 0.013692 1.011197" rpy="0 -0.09502233990934122221 0"/>
+  </joint>
+
+  <link name="right_index_middle">
+    <visual>
+      <geometry>
+          <mesh filename="package://robot_description/meshes/arm/right/fingers/right index middle.stl" scale="0.01 0.01 0.01"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="right_index_bottom_to_middle" type="revolute">
+    <axis xyz="1 0 0"/>
+    <limit effort="1000.0" lower="-1.221730" upper="0.0" velocity="0.5"/>
+    <mimic joint="right_palm_to_index"/>
+    <parent link="right_index_bottom"/>
+    <child link="right_index_middle"/>
+    <origin xyz="0 0 0.362317" rpy="0 0 0"/>
+  </joint>
+
+  <link name="right_index_top">
+    <visual>
+      <geometry>
+          <mesh filename="package://robot_description/meshes/arm/right/fingers/right index top.stl" scale="0.01 0.01 0.01"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="right_index_middle_to_top" type="revolute">
+    <axis xyz="1 0 0"/>
+    <limit effort="1000.0" lower="-1.221730" upper="0.0" velocity="0.5"/>
+    <mimic joint="right_palm_to_index"/>
+    <parent link="right_index_middle"/>
+    <child link="right_index_top"/>
+    <origin xyz="0 0 0.241107" rpy="0 0 0"/>
+  </joint>
+
+  <link name="right_thumb_bottom">
+    <visual>
+      <geometry>
+          <mesh filename="package://robot_description/meshes/arm/right/fingers/right thumb bottom.stl" scale="0.01 0.01 0.01"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="right_palm_to_thumb" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-0.56" upper="0.0" velocity="0.5"/>
+    <parent link="right_palm_bottom"/>
+    <child link="right_thumb_bottom"/>
+    <origin xyz="-0.370316 -0.00146 0.398598" rpy="0 -0.09283738215984369138 0"/>
+  </joint>
+
+  <link name="right_thumb_middle">
+    <visual>
+      <geometry>
+          <mesh filename="package://robot_description/meshes/arm/right/fingers/right thumb middle.stl" scale="0.01 0.01 0.01"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="right_thumb_bottom_to_middle" type="revolute">
+    <axis xyz="1 0 0"/>
+    <limit effort="1000.0" lower="-0.56" upper="0.0" velocity="0.5"/>
+    <mimic joint="right_palm_to_thumb"/>
+    <parent link="right_thumb_bottom"/>
+    <child link="right_thumb_middle"/>
+    <origin xyz="-0.279756 0.003792 0.134096" rpy="0.26179938779914943654 -0.78539816339744830962 -0.43633231299858239423"/>
+  </joint>
+
+  <link name="right_thumb_top">
+    <visual>
+      <geometry>
+          <mesh filename="package://robot_description/meshes/arm/right/fingers/right thumb top.stl" scale="0.01 0.01 0.01"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="right_thumb_middle_to_top" type="revolute">
+    <axis xyz="1 0 0"/>
+    <limit effort="1000.0" lower="-0.56" upper="0.0" velocity="0.5"/>
+    <mimic joint="right_palm_to_thumb"/>
+    <parent link="right_thumb_middle"/>
+    <child link="right_thumb_top"/>
+    <origin xyz="0 0 0.350208" rpy="0 0 0"/>
+  </joint>
+</robot>
