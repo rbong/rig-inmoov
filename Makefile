@@ -18,9 +18,13 @@ ARDUINO_LIB_DIR=arduino/lib
 BUILD_DIR=build
 
 ## command wrappers
-CP=cp $(CP_FLAGS)
-MKDIR=mkdir $(MKDIR_FLAGS)
 ARDUINO=arduino $(ARDUINO_FLAGS)
+DOXY=doxygen $(DOC_OPTIONS)
+
+## files left by the build system
+ARDUINO_BUILD_FILES=$(BUILD_DIR)
+DOC_BUILD_FILES=doc/html doc/latex
+BUILD_FILES=$(ARDUINO_BUILD_FILES) $(DOC_BUILD_FILES)
 
 ## function macros
 BUILD_BASE=$(BUILD_DIR)/$(basename $@)
@@ -28,21 +32,19 @@ BUILD_BASE=$(BUILD_DIR)/$(basename $@)
 ## pattern targets
 # shared arduino files -- updates on any changes to the arduino shared folder
 $(BUILD_DIR)/%.ino: $(ARDUINO_LIB_DIR)
-	$(MKDIR) -p $(dir $@)
-	$(CP) $(ARDUINO_LIB_DIR)/$(notdir $@) $@
+	mkdir -p $(dir $@)
+	cp $(ARDUINO_LIB_DIR)/$(notdir $@) $@
 # make arduino files -- assumes you mean a sketch
 %.ino: $(SKETCH_DIR)/*/%.ino
-	$(MKDIR) -p $(BUILD_BASE)
-	$(CP) $< $(BUILD_BASE)/$@
-	$(CP) $(dir $<)settings/$(SETTINGS).h $(BUILD_BASE)/settings.h
+	mkdir -p $(BUILD_BASE)
+	cp $< $(BUILD_BASE)/$@
+	cp $(dir $<)settings/$(SETTINGS).h $(BUILD_BASE)/settings.h
 	$(ARDUINO) $(BUILD_BASE)/$@
 
 ## implicit targets
 documentation:
-	doxygen doc/Doxyfile
+	$(DOXY) doc/Doxyfile
 	cd doc/latex && make pdf
-	mv doc/latex/refman.pdf readme.pdf
-	ln -s doc/html/index.html readme.html
 
 ## implicit arduino targets -- put dependencies here
 servo.ino: $(BUILD_DIR)/servo/serial.ino
@@ -50,4 +52,4 @@ flex.ino: $(BUILD_DIR)/flex/serial.ino
 
 ## cleanup
 clean:
-	rm -rf doc/html doc/latex readme.pdf readme.html $(BUILD_DIR)
+	rm -rf $(BUILD_FILES)
