@@ -101,7 +101,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr class="memitem:a99fb83031ce9923c84392b4e92f956b5"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
-&#160;&#160;<b>MIN_LIM</b> = 0, 
+&#160;&#160;<a class="el" href="servo_8ino.html#a99fb83031ce9923c84392b4e92f956b5a694f143837f3875ab714cf6ef4bf2062">MIN_LIM</a> = 0, 
 <a class="el" href="servo_8ino.html#a99fb83031ce9923c84392b4e92f956b5a28384d7634c7976556d681b53a81e140">MAX_LIM</a> = 1, 
 <a class="el" href="servo_8ino.html#a99fb83031ce9923c84392b4e92f956b5ac997ff2715ad695454398a53eeed31cc">CANCEL_SIGNAL</a> = 255, 
 <a class="el" href="servo_8ino.html#a99fb83031ce9923c84392b4e92f956b5ac22157b3832ba05308923fb860925d68">WAIT_RESPONSE</a> = 254, 
@@ -165,26 +165,29 @@ char&#160;</td><td class="memItemRight" valign="bottom"><b>buf</b> [<a class="el
 
 <p>The print buffer. </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a class="anchor" id="a99fb83031ce9923c84392b4e92f956b5a28384d7634c7976556d681b53a81e140"></a>MAX_LIM&#160;</td><td class="fielddoc">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a class="anchor" id="a99fb83031ce9923c84392b4e92f956b5a694f143837f3875ab714cf6ef4bf2062"></a>MIN_LIM&#160;</td><td class="fielddoc">
+<p>Index for the <a class="el" href="servo_2settings_2rhand_8h.html#ab48e069f24be713d91d0268626f2df7d">limit</a> variables. </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="a99fb83031ce9923c84392b4e92f956b5a28384d7634c7976556d681b53a81e140"></a>MAX_LIM&#160;</td><td class="fielddoc">
 <p>Index for the <a class="el" href="servo_2settings_2rhand_8h.html#ab48e069f24be713d91d0268626f2df7d">limit</a> variables. </p>
 </td></tr>
 <tr><td class="fieldname"><a class="anchor" id="a99fb83031ce9923c84392b4e92f956b5ac997ff2715ad695454398a53eeed31cc"></a>CANCEL_SIGNAL&#160;</td><td class="fielddoc">
-<p>Index for the <a class="el" href="servo_2settings_2rhand_8h.html#ab48e069f24be713d91d0268626f2df7d">limit</a> variables. </p>
-</td></tr>
-<tr><td class="fieldname"><a class="anchor" id="a99fb83031ce9923c84392b4e92f956b5ac22157b3832ba05308923fb860925d68"></a>WAIT_RESPONSE&#160;</td><td class="fielddoc">
 <p>Incoming signal commanding termination of the current loop. </p>
 </td></tr>
-<tr><td class="fieldname"><a class="anchor" id="a99fb83031ce9923c84392b4e92f956b5a31cd671c80d04a4acc2d8256ec960c90"></a>DUMP_SIGNAL&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><a class="anchor" id="a99fb83031ce9923c84392b4e92f956b5ac22157b3832ba05308923fb860925d68"></a>WAIT_RESPONSE&#160;</td><td class="fielddoc">
 <p>Outgoing signal indicating that we are waiting for input. </p>
 </td></tr>
-<tr><td class="fieldname"><a class="anchor" id="a99fb83031ce9923c84392b4e92f956b5a48468e45ef67fed1d655c9aa1dc40aa8"></a>START_RESPONSE&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><a class="anchor" id="a99fb83031ce9923c84392b4e92f956b5a31cd671c80d04a4acc2d8256ec960c90"></a>DUMP_SIGNAL&#160;</td><td class="fielddoc">
 <p>Incoming signal indicating that we are to print information to serial. </p>
 </td></tr>
-<tr><td class="fieldname"><a class="anchor" id="a99fb83031ce9923c84392b4e92f956b5a421b1241677a0bd8d03f213574751f8a"></a>END_RESPONSE&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><a class="anchor" id="a99fb83031ce9923c84392b4e92f956b5a48468e45ef67fed1d655c9aa1dc40aa8"></a>START_RESPONSE&#160;</td><td class="fielddoc">
 <p>Beginning of some multi-byte response. </p>
 </td></tr>
-<tr><td class="fieldname"><a class="anchor" id="a99fb83031ce9923c84392b4e92f956b5aebe1616f434c26e10f088aebf559d708"></a>DUMP_RESPONSE_LEN&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><a class="anchor" id="a99fb83031ce9923c84392b4e92f956b5a421b1241677a0bd8d03f213574751f8a"></a>END_RESPONSE&#160;</td><td class="fielddoc">
 <p>End of some response. </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="a99fb83031ce9923c84392b4e92f956b5aebe1616f434c26e10f088aebf559d708"></a>DUMP_RESPONSE_LEN&#160;</td><td class="fielddoc">
+<p>The length of the response to the dump signal. </p>
 </td></tr>
 </table>
 
@@ -205,9 +208,9 @@ char&#160;</td><td class="memItemRight" valign="bottom"><b>buf</b> [<a class="el
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Writes various information about the board to the serial port. Triggered on reception of <a class="el" href="servo_8ino.html#a99fb83031ce9923c84392b4e92f956b5aebe1616f434c26e10f088aebf559d708">DUMP_RESPONSE_LEN</a>. Transmits the ID of the board, the number of servos, each servo ID, and the current position of the servos. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="index.html#Arduino">Arduino Protocol</a>, <a class="el" href="servo_8ino.html#a99fb83031ce9923c84392b4e92f956b5a48468e45ef67fed1d655c9aa1dc40aa8" title="Incoming signal indicating that we are to print information to serial. ">START_RESPONSE</a>, <a class="el" href="servo_8ino.html#a99fb83031ce9923c84392b4e92f956b5a421b1241677a0bd8d03f213574751f8a" title="Beginning of some multi-byte response. ">END_RESPONSE</a>, <a class="el" href="servo_8ino.html#ae88c6e452cc6a2dc7af59897c42d8e1e">current_pos</a>, <a class="el" href="servo_2settings_2rhand_8h.html#a85c27cf25641dcd7fc04c79a08b4b359">getServoIDFromIndex()</a> </dd></dl>
+<p>Writes various information about the board to the serial port. Triggered on reception of <a class="el" href="servo_8ino.html#a99fb83031ce9923c84392b4e92f956b5aebe1616f434c26e10f088aebf559d708">DUMP_RESPONSE_LEN</a>. Transmits the ID of the board, the number of servos, each servo ID, and the current position of the servos. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="index.html#Arduino">Arduino Protocol</a>, <a class="el" href="servo_8ino.html#a99fb83031ce9923c84392b4e92f956b5a48468e45ef67fed1d655c9aa1dc40aa8" title="Beginning of some multi-byte response. ">START_RESPONSE</a>, <a class="el" href="servo_8ino.html#a99fb83031ce9923c84392b4e92f956b5a421b1241677a0bd8d03f213574751f8a" title="End of some response. ">END_RESPONSE</a>, <a class="el" href="servo_8ino.html#ae88c6e452cc6a2dc7af59897c42d8e1e">current_pos</a>, <a class="el" href="servo_2settings_2rhand_8h.html#a85c27cf25641dcd7fc04c79a08b4b359">getServoIDFromIndex()</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="servo_8ino_source.html#l00243">243</a> of file <a class="el" href="servo_8ino_source.html">servo.ino</a>.</p>
+<p>Definition at line <a class="el" href="servo_8ino_source.html#l00251">251</a> of file <a class="el" href="servo_8ino_source.html">servo.ino</a>.</p>
 
 </div>
 </div>
@@ -244,7 +247,7 @@ char&#160;</td><td class="memItemRight" valign="bottom"><b>buf</b> [<a class="el
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="servo_8ino.html#a32f61ef125b9f530b47eb09b5cbeb7ce">setAdjustedAngles()</a>, <a class="el" href="servo_8ino.html#afb7b19d5ec5c1046df4a261ca4ee9f70">adjusted_angles</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="servo_8ino_source.html#l00170">170</a> of file <a class="el" href="servo_8ino_source.html">servo.ino</a>.</p>
+<p>Definition at line <a class="el" href="servo_8ino_source.html#l00178">178</a> of file <a class="el" href="servo_8ino_source.html">servo.ino</a>.</p>
 
 </div>
 </div>
@@ -262,7 +265,7 @@ char&#160;</td><td class="memItemRight" valign="bottom"><b>buf</b> [<a class="el
 </div><div class="memdoc">
 <p>The <b>loop</b> function is called continually until the program exits. It performs actions based on <a class="el" href="index.html#Arduino">Arduino Protocol</a>. Recieves two unsigned 8-bit integers, a servo id and a servo angle, then calls <a class="el" href="servo_8ino.html#a3a39af320e5158e45d76e498553daa1c">setServoFromID()</a>. If the <a class="el" href="servo_8ino.html#a99fb83031ce9923c84392b4e92f956b5a31cd671c80d04a4acc2d8256ec960c90">DUMP_SIGNAL</a> is recieved at any time, calls <a class="el" href="servo_8ino.html#accd2600060dbaee3a3b41aed4034c63c">dump()</a> and continues. If the <a class="el" href="servo_8ino.html#a99fb83031ce9923c84392b4e92f956b5ac997ff2715ad695454398a53eeed31cc">CANCEL_SIGNAL</a> is recieved, it does nothing and continues. If, at the beginning of the function, there is no pending input, it transmits <a class="el" href="servo_8ino.html#a99fb83031ce9923c84392b4e92f956b5ac22157b3832ba05308923fb860925d68">WAIT_RESPONSE</a>, then does nothing until input is available. </p>
 
-<p>Definition at line <a class="el" href="servo_8ino_source.html#l00101">101</a> of file <a class="el" href="servo_8ino_source.html">servo.ino</a>.</p>
+<p>Definition at line <a class="el" href="servo_8ino_source.html#l00109">109</a> of file <a class="el" href="servo_8ino_source.html">servo.ino</a>.</p>
 
 </div>
 </div>
@@ -280,7 +283,7 @@ char&#160;</td><td class="memItemRight" valign="bottom"><b>buf</b> [<a class="el
 </div><div class="memdoc">
 <p>Waits for serial input to become available then returns. </p>
 
-<p>Definition at line <a class="el" href="servo_8ino_source.html#l00269">269</a> of file <a class="el" href="servo_8ino_source.html">servo.ino</a>.</p>
+<p>Definition at line <a class="el" href="servo_8ino_source.html#l00277">277</a> of file <a class="el" href="servo_8ino_source.html">servo.ino</a>.</p>
 
 </div>
 </div>
@@ -305,7 +308,7 @@ char&#160;</td><td class="memItemRight" valign="bottom"><b>buf</b> [<a class="el
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="servo_8ino.html#ae0448f4fa49db9fcf9f25d517cb7750d">getAdjustedAngle()</a>, <a class="el" href="servo_8ino.html#afb7b19d5ec5c1046df4a261ca4ee9f70">adjusted_angles</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="servo_8ino_source.html#l00146">146</a> of file <a class="el" href="servo_8ino_source.html">servo.ino</a>.</p>
+<p>Definition at line <a class="el" href="servo_8ino_source.html#l00154">154</a> of file <a class="el" href="servo_8ino_source.html">servo.ino</a>.</p>
 
 </div>
 </div>
@@ -334,7 +337,7 @@ char&#160;</td><td class="memItemRight" valign="bottom"><b>buf</b> [<a class="el
 </div><div class="memdoc">
 <p>Writes an angle to a pin associated with a servo ID. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="servo_8ino.html#ae825d17aac5e6dc657fd1a6cb43eb4a7">setServoFromIndex()</a>, <a class="el" href="servo_2settings_2rhand_8h.html#a46229c9a3c3e7f1aa5e70dfa29f57204">getServoIndexFromID()</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="servo_8ino_source.html#l00222">222</a> of file <a class="el" href="servo_8ino_source.html">servo.ino</a>.</p>
+<p>Definition at line <a class="el" href="servo_8ino_source.html#l00230">230</a> of file <a class="el" href="servo_8ino_source.html">servo.ino</a>.</p>
 
 </div>
 </div>
@@ -370,7 +373,7 @@ char&#160;</td><td class="memItemRight" valign="bottom"><b>buf</b> [<a class="el
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="servo_8ino.html#ae0448f4fa49db9fcf9f25d517cb7750d">getAdjustedAngle()</a>, <a class="el" href="servo_2settings_2rhand_8h.html#ae858a0ba64b6875be7726f8cb68fc391">reverse</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="servo_8ino_source.html#l00187">187</a> of file <a class="el" href="servo_8ino_source.html">servo.ino</a>.</p>
+<p>Definition at line <a class="el" href="servo_8ino_source.html#l00195">195</a> of file <a class="el" href="servo_8ino_source.html">servo.ino</a>.</p>
 
 </div>
 </div>
@@ -388,7 +391,7 @@ char&#160;</td><td class="memItemRight" valign="bottom"><b>buf</b> [<a class="el
 </div><div class="memdoc">
 <p>The <b>setup</b> function is called at the beginning of the program. In it, we call <a class="el" href="servo_8ino.html#a32f61ef125b9f530b47eb09b5cbeb7ce">setAdjustedAngles</a> for each servo and assign a pin to each <a class="el" href="servo_8ino.html#adf02be48d17da3f4a229ebfdfda2fa71">servo</a>. </p>
 
-<p>Definition at line <a class="el" href="servo_8ino_source.html#l00061">61</a> of file <a class="el" href="servo_8ino_source.html">servo.ino</a>.</p>
+<p>Definition at line <a class="el" href="servo_8ino_source.html#l00069">69</a> of file <a class="el" href="servo_8ino_source.html">servo.ino</a>.</p>
 
 </div>
 </div>
@@ -441,7 +444,7 @@ char&#160;</td><td class="memItemRight" valign="bottom"><b>buf</b> [<a class="el
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Aug 1 2015 10:36:33 for RIG InMoov Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Aug 1 2015 10:43:59 for RIG InMoov Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>
