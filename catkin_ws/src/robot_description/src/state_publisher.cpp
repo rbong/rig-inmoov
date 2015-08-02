@@ -6,6 +6,7 @@
 #include <urdf/model.h>
 
 #include <SerialStream.h>
+#define URDF_PATH "/home/dork/programs/android/catkin_ws/src/robot_description/urdf/"
 
 using namespace LibSerial;
 
@@ -111,6 +112,8 @@ int main(int argc, char** argv)
 
         joint_pub.publish(joint_state);
         broadcaster.sendTransform(odom_trans);
+
+        loop_rate.sleep();
     }
 
     return 0;
