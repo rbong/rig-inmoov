@@ -93,7 +93,8 @@ arduino/lib/serial.ino to the \b arduino/sketch/servo directory.
 The reason that shared code among the same board types is treated differently
 than shared code among different board types is to allow us to keep the
 settings files short, and also to use them elsewhere in the project that is not
-necessarily Arduino code.
+necessarily Arduino code. In addition, .ino files do not have a guaranteed
+order of inclusion.
 
 This is all automated by the build system. If you wish to use the Arduino IDE,
 either link the appropriate files to your Arduino sketch directory or copy them
@@ -190,9 +191,9 @@ START_RESPONSE BOARD_ID 4 0 0 1 45 2 90 3 135 4 180 END_RESPONSE WAIT_RESPONSE
 CANCEL_SIGNAL 0 0 0 45 0 90 0 135 0 180
 @endcode
 If this stream of bytes were sent instantly, it would essentially move servo 0
-directly to 180 degrees (if it was a positional servo) because of
-the speed of the commands. However, if we inserted a slight delay, we could
-slowly move the servo from its starting position to its ending position.
+directly to 180 degrees (if it was a positional servo) because of the speed of
+the commands. However, if we inserted a slight delay, we could slowly move the
+servo from its starting position to its ending position.
 @code{.sh}
 CANCEL_SIGNAL 0 0 1 0 0 45 1 45 0 90 1 90 0 135 1 135 0 180 1 180
 @endcode

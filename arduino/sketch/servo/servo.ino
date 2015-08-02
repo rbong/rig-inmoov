@@ -5,8 +5,7 @@ The program is written to be a simple module that can pass values to servos.
 Each board needs its own settings file. Because of limitations of the
 Arduino command line interface, these are included as \b settings.h. The
 Makefile manages which configuration is currently located in the same directory
-as this file and named \b settings.h. A better build system in the future could
-use the tools \b avrdude or \b ino. Other Arduino boards in the project, such
+as this file and named \b settings.h. Other Arduino boards in the project, such
 as flex sensor boards, use an identical folder structure and include process.
 
 See @ref servo_rhand.h for an example of a settings header, and @ref Arduino for
@@ -40,7 +39,8 @@ is changed and retrieved upon @ref DUMP_SIGNAL.
 **/
 uint8_t current_pos [SERVOS] = { 0 };
 
-char buf [BUFSIZE]; /// The print buffer.
+/// The print buffer.
+char buf [BUFSIZE];
 
 enum
 {

@@ -1,3 +1,13 @@
+/**@file
+This is the code for the flex sensor board.
+
+It follows the same settings convention as @ref serial.ino. It uses the @ref
+serial.ino shared code to transmit commands to a servo board given a settings
+file. Programs generated with this file translate values read from variable
+resistance (flex sensors) hooked up to voltage divider into values from 0-180
+for the servo controller to read.
+**/
+
 #include "settings.h"
 
 int current_pos [6] = { 0 };
@@ -23,9 +33,9 @@ void loop ()
 {
     static int flex_amount, servo_id, servo_angle;
 
-    if (serialCmdAvailable ())
+    if (serialDebugAvailable ())
     {
-        switch (serialCmdRead ())
+        switch (serialDebugRead ())
         {
             case MIN_SIGNAL:
                 for (int flex_index = 0; flex_index < FLEXS; flex_index++)
@@ -72,11 +82,13 @@ void loop ()
 
         softSerialServoCmd (servo_id, servo_angle);
 
-        serialDebugPrintIntPretty ("flex sensor: ", flex_index, "\n");
-        serialDebugPrintIntPretty ("flex pin: ", getFlexPinFromIndex (flex_index), "\n");
-        serialDebugPrintIntPretty ("flex amount: ", flex_amount, "\n");
-        serialDebugPrintIntPretty ("servo: ", servo_id, "\n");
-        serialDebugPrintIntPretty ("servo angle: ", servo_angle, "\n");
+#ifdef PRINT_FLEX_AMOUNT
+        /* serialDebugPrintIntPretty ("flex sensor: ", flex_index, "\n"); */
+        /* serialDebugPrintIntPretty ("flex pin: ", getFlexPinFromIndex (flex_index), "\n"); */
+        /* serialDebugPrintIntPretty ("flex amount: ", flex_amount, "\n"); */
+        /* serialDebugPrintIntPretty ("servo: ", servo_id, "\n"); */
+        /* serialDebugPrintIntPretty ("servo angle: ", servo_angle, "\n"); */
+#endif
     }
     delay (DELAY_MS);
 }
