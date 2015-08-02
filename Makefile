@@ -23,8 +23,9 @@ DOXY=doxygen $(DOC_OPTIONS)
 
 ## files left by the build system
 ARDUINO_BUILD_FILES=$(BUILD_DIR)
+ROS_BUILD_FILES=catkin_ws/.catkin_workspace catkin_ws/build catkin_ws/devel catkin_ws/src/CMakeLists.txt
 DOC_BUILD_FILES=doc/html doc/latex
-BUILD_FILES=$(ARDUINO_BUILD_FILES) $(DOC_BUILD_FILES)
+BUILD_FILES=$(ARDUINO_BUILD_FILES) $(DOC_BUILD_FILES) $(ROS_BUILD_FILES)
 
 ## function macros
 BUILD_BASE=$(BUILD_DIR)/$(basename $@)
@@ -41,14 +42,25 @@ $(BUILD_DIR)/%.ino: $(ARDUINO_LIB_DIR)
 	cp $(dir $<)settings/$(SETTINGS).h $(BUILD_BASE)/settings.h
 	$(ARDUINO) $(BUILD_BASE)/$@
 
+## implicit arduino targets -- put dependencies here
+servo.ino: $(BUILD_DIR)/servo/serial.ino
+flex.ino: $(BUILD_DIR)/flex/serial.ino
+
 ## implicit targets
 documentation:
 	$(DOXY) doc/Doxyfile
 	cd doc/latex && make pdf
-
-## implicit arduino targets -- put dependencies here
-servo.ino: $(BUILD_DIR)/servo/serial.ino
-flex.ino: $(BUILD_DIR)/flex/serial.ino
+simulation:
+	if [ ! -f catkin_ws/.catkin_workspace ]; then \
+	    . /opt/ros/jade/setup.sh && \
+	    cd catkin_ws/src && \
+	    catkin_init_workspace; \
+	fi
+	. /opt/ros/jade/setup.sh && \
+	cd catkin_ws && catkin_make
+	. /opt/ros/jade/setup.sh && \
+	. catkin_ws/devel/setup.sh && \
+	roslaunch robot_description display.launch &
 
 ## cleanup
 clean:
