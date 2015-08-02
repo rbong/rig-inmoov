@@ -3,12 +3,32 @@
 #include <sensor_msgs/JointState.h>
 #include <tf/transform_broadcaster.h>
 
+#include <urdf/model.h>
+
 #include <SerialStream.h>
 
 using namespace LibSerial;
 
-int main(int argc, char** argv) {
+double map (double value, double from_min, double from_max, double to_min, double to_max)
+{
+    if (value < from_min)
+    {
+        value = from_min;
+    }
+    if (value > from_max)
+    {
+        value = from_max;
+    }
+
+    return (value - from_min) * (to_max - to_min) / (from_max - from_min) + to_min;
+}
+
+int main(int argc, char** argv)
+{
     SerialStream serial_stream;
+
+    double joint_limit [6] [2];
+    boost::shared_ptr<const urdf::Joint> joint;
 
     ros::init(argc, argv, "state_publisher");
     ros::NodeHandle n;
@@ -16,13 +36,27 @@ int main(int argc, char** argv) {
     tf::TransformBroadcaster broadcaster;
     ros::Rate loop_rate(50);
 
-    const double degree = M_PI/180;
     double angle [6] = { 0, 0, 0, 0, 0, 0, };
     const char* joint_name [6] =
     {
         "right_arm_to_wrist", "right_palm_to_thumb", "right_palm_to_index",
         "right_palm_to_medius", "right_palm_to_ring", "right_palm_to_pinky",
     };
+
+    std::string urdf_file = "/home/dork/programs/android/catkin_ws/src/robot_description/model.xml";
+    urdf::Model model;
+
+    if (!model.initFile(urdf_file))
+    {
+        ROS_ERROR("Failed to parse urdf file");
+        return -1;
+    }
+    for (int i = 0; i < 6; i++)
+    {
+        joint = model.getJoint (joint_name [i]);
+        joint_limit [i] [0] = joint->limits->lower;
+        joint_limit [i] [1] = joint->limits->upper;
+    }
 
     ROS_INFO ("connecting to serial port");
     serial_stream.Open ("/dev/ttyACM0");
@@ -41,7 +75,8 @@ int main(int argc, char** argv) {
     odom_trans.transform.translation.z = 0;
     odom_trans.transform.rotation = tf::createQuaternionMsgFromYaw(0);
 
-    while (ros::ok()) {
+    while (ros::ok())
+    {
         uint8_t c;
         int servo;
 
@@ -58,7 +93,8 @@ int main(int argc, char** argv) {
         }
         if (servo > 0 && servo < 6)
         {
-            angle [servo] = -c * degree/2;
+            angle [servo] = map
+                (c, 0, 180, joint_limit [servo] [1], joint_limit [servo] [0]);
         }
 
         joint_state.header.stamp = ros::Time::now();
@@ -75,10 +111,7 @@ int main(int argc, char** argv) {
 
         joint_pub.publish(joint_state);
         broadcaster.sendTransform(odom_trans);
-
-        /* loop_rate.sleep(); */
     }
-
 
     return 0;
 }
