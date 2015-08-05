@@ -43,7 +43,6 @@ $(BUILD_DIR)/%.ino: $(ARDUINO_LIB_DIR)
 	$(ARDUINO) $(BUILD_BASE)/$@
 
 ## implicit arduino targets -- put dependencies here
-servo.ino: $(BUILD_DIR)/servo/serial.ino
 flex.ino: $(BUILD_DIR)/flex/serial.ino
 
 ## implicit targets
@@ -51,7 +50,7 @@ documentation:
 	$(DOXY) doc/Doxyfile
 	cd doc/latex && make pdf
 simulation:
-	if [ ! -f catkin_ws/.catkin_workspace ]; then \
+	if [ ! -f catkin_ws/src/CMakeLists.txt ]; then \
 	    . /opt/ros/jade/setup.sh && \
 	    cd catkin_ws/src && \
 	    catkin_init_workspace; \

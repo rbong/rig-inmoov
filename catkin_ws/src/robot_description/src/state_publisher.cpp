@@ -60,7 +60,7 @@ int main(int argc, char** argv)
     }
 
     ROS_INFO ("connecting to serial port");
-    serial_stream.Open ("/dev/ttyACM0");
+    serial_stream.Open ("/dev/ttyACM1");
     serial_stream.SetBaudRate (SerialStreamBuf::BAUD_9600);
     serial_stream.SetCharSize (SerialStreamBuf::CHAR_SIZE_8);
     serial_stream.SetNumOfStopBits (1);

@@ -61,8 +61,7 @@ enum
     DEBUG_TX_PIN = 0,
     CMD_RX_PIN = 1,
     CMD_TX_PIN = 0,
-    CMD_SERIAL_BAUDRATE = 9600,
-    DEBUG_SERIAL_BAUDRATE = 9600,
+    SERIAL_BAUDRATE = 9600,
 };
 
 /**
