@@ -5,7 +5,7 @@
 #define PRINT_FLEX_AMOUNT
 
 int limit [FLEXS] [2] = {
-    { 540, 645 }, { 494, 659 }, { 545, 693 }, { 549, 687 }, { 533, 699 },
+    { 563, 726 }, { 554, 713 }, { 616, 756 }, { 620, 763 }, { 623, 785 },
 };
 uint8_t reverse [FLEXS] = { 1, 1, 1, 1, 1, };
 uint8_t pin_offset = 14;
@@ -15,11 +15,11 @@ uint8_t flex_offset = 6;
 enum
 {
     VERBOSE = 0,
-    NOISE_CONTROL = 1,
+    NOISE_CONTROL = 0,
     BOARD_ID = 182,
     SERIAL_BAUDRATE = 9600,
     SOFT_SERIAL_BAUDRATE = 9600,
-    DELAY_MS = 250,
+    DELAY_MS = 175,
     DEBUG_RX_PIN = 0,
     DEBUG_TX_PIN = 1,
     CMD_RX_PIN = 0,

@@ -50,7 +50,7 @@ void loop ()
                 {
                     serialDebugPrintIntPretty ("Flex: ", getFlexIDFromIndex (flex_index), "\n");
                     limit [flex_index] [MAX_LIM] = analogGetInt (flex_index);
-                    serialDebugPrintIntPretty ("Max: ", limit [flex_index] [MIN_LIM], "\n");
+                    serialDebugPrintIntPretty ("Max: ", limit [flex_index] [MAX_LIM], "\n");
                 }
                 break;
             default:
@@ -81,14 +81,6 @@ void loop ()
         }
 
         softSerialServoCmd (servo_id, servo_angle);
-
-#ifdef PRINT_FLEX_AMOUNT
-        /* serialDebugPrintIntPretty ("flex sensor: ", flex_index, "\n"); */
-        /* serialDebugPrintIntPretty ("flex pin: ", getFlexPinFromIndex (flex_index), "\n"); */
-        /* serialDebugPrintIntPretty ("flex amount: ", flex_amount, "\n"); */
-        /* serialDebugPrintIntPretty ("servo: ", servo_id, "\n"); */
-        /* serialDebugPrintIntPretty ("servo angle: ", servo_angle, "\n"); */
-#endif
     }
     delay (DELAY_MS);
 }
@@ -169,7 +161,7 @@ void softSerialServoCmd (uint8_t servo_id, int servo_angle)
     if (NOISE_CONTROL)
     {
         difference = current_pos [servo_index] - servo_angle;
-        if ((difference * difference) < 2) 
+        if ((difference * difference) < 1)
         {
             return;
         }

@@ -294,3 +294,60 @@ def demo ():
     count ()
     sleep (1)
     rockon ()
+
+def getarrow ():
+    import termios
+    import sys, tty
+    def _getch():
+        fd = sys.stdin.fileno()
+        old_settings = termios.tcgetattr(fd)
+        try:
+            tty.setraw(fd)
+            ch = sys.stdin.read(1)
+        finally:
+            termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
+        return ch
+
+    c = _getch ()
+    if c != '\x1b':
+        return ''
+    c += _getch ()
+    if c != '\x1b[':
+        return ''
+    c += _getch ()
+
+    if c == '\x1b[A':
+        return 'up'
+    elif c == '\x1b[B':
+        return 'down'
+    elif c == '\x1b[C':
+        return 'right'
+    elif c == '\x1b[D':
+        return 'left'
+    else:
+        return ''
+
+def calibrate (servo=1):
+    i = 45
+    while 1:
+        print (i)
+        ser.write ([255, servo, i])
+        arrow = getarrow ()
+        if arrow == 'up' or arrow == 'right':
+            if i < 180:
+                i += 5
+        elif arrow == 'down' or arrow == 'left':
+            if i > 0:
+                i -= 5
+        else:
+            break
+
+def calibrate_all ():
+    ser.write ([255])
+    for i in range (1, 6):
+        ser.write ([0])
+        ser.write ([0])
+        calibrate (i)
+        ser.write ([0])
+        ser.write ([180])
+        calibrate (i)

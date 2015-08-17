@@ -18,12 +18,11 @@ corresponding RX and TX pins for output (usually 0 and 1).
 
 #include <SoftwareSerial.h>
 
-SoftwareSerial debug_serial (DEBUG_RX_PIN, DEBUG_TX_PIN);
 SoftwareSerial cmd_serial (CMD_RX_PIN, CMD_TX_PIN);
 
 void serialSetup ()
 {
-    debug_serial.begin (DEBUG_SERIAL_BAUDRATE);
+    Serial.begin (DEBUG_SERIAL_BAUDRATE);
 
     cmd_serial.begin (CMD_SERIAL_BAUDRATE);
 
@@ -67,19 +66,19 @@ int serialCmdGetByte ()
 
 uint8_t serialDebugRead ()
 {
-    return debug_serial.read ();
+    return Serial.read ();
 }
 
 int serialDebugAvailable ()
 {
-    return debug_serial.available ();
+    return Serial.available ();
 }
 
 void serialDebugPrint (const char* s)
 {
     if (VERBOSE)
     {
-        debug_serial.print (s);
+        Serial.print (s);
     }
 }
 
@@ -87,7 +86,7 @@ void serialDebugPrintInt (int i)
 {
     if (VERBOSE)
     {
-        debug_serial.print (i, DEC);
+        Serial.print (i, DEC);
     }
 }
 
@@ -95,8 +94,8 @@ void serialDebugPrintIntPretty (const char* pre, int i, const char* post)
 {
     if (VERBOSE)
     {
-        debug_serial.print (pre);
+        Serial.print (pre);
         serialDebugPrintInt (i);
-        debug_serial.print (post);
+        Serial.print (post);
     }
 }

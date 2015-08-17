@@ -5,10 +5,10 @@
 
 #include <urdf/model.h>
 
-#include <SerialStream.h>
+#include <SerialPort.h>
 #define URDF_PATH "/home/dork/programs/android/catkin_ws/src/robot_description/urdf/"
 
-using namespace LibSerial;
+/* using namespace LibSerial; */
 
 double map (double value, double from_min, double from_max, double to_min, double to_max)
 {
@@ -26,7 +26,9 @@ double map (double value, double from_min, double from_max, double to_min, doubl
 
 int main(int argc, char** argv)
 {
-    SerialStream serial_stream;
+    int c;
+    int servo = -1;
+    SerialPort serial_port ("/dev/ttyACM1");
 
     double joint_limit [6] [2];
     boost::shared_ptr<const urdf::Joint> joint;
@@ -35,7 +37,7 @@ int main(int argc, char** argv)
     ros::NodeHandle n;
     ros::Publisher joint_pub = n.advertise<sensor_msgs::JointState>("joint_states", 1);
     tf::TransformBroadcaster broadcaster;
-    ros::Rate loop_rate(50);
+    ros::Rate loop_rate (500);
 
     double angle [6] = { 0, 0, 0, 0, 0, 0, };
     const char* joint_name [6] =
@@ -60,61 +62,67 @@ int main(int argc, char** argv)
     }
 
     ROS_INFO ("connecting to serial port");
-    serial_stream.Open ("/dev/ttyACM1");
-    serial_stream.SetBaudRate (SerialStreamBuf::BAUD_9600);
-    serial_stream.SetCharSize (SerialStreamBuf::CHAR_SIZE_8);
-    serial_stream.SetNumOfStopBits (1);
-    serial_stream.SetParity (SerialStreamBuf::PARITY_NONE);
+    serial_port.Open ();
+    serial_port.SetBaudRate (SerialPort::BAUD_9600);
+    serial_port.SetCharSize (SerialPort::CHAR_SIZE_8);
+    serial_port.SetNumOfStopBits (SerialPort::STOP_BITS_1);
+    serial_port.SetParity (SerialPort::PARITY_NONE);
 
+    ROS_INFO ("initializing geometry message");
     geometry_msgs::TransformStamped odom_trans;
     sensor_msgs::JointState joint_state;
     odom_trans.header.frame_id = "map";
     odom_trans.child_frame_id = "base_link";
-
     odom_trans.transform.translation.x = 0;
     odom_trans.transform.translation.y = 0;
     odom_trans.transform.translation.z = 0;
     odom_trans.transform.rotation = tf::createQuaternionMsgFromYaw(0);
 
+    /* serial_port.flush (); */
+
     while (ros::ok())
     {
-        uint8_t c;
-        int servo;
-
-        serial_stream >> c;
-        if (c == 255 || c == 253)
-        {
-            c = -1;
-        }
-        servo = c;
-        serial_stream >> c;
-        if (c == 255 || c == 253)
-        {
-            servo = -1;
-        }
-        if (servo > 0 && servo < 6)
-        {
-            angle [servo] = map
-                (c, 0, 180, joint_limit [servo] [1], joint_limit [servo] [0]);
-        }
-
         joint_state.header.stamp = ros::Time::now();
+        odom_trans.header.stamp = ros::Time::now();
+
+        if (serial_port.IsDataAvailable ())
+        {
+            ROS_INFO ("serial data is available");
+            c = serial_port.ReadByte ();
+            ROS_INFO ("byte is %d", c);
+            if (c == 255 || c == 253)
+            {
+                c = -1;
+            }
+            if (servo == -1)
+            {
+                servo = c;
+                ROS_INFO ("setting servo to %d", servo);
+            }
+            else if (servo > 0 && servo < 6)
+            {
+                angle [servo] = map
+                    (c, 0, 180, joint_limit [servo] [1], joint_limit [servo] [0]);
+                ROS_INFO ("setting angle to %g", angle);
+                servo = -1;
+            }
+        }
+
         joint_state.name.resize(6);
         joint_state.position.resize(6);
-
         for (int i = 0; i < 6; i++)
         {
             joint_state.name[i] = joint_name [i];
             joint_state.position[i] = angle [i];
         }
 
-        odom_trans.header.stamp = ros::Time::now();
-
         joint_pub.publish(joint_state);
         broadcaster.sendTransform(odom_trans);
 
         loop_rate.sleep();
     }
+
+    serial_port.Close ();
 
     return 0;
 }

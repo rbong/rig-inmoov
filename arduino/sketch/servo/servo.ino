@@ -33,15 +33,6 @@ send output.
 Servo servo [SERVOS];
 
 /**
-The adjusted angles of the servos given the @ref limit of each servo.
-A table calculated at initialization for optimization purposes.
-Its index corresponds to @ref servo.
-The program uses the convention "angles", but continuous rotation servos are
-technically compatible.
-@see setAdjustedAngles (), getAdjustedAngle ()
-**/
-uint8_t adjusted_angles [SERVOS] [181];
-/**
 The current position of each servo. These are updated whenever a servos value
 is changed and retrieved upon @ref DUMP_SIGNAL.
 **/
@@ -62,8 +53,8 @@ enum
 };
 
 /**
-The \b setup function is called at the beginning of the program. In it, we call
-@ref setAdjustedAngles for each servo and assign a pin to each @ref servo.
+The \b setup function is called at the beginning of the program. In it, we
+assign a pin to each @ref servo.
 **/
 void setup ()
 {
@@ -74,9 +65,6 @@ void setup ()
     serialPrint ("starting...\n");
     for (uint8_t servo_index = 0; servo_index < SERVOS; servo_index++)
     {
-        serialPrintIntPretty ("calibrating servo: ", servo_index, "\n");
-        setAdjustedAngles (servo_index);
-
 // simulations don't have pins
 #ifndef SIMULATION
         serialPrintIntPretty ("assinging servo: ", servo_index, "\n");
@@ -203,43 +191,6 @@ int serialGetByte ()
 }
 
 /**
-Calculates modified angles for a servo. The function scales angles from 0-180
-to some minimum and maximum callibration, then stores them for later retrieval.
-@param servo_index The servo to calculate angles for.
-@see getAdjustedAngle(), adjusted_angles
-**/
-void setAdjustedAngles (uint8_t servo_index)
-{
-    // doubles used for conversion
-    double dangle, dmin, dmax;
-
-    for (uint8_t angle = 0; angle <= 180; angle++)
-    {
-        // arduino has its own map function, but it's broken on some systems
-        // conversion to double avoids integer rounding errors
-        dangle = angle;
-        dmin = limit [servo_index] [MIN_LIM];
-        dmax = limit [servo_index] [MAX_LIM];
-        dangle = dmin + ((dangle * (dmax - dmin)) / 180);
-        adjusted_angles [servo_index] [angle] = dangle;
-    }
-}
-
-/**
-Retrieves modified angles for a servo.
-@return The adjusted angle.
-@param servo_index The servo index to use.
-@param servo_angle The angle to retrieve.
-@see setAdjustedAngles(), adjusted_angles
-**/
-uint8_t getAdjustedAngle (uint8_t servo_index, uint8_t servo_angle)
-{
-    // the bitmask was set before we were using uint8_t
-    // todo- test and remove bitmask
-    return adjusted_angles [servo_index] [servo_angle] & 0xff;
-}
-
-/**
 Writes an angle to a pin associated with a servo index. Servos are controlled
 by sending varying pulse widths over their signal wire. The adjusted angle will
 be sent to the servo. Updates @ref current_pos with the non-adjusted angle.  If
@@ -247,7 +198,7 @@ the servo index is invalid, the function does nothing and exits, but if the
 angle is out of range, it is changed to a valid value.
 @param servo_index The servo to write to.
 @param servo_angle The angle to write after adjusting. It may be reversed.
-@see getAdjustedAngle(), reverse
+@see reverse
 **/
 void setServoFromIndex (uint8_t servo_index, uint8_t servo_angle)
 {
@@ -270,11 +221,15 @@ void setServoFromIndex (uint8_t servo_index, uint8_t servo_angle)
 
     if (reverse [servo_index])
     {
-        servo_angle = 180 - servo_angle;
-        serialPrintIntPretty ("reversing angle, now is: ", servo_angle, "\n");
+        servo_angle = map (servo_angle, 180, 0,
+            limit [servo_index] [MIN_LIM], limit [servo_index] [MAX_LIM]);
+    }
+    else
+    {
+        servo_angle = map (servo_angle, 0, 180,
+            limit [servo_index] [MIN_LIM], limit [servo_index] [MAX_LIM]);
     }
 
-    servo_angle = getAdjustedAngle (servo_index, servo_angle);
     serialPrintIntPretty ("readjusted value: ", servo_angle, "\n");
 
     servo [servo_index].write (servo_angle);
