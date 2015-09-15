@@ -28,7 +28,7 @@ int main(int argc, char** argv)
 {
     int c;
     int servo = -1;
-    SerialPort serial_port ("/dev/ttyACM1");
+    SerialPort serial_port ("/dev/ttyACM0");
 
     double joint_limit [6] [2];
     boost::shared_ptr<const urdf::Joint> joint;
@@ -104,6 +104,10 @@ int main(int argc, char** argv)
                 angle [servo] = map
                     (c, 0, 180, joint_limit [servo] [1], joint_limit [servo] [0]);
                 ROS_INFO ("setting angle to %g", angle);
+                servo = -1;
+            }
+            else
+            {
                 servo = -1;
             }
         }

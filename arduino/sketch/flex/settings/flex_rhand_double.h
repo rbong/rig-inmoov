@@ -2,6 +2,7 @@
 
 #define FLEXS 5
 #define BUFSIZE 32
+#define PRINT_FLEX_AMOUNT
 
 int limit [FLEXS] [2] = {
     { 579, 713 }, { 519, 743 }, { 588, 793 }, { 610, 811 }, { 591, 806 },
@@ -18,7 +19,7 @@ enum
     BOARD_ID = 182,
     SERIAL_BAUDRATE = 9600,
     SOFT_SERIAL_BAUDRATE = 9600,
-    DELAY_MS = 0,
+    DELAY_MS = 100,
     DEBUG_RX_PIN = 0,
     DEBUG_TX_PIN = 1,
     CMD_RX_PIN = 10,

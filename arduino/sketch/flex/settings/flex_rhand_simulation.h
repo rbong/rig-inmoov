@@ -2,10 +2,10 @@
 
 #define FLEXS 5
 #define BUFSIZE 32
-#define PRINT_FLEX_AMOUNT
+#define SIMULATION
 
 int limit [FLEXS] [2] = {
-    { 563, 726 }, { 554, 713 }, { 616, 756 }, { 620, 763 }, { 623, 785 },
+    { 579, 713 }, { 519, 743 }, { 588, 793 }, { 610, 811 }, { 591, 806 },
 };
 uint8_t reverse [FLEXS] = { 1, 1, 1, 1, 1, };
 uint8_t pin_offset = 14;

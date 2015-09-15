@@ -44,6 +44,11 @@ void serialCmdWrite (uint8_t c)
     cmd_serial.write (c);
 }
 
+void serialDebugWrite (uint8_t c)
+{
+    Serial.write (c);
+}
+
 uint8_t serialCmdRead ()
 {
     return cmd_serial.read ();

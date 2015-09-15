@@ -44,6 +44,7 @@ $(BUILD_DIR)/%.ino: $(ARDUINO_LIB_DIR)
 
 ## implicit arduino targets -- put dependencies here
 flex.ino: $(BUILD_DIR)/flex/serial.ino
+flex_double.ino: $(BUILD_DIR)/flex_double/serial.ino
 
 ## implicit targets
 documentation:
