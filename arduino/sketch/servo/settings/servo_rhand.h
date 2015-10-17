@@ -32,8 +32,8 @@ positional servos) or its minimum then maximum speed (for continuous rotation
 servos). Its index corresponds with @ref servo.
 **/
 uint8_t limit [SERVOS] [2] = {
-    { 15, 55 }, { 10, 85 }, { 0, 75   },
-    { 5, 95  }, { 55, 130 }, { 30, 110 },
+    { 125, 160 }, {  50, 160 }, {  55, 155 },
+    {  35, 155 }, {  45, 145 }, {  55, 145 },
 };
 /**
 The default position to set each servo to. Its index corresponds with @ref
@@ -44,7 +44,7 @@ uint8_t default_pos [SERVOS] = { 0, 0, 0, 0, 0, 0 };
 Indicates whether to reverse the angles for each servo, for servos that turn
 the wrong way. Its index corresponds with @ref servo.
 **/
-uint8_t reverse [SERVOS] = { 1, 0, 0, 0, 1, 1 };
+uint8_t reverse [SERVOS] = { 1, 1, 1, 1, 1, 1 };
 /**
 Pin value to begin assigning pins at. Unique to this settings file.
 @see getServoPinFromIndex()

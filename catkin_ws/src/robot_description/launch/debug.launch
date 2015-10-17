@@ -1,6 +1,6 @@
 <launch>
         <param name="robot_description" command="cat $(find robot_description)/model.xml" />
         <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
-        <node name="state_publisher" pkg="robot_description" type="state_publisher" required="true" />
+        <node name="state_publisher" pkg="robot_description" type="state_publisher" required="true" launch-prefix="st -e gdb -ex run --args" />
 	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find robot_description)/rhand_stage.rviz" required="true" />
 </launch>

@@ -8,7 +8,13 @@
 #include <SerialPort.h>
 #define URDF_PATH "/home/dork/programs/android/catkin_ws/src/robot_description/urdf/"
 
-/* using namespace LibSerial; */
+#include <iostream>
+#include <fstream>
+
+SerialPort* serial_port;
+int port = 0;
+const char* ports [] = { "/dev/ttyACM0", "/dev/ttyACM1", "/dev/ttyACM2",
+    "/dev/ttyACM3", "/dev/ttyACM4", "/dev/ttyACM5", };
 
 double map (double value, double from_min, double from_max, double to_min, double to_max)
 {
@@ -21,14 +27,65 @@ double map (double value, double from_min, double from_max, double to_min, doubl
         value = from_max;
     }
 
+    if (from_max - from_min == 0)
+    {
+        ROS_INFO ("preventing divide by zero");
+        return to_max;
+    }
+
     return (value - from_min) * (to_max - to_min) / (from_max - from_min) + to_min;
+}
+
+int file_exists (const char* filename)
+{
+    std::ifstream infile (filename);
+    return infile.good ();
+}
+
+void connect_serial ()
+{
+    for (port = 0; port < 6; port++)
+    {
+        if (! file_exists (ports [port]))
+        {
+            ROS_INFO ("Port %s not available", ports [port]);
+            continue;
+        }
+
+        serial_port = new SerialPort (ports [port]);
+        ROS_INFO ("Connected to port %s", ports [port]);
+
+        return;
+    }
+
+    ROS_INFO ("No serial ports available. Exiting.");
+    exit (1);
+}
+
+int init_serial ()
+{
+    ROS_INFO ("Opening port");
+
+    try
+    {
+        serial_port->Open ();
+        serial_port->SetBaudRate (SerialPort::BAUD_9600);
+        serial_port->SetCharSize (SerialPort::CHAR_SIZE_8);
+        serial_port->SetNumOfStopBits (SerialPort::STOP_BITS_1);
+        serial_port->SetParity (SerialPort::PARITY_NONE);
+    }
+    catch (...)
+    {
+        ROS_INFO ("Cannot open. Exiting");
+        exit (1);
+    }
 }
 
 int main(int argc, char** argv)
 {
+    int j = 0, k = 0;
     int c;
     int servo = -1;
-    SerialPort serial_port ("/dev/ttyACM0");
 
     double joint_limit [6] [2];
     boost::shared_ptr<const urdf::Joint> joint;
@@ -61,13 +118,6 @@ int main(int argc, char** argv)
         joint_limit [i] [1] = joint->limits->upper;
     }
 
-    ROS_INFO ("connecting to serial port");
-    serial_port.Open ();
-    serial_port.SetBaudRate (SerialPort::BAUD_9600);
-    serial_port.SetCharSize (SerialPort::CHAR_SIZE_8);
-    serial_port.SetNumOfStopBits (SerialPort::STOP_BITS_1);
-    serial_port.SetParity (SerialPort::PARITY_NONE);
-
     ROS_INFO ("initializing geometry message");
     geometry_msgs::TransformStamped odom_trans;
     sensor_msgs::JointState joint_state;
@@ -78,18 +128,38 @@ int main(int argc, char** argv)
     odom_trans.transform.translation.z = 0;
     odom_trans.transform.rotation = tf::createQuaternionMsgFromYaw(0);
 
-    /* serial_port.flush (); */
+    /* serial_port->flush (); */
 
+    ROS_INFO ("connecting to serial port");
+    connect_serial ();
+    init_serial ();
+
+    while (serial_port->IsDataAvailable ())
+    {
+        serial_port->ReadByte ();
+    }
+
+    ROS_INFO ("listening");
     while (ros::ok())
     {
         joint_state.header.stamp = ros::Time::now();
         odom_trans.header.stamp = ros::Time::now();
 
-        if (serial_port.IsDataAvailable ())
+        if (! file_exists (ports [port]))
         {
-            ROS_INFO ("serial data is available");
-            c = serial_port.ReadByte ();
-            ROS_INFO ("byte is %d", c);
+            ROS_INFO ("reconnecting to serial port");
+            connect_serial ();
+            servo = -1;
+        }
+        if (! serial_port->IsOpen ())
+        {
+            init_serial ();
+        }
+        if (serial_port->IsDataAvailable ())
+        {
+            ROS_DEBUG ("serial data is available");
+            c = serial_port->ReadByte ();
+            ROS_DEBUG ("byte is %d", c);
             if (c == 255 || c == 253)
             {
                 c = -1;
@@ -97,18 +167,25 @@ int main(int argc, char** argv)
             if (servo == -1)
             {
                 servo = c;
-                ROS_INFO ("setting servo to %d", servo);
+                ROS_DEBUG ("setting servo to %d", servo);
             }
             else if (servo > 0 && servo < 6)
             {
+                k++;
+                ROS_DEBUG ("setting angle to %g", angle);
                 angle [servo] = map
                     (c, 0, 180, joint_limit [servo] [1], joint_limit [servo] [0]);
-                ROS_INFO ("setting angle to %g", angle);
                 servo = -1;
             }
             else
             {
                 servo = -1;
+            }
+
+            j++;
+            if (! (j % 1000))
+            {
+                ROS_INFO ("commands %d", k);
             }
         }
 
@@ -126,7 +203,7 @@ int main(int argc, char** argv)
         loop_rate.sleep();
     }
 
-    serial_port.Close ();
+    serial_port->Close ();
 
     return 0;
 }

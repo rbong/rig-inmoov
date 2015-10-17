@@ -2,11 +2,11 @@
 #define BUFSIZE 32
 
 uint8_t limit [SERVOS] [2] = {
-    { 15, 55 }, { 0, 180 }, { 0, 180 },
-    { 0, 180 }, { 0, 180 }, { 0, 180 },
+    { 125, 160 }, {   0, 180 }, {   0, 180 },
+    {   0, 180 }, {   0, 180 }, {   0, 180 },
 };
 
-uint8_t default_pos [SERVOS] = { 0, 90, 90, 90, 90, 90 };
+uint8_t default_pos [SERVOS] = { 90, 90, 90, 90, 90, 90 };
 uint8_t reverse [SERVOS] = { 1, 0, 0, 0, 0, 0 };
 uint8_t pin_offset = 2;
 

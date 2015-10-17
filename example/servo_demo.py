@@ -328,7 +328,7 @@ def getarrow ():
         return ''
 
 def calibrate (servo=1):
-    i = 45
+    i = 90
     while 1:
         print (i)
         ser.write ([255, servo, i])

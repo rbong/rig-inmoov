@@ -81,6 +81,11 @@ void loop ()
         }
 
         softSerialServoCmd (servo_id, servo_angle);
+
+        serialDebugPrintIntPretty ("id ", servo_id, "\n");
+        serialDebugPrintIntPretty ("angle ", flex_amount, "\n");
+        serialCmdWrite (servo_id);
+        serialCmdWrite (servo_angle);
     }
     delay (DELAY_MS);
 }
@@ -168,7 +173,4 @@ void softSerialServoCmd (uint8_t servo_id, int servo_angle)
 
         current_pos [servo_index] = servo_angle;
     }
-
-    serialCmdWrite (servo_id);
-    serialCmdWrite (servo_angle);
 }
