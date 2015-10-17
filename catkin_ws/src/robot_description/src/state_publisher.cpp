@@ -6,15 +6,9 @@
 #include <urdf/model.h>
 
 #include <SerialPort.h>
-#define URDF_PATH "/home/dork/programs/android/catkin_ws/src/robot_description/urdf/"
 
 #include <iostream>
 #include <fstream>
-
-SerialPort* serial_port;
-int port = 0;
-const char* ports [] = { "/dev/ttyACM0", "/dev/ttyACM1", "/dev/ttyACM2",
-    "/dev/ttyACM3", "/dev/ttyACM4", "/dev/ttyACM5", };
 
 double map (double value, double from_min, double from_max, double to_min, double to_max)
 {
@@ -29,40 +23,14 @@ double map (double value, double from_min, double from_max, double to_min, doubl
 
     if (from_max - from_min == 0)
     {
-        ROS_INFO ("preventing divide by zero");
+        ROS_INFO ("Preventing divide by zero");
         return to_max;
     }
 
     return (value - from_min) * (to_max - to_min) / (from_max - from_min) + to_min;
 }
 
-int file_exists (const char* filename)
-{
-    std::ifstream infile (filename);
-    return infile.good ();
-}
-
-void connect_serial ()
-{
-    for (port = 0; port < 6; port++)
-    {
-        if (! file_exists (ports [port]))
-        {
-            ROS_INFO ("Port %s not available", ports [port]);
-            continue;
-        }
-
-        serial_port = new SerialPort (ports [port]);
-        ROS_INFO ("Connected to port %s", ports [port]);
-
-        return;
-    }
-
-    ROS_INFO ("No serial ports available. Exiting.");
-    exit (1);
-}
-
-int init_serial ()
+int init_serial (SerialPort* serial_port)
 {
     ROS_INFO ("Opening port");
 
@@ -76,25 +44,26 @@ int init_serial ()
     }
     catch (...)
     {
-        ROS_INFO ("Cannot open. Exiting");
+        ROS_ERROR ("Cannot open. Exiting");
         exit (1);
     }
 }
 
-int main(int argc, char** argv)
+int main (int argc, char** argv)
 {
-    int j = 0, k = 0;
     int c;
     int servo = -1;
 
     double joint_limit [6] [2];
     boost::shared_ptr<const urdf::Joint> joint;
 
-    ros::init(argc, argv, "state_publisher");
+    ros::init (argc, argv, "state_publisher");
     ros::NodeHandle n;
-    ros::Publisher joint_pub = n.advertise<sensor_msgs::JointState>("joint_states", 1);
+    ros::Publisher joint_pub = n.advertise<sensor_msgs::JointState> ("joint_states", 1);
     tf::TransformBroadcaster broadcaster;
     ros::Rate loop_rate (500);
+
+    SerialPort* serial_port;
 
     double angle [6] = { 0, 0, 0, 0, 0, 0, };
     const char* joint_name [6] =
@@ -103,13 +72,23 @@ int main(int argc, char** argv)
         "right_palm_to_medius", "right_palm_to_ring", "right_palm_to_pinky",
     };
 
-    std::string urdf_file = "/home/dork/programs/android/catkin_ws/src/robot_description/model.xml";
+    std::string urdf_file, port_name;
     urdf::Model model;
 
-    if (!model.initFile(urdf_file))
+    if (ros::param::get ("/state_publisher/urdf_file", urdf_file))
     {
-        ROS_ERROR("Failed to parse urdf file");
-        return -1;
+        ROS_INFO ("URDF file location: %s", urdf_file);
+    }
+    else
+    {
+        ROS_ERROR ("Could not retrieve model file");
+        return 1;
+    }
+
+    if (!model.initFile (urdf_file))
+    {
+        ROS_ERROR ("Failed to parse urdf file");
+        return 1;
     }
     for (int i = 0; i < 6; i++)
     {
@@ -118,7 +97,21 @@ int main(int argc, char** argv)
         joint_limit [i] [1] = joint->limits->upper;
     }
 
-    ROS_INFO ("initializing geometry message");
+    if (ros::param::get ("/state_publisher/port_name", port_name))
+    {
+        ROS_INFO ("Port name: %s", port_name);
+    }
+    else
+    {
+        ROS_ERROR ("Could not retrieve port name");
+        return 1;
+    }
+
+    ROS_INFO ("Connecting to serial port");
+    serial_port = new SerialPort (port_name);
+    init_serial (serial_port);
+
+    ROS_INFO ("Initializing geometry message");
     geometry_msgs::TransformStamped odom_trans;
     sensor_msgs::JointState joint_state;
     odom_trans.header.frame_id = "map";
@@ -126,34 +119,23 @@ int main(int argc, char** argv)
     odom_trans.transform.translation.x = 0;
     odom_trans.transform.translation.y = 0;
     odom_trans.transform.translation.z = 0;
-    odom_trans.transform.rotation = tf::createQuaternionMsgFromYaw(0);
-
-    /* serial_port->flush (); */
-
-    ROS_INFO ("connecting to serial port");
-    connect_serial ();
-    init_serial ();
+    odom_trans.transform.rotation = tf::createQuaternionMsgFromYaw (0);
 
     while (serial_port->IsDataAvailable ())
     {
         serial_port->ReadByte ();
     }
 
-    ROS_INFO ("listening");
-    while (ros::ok())
+    ROS_INFO ("Listening");
+    while (ros::ok ())
     {
-        joint_state.header.stamp = ros::Time::now();
-        odom_trans.header.stamp = ros::Time::now();
+        joint_state.header.stamp = ros::Time::now ();
+        odom_trans.header.stamp = ros::Time::now ();
 
-        if (! file_exists (ports [port]))
-        {
-            ROS_INFO ("reconnecting to serial port");
-            connect_serial ();
-            servo = -1;
-        }
         if (! serial_port->IsOpen ())
         {
-            init_serial ();
+            ROS_ERROR ("Connection to serial port lost.");
+            return 1;
         }
         if (serial_port->IsDataAvailable ())
         {
@@ -171,7 +153,6 @@ int main(int argc, char** argv)
             }
             else if (servo > 0 && servo < 6)
             {
-                k++;
                 ROS_DEBUG ("setting angle to %g", angle);
                 angle [servo] = map
                     (c, 0, 180, joint_limit [servo] [1], joint_limit [servo] [0]);
@@ -181,26 +162,20 @@ int main(int argc, char** argv)
             {
                 servo = -1;
             }
-
-            j++;
-            if (! (j % 1000))
-            {
-                ROS_INFO ("commands %d", k);
-            }
         }
 
-        joint_state.name.resize(6);
-        joint_state.position.resize(6);
+        joint_state.name.resize (6);
+        joint_state.position.resize (6);
         for (int i = 0; i < 6; i++)
         {
             joint_state.name[i] = joint_name [i];
             joint_state.position[i] = angle [i];
         }
 
-        joint_pub.publish(joint_state);
-        broadcaster.sendTransform(odom_trans);
+        joint_pub.publish (joint_state);
+        broadcaster.sendTransform (odom_trans);
 
-        loop_rate.sleep();
+        loop_rate.sleep ();
     }
 
     serial_port->Close ();

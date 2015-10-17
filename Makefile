@@ -59,8 +59,9 @@ simulation:
 	. /opt/ros/jade/setup.sh && \
 	cd catkin_ws && catkin_make
 	. /opt/ros/jade/setup.sh && \
-	. catkin_ws/devel/setup.sh && \
-	roslaunch robot_description display.launch &
+	. catkin_ws/devel/setup.sh &
+	# . catkin_ws/devel/setup.sh && \
+	# roslaunch robot_description display.launch &
 
 ## cleanup
 clean:

@@ -1,6 +1,12 @@
 <launch>
+        <arg name="port" default="/dev/ttyACM0" />
+
         <param name="robot_description" command="cat $(find robot_description)/model.xml" />
+
         <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
-        <node name="state_publisher" pkg="robot_description" type="state_publisher" required="true" />
+        <node name="state_publisher" pkg="robot_description" type="state_publisher" required="true">
+            <param name="urdf_file" value="$(find robot_description)/model.xml" />
+            <param name="port_name" value="$(arg port)" />
+        </node>
 	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find robot_description)/rhand_stage.rviz" required="true" />
 </launch>
