@@ -11,7 +11,9 @@ find_package(catkin REQUIRED COMPONENTS
 )
 catkin_package(CATKIN_DEPENDS urdf roscpp rospy std_msgs tf)
 include_directories(${catkin_INCLUDE_DIRS})
-
 include_directories(include ${catkin_INCLUDE_DIRS})
+
 add_executable(state_publisher src/state_publisher.cpp)
-target_link_libraries(state_publisher ${catkin_LIBRARIES} serial)
+add_executable(serial_publisher src/serial_publisher.cpp)
+target_link_libraries(state_publisher ${catkin_LIBRARIES})
+target_link_libraries(serial_publisher ${catkin_LIBRARIES} serial)
