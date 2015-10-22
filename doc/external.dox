@@ -11,13 +11,20 @@ modify the source code. Examples are provided when possible for quick reference
 and experimentation. Note that colored phrases are links for both html and pdf.
 This project has a git repository located
 <a href="https://github.com/rbong/rig-inmoov">here</a>.
+You can download the project with the following command after installing git on
+your system.
+@code{.sh}
+git clone github.com/rbong/rig-inmoov
+@endcode
 
 @section Dependencies Dependencies
-The project currently depends on <a href="http://www.python.org">Python</a> for
-an example script, <a href="http://www.arduino.cc">Arduino</a>,
-<a href="http://www.stack.nl/~dimitri/doxygen/">Doxygen</a> (if you wish to
-remake the documentation) and <a href="http://www.gnu.org/software/make/">
-Make</a> (if you wish to build the project).
+The embedd currently depends on <a href="http://www.python.org">Python</a> for
+an example script, <a href="http://www.arduino.cc">Arduino</a> for the embedded
+code, <a href="http://www.stack.nl/~dimitri/doxygen/">Doxygen</a> (if you wish
+to remake the documentation), <a href="http://www.gnu.org/software/make/">
+Make</a> (if you wish to build the project) and <a
+href="http://www.ros.org/">ROS</a>/<a
+href="http://libserial.sourceforge.net/">LibSerial</a> for the simulation.
 
 @section Quick_Start Quick Start
 To quickly upload to the right hand, do the following. Copy the \b
@@ -53,6 +60,8 @@ Note that some movements require input before continuing (press enter).
 
 Read the @ref servo_demo documentation for more. Read the @ref
 Examples section to understand how it formulates commands.
+
+To run the 3D simulation of the project, please refer to @ref Simulation.
 
 @section Installation Installation
 You can build this documentation with the command
@@ -268,4 +277,122 @@ other systems.
         <td>251</td>
     </tr>
 </table>
+**/
+
+/**
+@page Simulation Simulation
+@tableofcontents
+
+@details The simulation for the RIGbot runs in ROS. It accepts commands in the
+same protocol described in @ref Introduction. You must first use git to
+download the project, also detailed in @ref Introdcution.
+
+This section only details basic usage and slight modification. For any new
+features, model additions, or bug fixes, you may need to read the beginner
+level <a href="http://wiki.ros.org/ROS/Tutorials">ROS tutorials</a> and the <a
+href="http://wiki.ros.org/urdf_tutorial">urdf tutorials</a>.
+
+@section Dependencies Dependencies
+The simulation depends on <a href="http://www.ros.org/">ROS</a>. It is
+recommended you <a
+href="http://wiki.ros.org/jade/Installation/">install the full system</a>
+because of the number of the large number of ROS packages. On Ubuntu, this is
+achieved with the following commands.
+@code{.sh}
+sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+sudo apt-key adv --keyserver hkp://pool.sks-keyservers.net:80 --recv-key 0xB01FA116
+sudo apt-get update
+sudo apt-get install ros-jade-desktop-full
+@endcode
+If you experience problems, please read the full wiki article.
+
+@section Building Building
+To build the simulation, simply run the following from the root directory of
+the project.
+@code{.sh}
+make simulation
+@endcode
+
+You may also want to build manually. Before running any ROS commands, you must
+run this command.
+@code{.sh}
+source /opt/ros/jade/setup.bash
+@endcode
+There are also .zsh and .sh files if you are using different shells. It is
+recommended you append this command to your shell's .rc file (ex. ~/.bashrc).
+
+The following only needs to be run once.
+@code{.sh}
+cd catkin_ws/src
+catkin_init_workspace
+@endcode
+
+Finally, we can build the project.
+@code{.sh}
+cd catkin_ws
+catkin_make
+@endcode
+
+@section Usage Usage
+Before running any ROS commands relating to the project, you must run the
+following comand.
+@code{.sh}
+source catkin_ws/devel/setup.bash
+@endcode
+There are also .zsh and .sh files if you are using different shells. It is
+recommended you append this command to your shell's .rc file (ex. ~/.bashrc).
+Make sure to fill in the absolute path to rig-inmoov/catkin-ws.
+
+After running all the necessary setup commands, you can finally run the
+project.
+@code{.sh}
+roslaunch robot_description display.launch port:=/dev/ttyACM0
+@endcode
+This requires that an input board such as the flex sensor glove is connected.
+Replace "port" with the port this board is connected on (search for the naming
+convention for your board online). The output from launch commands is captured
+in ~/.ros/log/.
+
+You can also set and change the port later with the following command.
+@code{.sh}
+rosparam set /serial_publisher/port /path/to/port
+@endcode
+The serial publisher does not need to be running.
+
+If the serial publisher crashes because it loses connection, you can re-launch
+it with this command.
+@code{.sh}
+rosrun robot_description serial_publisher
+@endcode
+
+@section Background Background
+We have two custom programs used to maintain the simulation. The first is
+serial_publisher, compiled from \b
+catkin_ws/src/robot_description/src/serial_publisher.cpp. This program accepts
+input from a serial port and translates it to a <a
+href="http://wiki.ros.org/Topics">ROS topic</a>.
+
+The other program is state_publisher, compiled from \b state_publisher.cpp in
+the same directory. This program listens to the topic and translates it into 
+joint positions, which <a href="http://wiki.ros.org/rviz">rviz</a> (the
+visualizer component of ROS) listens to. It expects input of the same protocol
+as described in @ref Introduction.
+
+The modularity of these programs makes it easy to write publishers for new
+protocols (such as bluetooth) using just \b serial_publisher.cpp as reference.
+It also makes it easy to add new parts to \b state_publisher. New programs need
+to be added to \b catkin_ws/src/robot_description/CMakeLists.txt.
+
+The rviz visualizer is loaded with a <a
+href="http://wiki.ros.org/urdf_tutorial">urdf</a> file, stored in \b
+catkin_ws/src/robot_description/model.xml, that describes how the different 3D
+models that make up movable parts are positionally related to one another.
+
+@section Debugging Debugging
+There are two example launch files used for debugging, stored in \b
+catkin_ws/src/robot_description/launch along with \b display.launch. The first 
+is debug.launch, which launches state_publisher and serial_publisher in gdb,
+and the second, \b memdebug.launch, launches both programs in Valgrind. It is
+recommended that you use the three launch files as reference when modifying and
+creating program systems.
 **/
