@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li class="current"><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -89,13 +90,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 </ul>
 </div>
-<div class="textblock"><p>This is the official documentation for the Conestoga Robotics Innovation Group's InMoov project. It is not meant to be read linearly or all at once. Rather, readers should skim relevant pages and skip information that requires more context. More in depth information is provided for those that wish to modify the source code. Examples are provided when possible for quick reference and experimentation. Note that colored phrases are links for both html and pdf. This project has a git repository located <a href="https://github.com/rbong/rig-inmoov">here</a>.</p>
-<h1><a class="anchor" id="Dependencies"></a>
+<div class="textblock"><p>This is the official documentation for the Conestoga Robotics Innovation Group's InMoov project. It is not meant to be read linearly or all at once. Rather, readers should skim relevant pages and skip information that requires more context. More in depth information is provided for those that wish to modify the source code. Examples are provided when possible for quick reference and experimentation. Note that colored phrases are links for both html and pdf. This project has a git repository located <a href="https://github.com/rbong/rig-inmoov">here</a>. You can download the project with the following command after installing git on your system. </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;git clone github.com/rbong/rig-inmoov</div>
+</div><!-- fragment --><h1><a class="anchor" id="Dependencies"></a>
 Dependencies</h1>
-<p>The project currently depends on <a href="http://www.python.org">Python</a> for an example script, <a href="http://www.arduino.cc">Arduino</a>, <a href="http://www.stack.nl/~dimitri/doxygen/">Doxygen</a> (if you wish to remake the documentation) and <a href="http://www.gnu.org/software/make/">Make</a> (if you wish to build the project).</p>
+<p>The embedd currently depends on <a href="http://www.python.org">Python</a> for an example script, <a href="http://www.arduino.cc">Arduino</a> for the embedded code, <a href="http://www.stack.nl/~dimitri/doxygen/">Doxygen</a> (if you wish to remake the documentation), <a href="http://www.gnu.org/software/make/">Make</a> (if you wish to build the project) and <a href="http://www.ros.org/">ROS</a>/<a href="http://libserial.sourceforge.net/">LibSerial</a> for the simulation.</p>
 <h1><a class="anchor" id="Quick_Start"></a>
 Quick Start</h1>
-<p>To quickly upload to the right hand, do the following. Copy the <b>arduino/servo</b> folder to your Arduino sketch folder. Copy <b><a class="el" href="servo__rhand_8h.html">servo/settings/servo_rhand.h</a></b> to <b>servo/settings.h</b> in the sketch directory. Copy <b><a class="el" href="serial_8ino_source.html">arduino/lib/serial.ino</a></b> to <b>servo/serial.ino</b> in the sketch directory. Open the Arduino software. Select your board and the port it is connected to. Open your sketch, and hit upload. Instructions for the Arduino software are located <a href="http://www.arduino.cc">on its website</a>. Other Arduino files on the bot can be built in a similar way, or the <b>make</b> system command can be used.</p>
+<p>To quickly upload to the right hand, do the following. Copy the <b>arduino/servo</b> folder to your Arduino sketch folder. Copy <b><a class="el" href="servo__rhand_8h.html">servo/settings/servo_rhand.h</a></b> to <b>servo/settings.h</b> in the sketch directory. Copy <b><a class="el" href="serial_8ino.html">arduino/lib/serial.ino</a></b> to <b>servo/serial.ino</b> in the sketch directory. Open the Arduino software. Select your board and the port it is connected to. Open your sketch, and hit upload. Instructions for the Arduino software are located <a href="http://www.arduino.cc">on its website</a>. Other Arduino files on the bot can be built in a similar way, or the <b>make</b> system command can be used.</p>
 <p>To transmit commands to the board, run this from the command line. </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;python -i example/servo_demo.py</div>
 </div><!-- fragment --><p> You can now run commands defined in <a class="el" href="namespaceservo__demo.html">servo_demo</a>.</p>
 <p>The python script needs the pyserial library. Its website is located <a href="http://pyserial.sourceforge.net/">here.</a></p>
@@ -103,6 +104,7 @@ Quick Start</h1>
 </div><!-- fragment --><p>To demo some movements, run this. </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;demo ()</div>
 </div><!-- fragment --><p> Note that some movements require input before continuing (press enter).</p>
 <p>Read the <a class="el" href="namespaceservo__demo.html">servo_demo</a> documentation for more. Read the <a class="el" href="index.html#Examples">Examples</a> section to understand how it formulates commands.</p>
+<p>To run the 3D simulation of the project, please refer to <a class="el" href="Simulation.html">Simulation</a>.</p>
 <h1><a class="anchor" id="Installation"></a>
 Installation</h1>
 <p>You can build this documentation with the command </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;make documentation</div>
@@ -114,8 +116,8 @@ Build System</h1>
 <h2>Arduino Directory Structure</h2>
 <p>The Arduino IDE abstracts many tools for working with Arduino hardware. We choose to use it because of its familiarity and cross system compatibility. However, the Arduino IDE isn't made for command line compilation, and replicating its process requires complex tools not appropriate for this project.</p>
 <p>To share code among certain boards, general code is kept in the <b>arduino/sketch</b> subdirectories. Inside each subdirectory is an <b></b>.ino file of the same name, which is the source for the sketch. There is also a <b>settings</b> folder in which various headers are kept. These headers are to be moved to <b>settings.h</b> inside the sketch folder. For example, code to be shared among servos is kept in <b><a class="el" href="servo_8ino.html">arduino/sketch/servo/servo.ino</a></b>, the configuration for the right hand is kept in <b><a class="el" href="servo__rhand_8h.html">arduino/sketch/servo/settings/servo_rhand.h</a></b>, and you would move it to <b>arduino/sketch/servo/settings.h</b> to use it.</p>
-<p>Some sketches require shared code that use Arduino libraries, which means that they need to be contained in <b></b>.ino files. Arduino includes any <b></b>.ino files inside a sketch subdirectory. We keep such files in <b>arduino/lib</b>. For example, servo boards require serial communication, so we would move <b><a class="el" href="serial_8ino_source.html">arduino/lib/serial.ino</a></b> to the <b>arduino/sketch/servo</b> directory.</p>
-<p>The reason that shared code among the same board types is treated differently than shared code among different board types is to allow us to keep the settings files short, and also to use them elsewhere in the project that is not necessarily Arduino code.</p>
+<p>Some sketches require shared code that use Arduino libraries, which means that they need to be contained in <b></b>.ino files. Arduino includes any <b></b>.ino files inside a sketch subdirectory. We keep such files in <b>arduino/lib</b>. For example, servo boards require serial communication, so we would move <b><a class="el" href="serial_8ino.html">arduino/lib/serial.ino</a></b> to the <b>arduino/sketch/servo</b> directory.</p>
+<p>The reason that shared code among the same board types is treated differently than shared code among different board types is to allow us to keep the settings files short, and also to use them elsewhere in the project that is not necessarily Arduino code. In addition, .ino files do not have a guaranteed order of inclusion.</p>
 <p>This is all automated by the build system. If you wish to use the Arduino IDE, either link the appropriate files to your Arduino sketch directory or copy them to the sketch directory and write the changes back later.</p>
 <h1><a class="anchor" id="Arduino"></a>
 Arduino Protocol</h1>
@@ -167,20 +169,20 @@ Values</h2>
 <h3>Signals</h3>
 <table class="doxtable">
 <tr>
-<td><a class="el" href="servo_8ino.html#a99fb83031ce9923c84392b4e92f956b5ac997ff2715ad695454398a53eeed31cc">CANCEL_SIGNAL</a> </td><td>255  </td></tr>
+<td><a class="el" href="servo_8ino.html#a726ca809ffd3d67ab4b8476646f26635ac997ff2715ad695454398a53eeed31cc">CANCEL_SIGNAL</a> </td><td>255  </td></tr>
 <tr>
-<td><a class="el" href="servo_8ino.html#a99fb83031ce9923c84392b4e92f956b5ac22157b3832ba05308923fb860925d68">WAIT_RESPONSE</a> </td><td>254  </td></tr>
+<td><a class="el" href="servo_8ino.html#a726ca809ffd3d67ab4b8476646f26635ac22157b3832ba05308923fb860925d68">WAIT_RESPONSE</a> </td><td>254  </td></tr>
 <tr>
-<td><a class="el" href="servo_8ino.html#a99fb83031ce9923c84392b4e92f956b5a31cd671c80d04a4acc2d8256ec960c90">DUMP_SIGNAL</a> </td><td>253  </td></tr>
+<td><a class="el" href="servo_8ino.html#a726ca809ffd3d67ab4b8476646f26635a31cd671c80d04a4acc2d8256ec960c90">DUMP_SIGNAL</a> </td><td>253  </td></tr>
 <tr>
-<td><a class="el" href="servo_8ino.html#a99fb83031ce9923c84392b4e92f956b5a48468e45ef67fed1d655c9aa1dc40aa8">START_RESPONSE</a> </td><td>252  </td></tr>
+<td><a class="el" href="servo_8ino.html#a726ca809ffd3d67ab4b8476646f26635a48468e45ef67fed1d655c9aa1dc40aa8">START_RESPONSE</a> </td><td>252  </td></tr>
 <tr>
-<td><a class="el" href="servo_8ino.html#a99fb83031ce9923c84392b4e92f956b5a421b1241677a0bd8d03f213574751f8a">END_RESPONSE</a> </td><td>251  </td></tr>
+<td><a class="el" href="servo_8ino.html#a726ca809ffd3d67ab4b8476646f26635a421b1241677a0bd8d03f213574751f8a">END_RESPONSE</a> </td><td>251  </td></tr>
 </table>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Aug 1 2015 19:40:26 for RIG InMoov Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Oct 22 2015 10:54:36 for RIG InMoov Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

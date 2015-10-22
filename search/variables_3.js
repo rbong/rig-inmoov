@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['limit',['limit',['../servo__rhand_8h.html#ab48e069f24be713d91d0268626f2df7d',1,'servo_rhand.h']]]
+  ['pin_5foffset',['pin_offset',['../servo__rhand_8h.html#ae6369c9657b975e4dfe967c7284c1f1b',1,'servo_rhand.h']]]
 ];
