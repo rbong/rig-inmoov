@@ -15,7 +15,7 @@ int main(int argc, char** argv)
 
     if (ros::param::get ("/serial_publisher/port_name", port_name))
     {
-        ROS_INFO ("Port name: %s", port_name);
+        ROS_INFO ("Port name: %s", port_name.c_str ());
     }
     else
     {

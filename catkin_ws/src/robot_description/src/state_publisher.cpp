@@ -88,7 +88,7 @@ int main (int argc, char** argv)
 
     if (ros::param::get ("/state_publisher/urdf_file", urdf_file))
     {
-        ROS_INFO ("URDF file location: %s", urdf_file);
+        ROS_INFO ("URDF file location: %s", urdf_file.c_str ());
     }
     else
     {
