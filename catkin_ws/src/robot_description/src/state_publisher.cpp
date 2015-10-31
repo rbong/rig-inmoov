@@ -50,7 +50,7 @@ void callback (const std_msgs::UInt8::ConstPtr& msg)
     }
     else if (servo > 0 && servo < 6)
     {
-        ROS_DEBUG ("Setting angle to %g", angle);
+        ROS_DEBUG ("Setting angle to %g", angle [servo]);
         angle [servo] = map
             (c, 0, 180, joint_limit [servo] [1], joint_limit [servo] [0]);
         servo = -1;
