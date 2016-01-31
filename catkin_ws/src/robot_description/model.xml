@@ -10,7 +10,7 @@
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <material name="white">
-        <color rgba="1 1 1 1"/>
+        <color rgba="0.9 0.9 0.9 1"/>
       </material>
     </visual>
   </link>
@@ -28,7 +28,7 @@
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <material name="white">
-        <color rgba="1 1 1 1"/>
+        <color rgba="0.9 0.9 0.9 1"/>
       </material>
     </visual>
   </link>
@@ -48,7 +48,7 @@
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <material name="white">
-        <color rgba="1 1 1 1"/>
+        <color rgba="0.9 0.9 0.9 1"/>
       </material>
     </visual>
   </link>
@@ -66,7 +66,7 @@
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <material name="white">
-        <color rgba="1 1 1 1"/>
+        <color rgba="0.9 0.9 0.9 1"/>
       </material>
     </visual>
   </link>
@@ -84,7 +84,7 @@
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <material name="white">
-        <color rgba="1 1 1 1"/>
+        <color rgba="0.9 0.9 0.9 1"/>
       </material>
     </visual>
   </link>
@@ -102,7 +102,7 @@
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <material name="white">
-        <color rgba="1 1 1 1"/>
+        <color rgba="0.9 0.9 0.9 1"/>
       </material>
     </visual>
   </link>
@@ -122,7 +122,7 @@
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <material name="white">
-        <color rgba="1 1 1 1"/>
+        <color rgba="0.9 0.9 0.9 1"/>
       </material>
     </visual>
   </link>
@@ -143,7 +143,7 @@
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <material name="white">
-        <color rgba="1 1 1 1"/>
+        <color rgba="0.9 0.9 0.9 1"/>
       </material>
     </visual>
   </link>
@@ -164,7 +164,7 @@
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <material name="white">
-        <color rgba="1 1 1 1"/>
+        <color rgba="0.9 0.9 0.9 1"/>
       </material>
     </visual>
   </link>
@@ -184,7 +184,7 @@
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <material name="white">
-        <color rgba="1 1 1 1"/>
+        <color rgba="0.9 0.9 0.9 1"/>
       </material>
     </visual>
   </link>
@@ -205,7 +205,7 @@
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <material name="white">
-        <color rgba="1 1 1 1"/>
+        <color rgba="0.9 0.9 0.9 1"/>
       </material>
     </visual>
   </link>
@@ -226,7 +226,7 @@
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <material name="white">
-        <color rgba="1 1 1 1"/>
+        <color rgba="0.9 0.9 0.9 1"/>
       </material>
     </visual>
   </link>
@@ -246,7 +246,7 @@
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <material name="white">
-        <color rgba="1 1 1 1"/>
+        <color rgba="0.9 0.9 0.9 1"/>
       </material>
     </visual>
   </link>
@@ -267,7 +267,7 @@
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <material name="white">
-        <color rgba="1 1 1 1"/>
+        <color rgba="0.9 0.9 0.9 1"/>
       </material>
     </visual>
   </link>
@@ -288,7 +288,7 @@
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <material name="white">
-        <color rgba="1 1 1 1"/>
+        <color rgba="0.9 0.9 0.9 1"/>
       </material>
     </visual>
   </link>
@@ -308,7 +308,7 @@
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <material name="white">
-        <color rgba="1 1 1 1"/>
+        <color rgba="0.9 0.9 0.9 1"/>
       </material>
     </visual>
   </link>
@@ -329,7 +329,7 @@
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <material name="white">
-        <color rgba="1 1 1 1"/>
+        <color rgba="0.9 0.9 0.9 1"/>
       </material>
     </visual>
   </link>
@@ -350,7 +350,7 @@
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <material name="white">
-        <color rgba="1 1 1 1"/>
+        <color rgba="0.9 0.9 0.9 1"/>
       </material>
     </visual>
   </link>
@@ -370,7 +370,7 @@
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <material name="white">
-        <color rgba="1 1 1 1"/>
+        <color rgba="0.9 0.9 0.9 1"/>
       </material>
     </visual>
   </link>
@@ -391,7 +391,7 @@
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <material name="white">
-        <color rgba="1 1 1 1"/>
+        <color rgba="0.9 0.9 0.9 1"/>
       </material>
     </visual>
   </link>

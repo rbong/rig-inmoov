@@ -4,7 +4,7 @@
 #define BUFSIZE 32
 
 int limit [FLEXS] [2] = {
-    { 579, 713 }, { 519, 743 }, { 588, 793 }, { 610, 811 }, { 591, 806 },
+    { 664, 797 }, { 669, 823 }, { 783, 862 }, { 750, 846 }, { 727, 869 },
 };
 uint8_t reverse [FLEXS] = { 1, 1, 1, 1, 1, };
 uint8_t pin_offset = 14;
@@ -13,12 +13,12 @@ uint8_t flex_offset = 6;
 
 enum
 {
-    VERBOSE = 1,
+    VERBOSE = 0,
     NOISE_CONTROL = 0,
     BOARD_ID = 182,
     SERIAL_BAUDRATE = 9600,
     SOFT_SERIAL_BAUDRATE = 9600,
-    DELAY_MS = 0,
+    DELAY_MS = 5,
     DEBUG_RX_PIN = 0,
     DEBUG_TX_PIN = 1,
     CMD_RX_PIN = 10,
