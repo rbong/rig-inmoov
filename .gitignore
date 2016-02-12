@@ -1,6 +1,6 @@
 settings.h
-.swp
-.swo
+.*.swp
+.*.swo
 doc/html
 doc/latex
 readme.pdf
