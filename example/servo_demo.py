@@ -1,11 +1,27 @@
 """! Documentation for the servo_demo.py script.
 An example script for controlling the right hand.
 This script requires python with a library called pyserial.
-After instally python 3.4, pyserial can be installed by calling
+After instally python 3, pyserial can be installed by calling
 
 @code{.sh}
 pip install pyserial
 @endcode
+
+Or through your package manager. Example:
+
+@code{.sh}
+sudo apt-get install python-pyserial
+@endcode
+
+Once you have the library installed, you must have your \b PYTHONPATH variable set
+to the location of the library.
+
+@code{.sh}
+export PYTHONPATH=/usr/lib/python2.7/site-packages
+@endcode
+
+Replace 2.7 with your version of python (type in /usr/lib/python and press tab
+once or twice).
 
 This may vary from system to system.
 See the <a href="http://www.python.org/">python</a> and
@@ -29,12 +45,11 @@ understand how you might produce commands. Also try demo() while connected.
 
 The movements included are quickly written and for demo purposes only.
 
-@see servo.ino Values
+@see index for the servo codes.
 
 @var ser
 The serial connection for input and output. Must be initialized.
 @see connect()
-import pdb; pdb.set_trace()  # XXX BREAKPOINT
 @var RHAND_ID
 The identification byte of the right hand board.
 """
@@ -53,7 +68,24 @@ global ser
 ser = serial.Serial ()
 
 def connect (port):
-    """! Sets the global @ref ser variable."""
+    """! Sets the global @ref ser variable.
+
+    Note that you must be part of the dialout group in Linux. Enter this
+    command to add yourself to a group.
+
+    @code{.sh}
+    usermod -a -G dialout $USER
+    @endcode
+
+    You must logout to apply group changes. If you cannot logout, you can run
+    the script as root.
+
+    @code{.sh}
+    sudo su
+    export PYTHONPATH=/usr/lib/python2.7/site-packages
+    python -i example/servo_demo.py
+    @endcode
+    """
     global ser
     ser = serial.Serial (port, 9600, timeout=1)
 
@@ -327,11 +359,19 @@ def getarrow ():
     else:
         return ''
 
-def calibrate (servo=1):
+def calibrate (s=1):
+    """!  Calibrate a servo.
+    Takes one argument, which is the id of a server. @ref index has the servo
+    codes.
+
+    Use the left and right arrow keys to adjust the value of the servo.
+
+    Enter the maximum values into the @ref limit array in your settings file.
+    """
     i = 90
     while 1:
         print (i)
-        ser.write ([255, servo, i])
+        ser.write ([255, s, i])
         arrow = getarrow ()
         if arrow == 'up' or arrow == 'right':
             if i < 180:
