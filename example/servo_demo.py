@@ -370,6 +370,10 @@ def calibrate (s=1):
     other key to exit.
 
     Enter the maximum values into the @ref limit array in your settings file.
+
+    Note that if a servo isn't moving the correct way, for example if a finger
+    isn't flat at 0 and curved at 180, you must set @ref reverse to 1 at the
+    servo index.
     """
     i = 90
     while 1:
