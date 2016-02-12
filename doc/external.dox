@@ -72,9 +72,22 @@ from the root directory.
 
 To upload the right hand servo code to the connected Arduino, run
 @code{.sh}
-make servo.ino SETTINGS=servo_rhand ARDUINO_DO=--upload BOARD=nano
+make servo.ino SETTINGS=servo_rhand ARDUINO_DO=--upload BOARD=nano PORT='/dev/ttyUSB0'
 @endcode
-Assuming the board is the arduino nano.
+Assuming the board is the arduino nano. For the arduino uno, the
+bord would be uno and the port would be \b /dev/ttyACM0. If multiple boards are
+connected, or if a board connects and disconnects quickly, the port number may
+increment. For example, \b /dev/ttyUSB1.
+
+This also requires that the latest version of \b Arduino is installed. Some
+systems don't have a package for the latest version, such as Ubuntu.
+Fortunately, the build system creates a valid arduino directory structure. In
+this case, you can run
+@code{.sh}
+make servo.ino SETTINGS=servo_rhand
+@endcode
+And \b Arduino will open. Open a project and navigate to \b
+rig-inmoov/build/servo and open the \b .ino file inside.
 
 @section Build Build System
 ## Arduino Directory Structure
