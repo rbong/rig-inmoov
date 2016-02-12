@@ -46,12 +46,7 @@ You can now run commands defined in @ref servo_demo.
 The python script needs the pyserial library. Its website is located
 <a href="http://pyserial.sourceforge.net/">here.</a>
 
-Call this to connect to the board.
-@code{.py}
-connect ('/dev/ttyUSB0')
-@endcode
-Replace \b /dev/ttyUSB0 with the name of the port your board is connected to.
-Usually this is \b /dev/ttyUSB* or \b /dev/ttyACM*
+See @ref servo_demo.connect to connect to the board.
 
 To demo some movements, run this.
 @code{.py}

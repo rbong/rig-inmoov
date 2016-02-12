@@ -70,6 +70,15 @@ ser = serial.Serial ()
 def connect (port):
     """! Sets the global @ref ser variable.
 
+    Call this to connect to the board.
+    @code{.py}
+    connect ('/dev/ttyUSB0')
+    @endcode
+    Replace \b /dev/ttyUSB0 with the name of the port your board is connected
+    to.  Usually this is \b /dev/ttyUSB* for the arduino nano or \b
+    /dev/ttyACM* for the arduino uno. This is the same port used in @ref
+    Installation.
+
     Note that you must be part of the dialout group in Linux. Enter this
     command to add yourself to a group.
 
