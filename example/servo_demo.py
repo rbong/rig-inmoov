@@ -45,7 +45,7 @@ understand how you might produce commands. Also try demo() while connected.
 
 The movements included are quickly written and for demo purposes only.
 
-@see index for the servo codes.
+@see @ref index for the servo codes.
 
 @var ser
 The serial connection for input and output. Must be initialized.
@@ -219,7 +219,7 @@ def cmd ():
     """! Sends the input to the serial port until a blank line is given.
     Must enter integers between 0-255.
 
-    @see index
+    @see @ref index
     """
     while 1:
         s = (input ())
