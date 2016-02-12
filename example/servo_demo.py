@@ -218,6 +218,8 @@ def reset ():
 def cmd ():
     """! Sends the input to the serial port until a blank line is given.
     Must enter integers between 0-255.
+
+    @see index
     """
     while 1:
         s = (input ())
@@ -364,7 +366,8 @@ def calibrate (s=1):
     Takes one argument, which is the id of a server. @ref index has the servo
     codes.
 
-    Use the left and right arrow keys to adjust the value of the servo.
+    Use the left and right arrow keys to adjust the value of the servo. Use any
+    other key to exit.
 
     Enter the maximum values into the @ref limit array in your settings file.
     """
