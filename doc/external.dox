@@ -20,10 +20,10 @@ git clone github.com/rbong/rig-inmoov
 @section Dependencies Dependencies
 The embedd currently depends on <a href="http://www.python.org">Python</a> for
 an example script, <a href="http://www.arduino.cc">Arduino</a> for the embedded
-code, <a href="http://www.stack.nl/~dimitri/doxygen/">Doxygen</a> (if you wish
-to remake the documentation), <a href="http://www.gnu.org/software/make/">
-Make</a> (if you wish to build the project) and <a
-href="http://www.ros.org/">ROS</a>/<a
+code, <a href="http://www.stack.nl/~dimitri/doxygen/">Doxygen</a> and texlive
+(if you wish to remake the documentation), <a
+href="http://www.gnu.org/software/make/"> Make</a> (if you wish to build the
+project) and <a href="http://www.ros.org/">ROS</a>/<a
 href="http://libserial.sourceforge.net/">LibSerial</a> for the simulation.
 
 @section Quick_Start Quick Start
