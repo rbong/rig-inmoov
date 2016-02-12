@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['calibrate',['calibrate',['../namespaceservo__demo.html#af6f06424c3428ed003fa05f017756f33',1,'servo_demo']]],
   ['cancel_5fsignal',['CANCEL_SIGNAL',['../servo_8ino.html#a726ca809ffd3d67ab4b8476646f26635ac997ff2715ad695454398a53eeed31cc',1,'servo.ino']]],
   ['cmd',['cmd',['../namespaceservo__demo.html#ad6f7900ac39dba44ca3395d7e837f672',1,'servo_demo']]],
   ['connect',['connect',['../namespaceservo__demo.html#a7855c0e41103b1ec79f74694713fb9a5',1,'servo_demo']]],
