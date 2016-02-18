@@ -1,11 +1,11 @@
 /**@file
 This is the code for the flex sensor board.
 
-It follows the same settings convention as @ref serial.ino. It uses the @ref
-serial.ino shared code to transmit commands to a servo board given a settings
-file. Programs generated with this file translate values read from variable
+Programs generated with this file translate values read from variable
 resistance (flex sensors) hooked up to voltage divider into values from 0-180
-for the servo controller to read.
+for the servo controller to read. It also transmits signals back into the
+computer through its USB cable to control both the physical arm and the
+simulation.
 **/
 
 #include "settings.h"

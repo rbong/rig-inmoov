@@ -1,19 +1,8 @@
 /**@file
 This is the serial communication shared code.
 
-Serial communication is broken up into two serial ports; a command port, and a
-debug port. On boards that only recieve commands (servo controllers), the
-command port is the port on which the board recieves commands and prints
-responses, and the debug port is the port on which it prints information if the
-@ref VERBOSE constant is true.
-
-On boards that control other boards (flex sensors), the command port is the
-port on which it transmits commands to and listens for responses from the child
-board, and the debug port is the port on which it recieves any commands and
-prints information.
-
-To use the USB serial port on an Arduino board, simply set the board's
-corresponding RX and TX pins for output (usually 0 and 1).
+In the near future, this will be shared between Arduino programs for common
+serial communication tasks.
 **/
 
 #include <SoftwareSerial.h>

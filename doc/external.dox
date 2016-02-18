@@ -9,7 +9,7 @@ Rather, readers should skim relevant pages and skip information that requires
 more context. More in depth information is provided for those that wish to
 modify the source code. Examples are provided when possible for quick reference
 and experimentation. Note that colored phrases are links for both html and pdf.
-This project has a git repository located
+This project has a <a href="https://git-scm.com/">git</a> repository located
 <a href="https://github.com/rbong/rig-inmoov">here</a>.
 You can download the project with the following command after installing git on
 your system.
@@ -18,24 +18,25 @@ git clone github.com/rbong/rig-inmoov
 @endcode
 
 @section Dependencies Dependencies
-The embedd currently depends on <a href="http://www.python.org">Python</a> for
-an example script, <a href="http://www.arduino.cc">Arduino</a> for the embedded
-code, <a href="http://www.stack.nl/~dimitri/doxygen/">Doxygen</a> and texlive
-(if you wish to remake the documentation), <a
-href="http://www.gnu.org/software/make/"> Make</a> (if you wish to build the
-project) and <a href="http://www.ros.org/">ROS</a>/<a
+The embedded system (servo and flex sensor glove code) currently depends on
+<a href="http://www.python.org">Python</a> for an example script,
+<a href="http://www.arduino.cc">Arduino</a> for the actual code,
+<a href="http://www.stack.nl/~dimitri/doxygen/">Doxygen</a> and
+<a href="https://www.tug.org/texlive/">texlive</a> (if you wish to remake the
+documentation), <a href="http://www.gnu.org/software/make/"> Make</a> (if you
+wish to build the project), and <a href="http://www.ros.org/">ROS</a>/<a
 href="http://libserial.sourceforge.net/">LibSerial</a> for the simulation.
 
 @section Quick_Start Quick Start
-To quickly upload to the right hand, do the following. Copy the \b
-arduino/sketch/servo folder to your Arduino sketch folder. Copy \b
-servo/settings/servo_rhand.h to \b servo/settings.h in the sketch directory.
-Copy \b arduino/lib/serial.ino to \b servo/serial.ino in the sketch directory.
-Open the Arduino software. Select your board and the port it is connected to.
-Open your sketch, and hit upload. Instructions for the Arduino software are
-located <a href="http://www.arduino.cc">on its website</a>.
-Other Arduino files on the bot can be built in a similar way, or the \b make
-system command can be used.
+To quickly upload to the right hand without using \b make, do the following.
+Copy the \b arduino/sketch/servo folder to your
+<a href="https://www.arduino.cc/en/Guide/Environment#toc7">Arduino sketchbook
+folder</a> or any new folder. Copy \b servo/settings/servo_rhand.h to \b
+servo/settings.h in the sketch directory. Open the Arduino software.
+<a href="https://www.arduino.cc/en/Guide/Environment#toc9">Select your board
+and the port</a> it is connected to. Open (<b>File>Open</b>) \b servo.ino, and
+hit upload. Other Arduino files on the bot can be built in a similar way, or
+the \b make system command can be used. See @ref Installation for using make.
 
 To transmit commands to the board, run this from the command line.
 @code{.sh}
@@ -54,8 +55,11 @@ demo ()
 @endcode
 Note that some movements require input before continuing (press enter).
 
-Read the @ref servo_demo documentation for more. Read the @ref
-Examples section to understand how it formulates commands.
+See @ref servo_demo.cmd for sending any movement commands. Send strings of
+bytes as defined in @ref Arduiono and @ref Examples.
+
+The example script can also be used to calibrate the motors. Read the @ref
+servo_demo documentation for more.
 
 To run the 3D simulation of the project, please refer to @ref Simulation.
 
@@ -70,53 +74,56 @@ To upload the right hand servo code to the connected Arduino, run
 @code{.sh}
 make servo.ino SETTINGS=servo_rhand ARDUINO_DO=--upload BOARD=nano PORT='/dev/ttyUSB0'
 @endcode
-Assuming the board is the arduino nano. For the arduino uno, the
-bord would be uno and the port would be \b /dev/ttyACM0. If multiple boards are
-connected, or if a board connects and disconnects quickly, the port number may
-increment. For example, \b /dev/ttyUSB1.
+Assuming the board is the arduino nano. For the arduino uno, BOARD would be uno
+and PORT would be \b /dev/ttyACM0. If multiple boards are connected, or if a
+board connects and disconnects quickly, the port number may increment. For
+example, \b /dev/ttyUSB1. If you wish to modify \b Makefile, please refer to
+<a href="http://www.gnu.org/software/make/manual/make.html">the make
+manual</a>.
 
 This also requires that the latest version of \b Arduino is installed. Some
-systems don't have a package for the latest version, such as Ubuntu.
-Fortunately, the build system creates a valid arduino directory structure. In
-this case, you can run
+systems don't have a package for the latest version, such as Ubuntu. The
+previous version of \b Arduino does not have command line capabilities and
+cannot be automated. Fortunately, the build system creates a valid arduino
+directory structure that we can open in the graphical \b Arduino IDE. In this
+case, you can run
 @code{.sh}
 make servo.ino SETTINGS=servo_rhand
 @endcode
 And \b Arduino will open. Open a project and navigate to \b
-rig-inmoov/build/servo and open the \b .ino file inside.
+rig-inmoov/build/servo and open the \b servo.ino file inside.
 
 @section Build Build System
 ## Arduino Directory Structure
 The Arduino IDE abstracts many tools for working with Arduino hardware. We
-choose to use it because of its familiarity and cross system compatibility.
-However, the Arduino IDE isn't made for command line compilation, and
-replicating its process requires complex tools not appropriate for this
-project.
+choose to use it because of its ease of use and cross system compatibility.
+However, the \b Arduino IDE only recently started coming with control tools for
+the command line (a process which \b make uses to compile and upload the
+project). Some versions of Linux do not come with the newest version of
+Arduino. Replicating the process performed by the \b Arduino IDE requires
+complex tools not appropriate for this project.
 
-To share code among certain boards, general code is kept in the \b
-arduino/sketch subdirectories. Inside each subdirectory is an \b .ino file of
-the same name, which is the source for the sketch. There is also a \b settings
-folder in which various headers are kept. These headers are to be moved to \b
-settings.h inside the sketch folder. For example, code to be shared among
-servos is kept in \b arduino/sketch/servo/servo.ino, the configuration for the
-right hand is kept in \b arduino/sketch/servo/settings/servo_rhand.h, and you
-would move it to \b arduino/sketch/servo/settings.h to use it.
+What follows is a description of what \b make performs to build and upload the
+embedded code (as defined in \b Makefile) for those not able to use the newest
+version of \b Arduino.
+
+To share code among certain boards, general code is kept in subdirectories
+under \b rig-inmoov/arduino/sketch. Inside each subdirectory is an \b .ino file
+of the same name, which is the source for the sketch. There is also a \b
+settings folder in which various headers are kept. These headers are to be
+moved to \b settings.h inside the sketch folder. For example, code to be shared
+among servos is kept in \b arduino/sketch/servo/servo.ino, the configuration
+for the right hand is kept in \b arduino/sketch/servo/settings/servo_rhand.h,
+and you would move it to \b arduino/sketch/servo/settings.h (or another folder
+which you moved \b servo.ino into) to use it. You would then open \b servo.ino
+in the \b Arduino IDE.
 
 Some sketches require shared code that use Arduino libraries, which means that
 they need to be contained in \b .ino files. Arduino includes any \b .ino files
-inside a sketch subdirectory. We keep such files in \b arduino/lib. For
-example, servo boards require serial communication, so we would move \b
-arduino/lib/serial.ino to the \b arduino/sketch/servo directory.
+inside a sketch subdirectory. We keep such files in \b arduino/lib.
 
-The reason that shared code among the same board types is treated differently
-than shared code among different board types is to allow us to keep the
-settings files short, and also to use them elsewhere in the project that is not
-necessarily Arduino code. In addition, .ino files do not have a guaranteed
-order of inclusion.
-
-This is all automated by the build system. If you wish to use the Arduino IDE,
-either link the appropriate files to your Arduino sketch directory or copy them
-to the sketch directory and write the changes back later.
+The reason that we do not use \b .ino files for settings files is that \b .ino
+files do not have a guaranteed order of inclusion.
 
 @section Arduino Arduino Protocol
 The Arduinos controlling the various parts of the bot communicate over their
@@ -124,13 +131,13 @@ serial ports. All information is sent and recieved using 8 bit unsigned raw
 integers instead of text. This allows extremely fast and simple code, but
 limits programs to 255 signals, identifiers, and values.
 
-However, the Arduino boards only have one function; to pass commands to
-their servos.
-
+@subsection Servo Servo Boards
+The Arduino servo boards only have one function; to pass commands to their
+servos.
 @par Servo ID
-Unless otherwise instructed, the Arduino accepts two values at a time. First,
-it accepts a servo ID, and a value to write to the pin associated with that
-servo.
+Unless otherwise instructed, the servo boards accept two values at a time.
+First, it accepts a servo ID, and a value to write to the pin associated with
+that servo.
 @par
 Servo IDs start at 0 and should be uniquely identified on every board,
 allowing a maximum of 255 servos on each bot, not including signals. They
@@ -148,33 +155,34 @@ and 0 represents full speed in the other.
 @par
 Each board has callibrations for each servo that scale the angles from 0-180 to
 some minimum angle and some maximum angle. The host program has no need to know
-these values. When the board reports current values, they are non-scaled.
+these values. When the board reports current values, they are scaled.
 @par
 To ensure that the board is reading the correct information (servo ID or
 servo position), there is a cancel signal.
 
-@par Signals
-The boards accept some pre-defined signals that break the default flow. It can
-recieve these signals at any time and will terminate its current servo command.
+@subsection Signals
+All boards accept some pre-defined signals that break the default flow. It can
+receive these signals at any time and will terminate its current servo command.
 In addition, the board may print some signals to output. Both kinds of signals,
 incoming and outgoing, are assigned starting from 255 and going down. In the
 arduino code, incoming signals are denoted by \b *_SIGNAL, and the outgoing
 signals are denoted by \b *_RESPONSE. We will use this convention.
 
-@par CANCEL_SIGNAL
+@subsubsection CANCEL_SIGNAL
 This signal exists to cancel all pending input and syncronize the host and
 master. If a host connects to an Arduino and does not know its current state,
 it can send this signal and know that the board is waiting on a servo ID.
 
-@par WAIT_RESPONSE
+@subsubsection WAIT_RESPONSE
 This response indicates that the board has no bytes left to read and is ready
 for input. A host does not need to wait for this response, but it may want to
 if it is experiencing difficulties or the board may have crashed.
 
-@par START_RESPONSE, END_RESPONSE
+@subsubsection START_RESPONSE
+@subsubsection END_RESPONSE
 These responses mark the beginning and end of a reply to some signal.
 
-@par DUMP_SIGNAL
+@subsubsection DUMP_SIGNAL
 This signal makes the board return various information about itself and its
 servos. As of writing, it returns \b START_RESPONSE, an ID, its number of
 servos, the IDs of each servo followed by the value last sent to that servo,
@@ -293,18 +301,19 @@ other systems.
 @tableofcontents
 
 @details The simulation for the RIGbot runs in ROS. It accepts commands in the
-same protocol described in @ref Introduction. You must first use git to
-download the project, also detailed in @ref Introdcution.
+same protocol described in @ref index.Arduino. You must first use git to
+download the project, detailed in @ref index.
 
-This section only details basic usage and slight modification. For any new
-features, model additions, or bug fixes, you may need to read the beginner
-level <a href="http://wiki.ros.org/ROS/Tutorials">ROS tutorials</a> and the <a
-href="http://wiki.ros.org/urdf_tutorial">urdf tutorials</a>.
+This section only details basic usage and slight modification. For the
+information required to add any new features, model modifications, or bug fixes,
+you may need to read the beginner level
+<a href="http://wiki.ros.org/ROS/Tutorials">ROS tutorials</a> and the
+<a href="http://wiki.ros.org/urdf_tutorial">urdf tutorials</a>.
 
 @section Dependencies Dependencies
-The simulation depends on <a href="http://www.ros.org/">ROS</a>. It is
-recommended you <a
-href="http://wiki.ros.org/jade/Installation/">install the full system</a>
+The simulation depends on <a href="http://www.ros.org/">ROS</a>. We use the
+\b Jade version, as it is the long term release. It is recommended you
+<a href="http://wiki.ros.org/jade/Installation/">install the full system</a>
 because of the number of the large number of ROS packages. On Ubuntu, this is
 achieved with the following commands.
 @code{.sh}
@@ -327,8 +336,11 @@ run this command.
 @code{.sh}
 source /opt/ros/jade/setup.bash
 @endcode
-There are also .zsh and .sh files if you are using different shells. It is
-recommended you append this command to your shell's .rc file (ex. ~/.bashrc).
+There are also .zsh and .sh files for users of \b zsh or \b sh. It is
+recommended you append this command to your shell's
+<a href="http://unix.stackexchange.com/questions/129143/what-is-the-purpose-of-bashrc-and-how-does-it-work">.rc</a>
+file (ex. ~/.bashrc).  Make sure to fill in the absolute path to
+\b rig-inmoov/catkin-ws.
 
 The following only needs to be run once.
 @code{.sh}
@@ -343,24 +355,15 @@ catkin_make
 @endcode
 
 @section Usage Usage
-Before running any ROS commands relating to the project, you must run the
-following comand.
-@code{.sh}
-source catkin_ws/devel/setup.bash
-@endcode
-There are also .zsh and .sh files if you are using different shells. It is
-recommended you append this command to your shell's .rc file (ex. ~/.bashrc).
-Make sure to fill in the absolute path to rig-inmoov/catkin-ws.
-
 After running all the necessary setup commands, you can finally run the
-project.
+simulation.
 @code{.sh}
 roslaunch robot_description display.launch port:=/dev/ttyACM0
 @endcode
 This requires that an input board such as the flex sensor glove is connected.
-Replace "port" with the port this board is connected on (search for the naming
-convention for your board online). The output from launch commands is captured
-in ~/.ros/log/.
+Replace "port" with the port your desired board is connected on (search for the
+naming convention for your board online). The output from launch commands is
+captured in \b ~/.ros/log/.
 
 You can also set and change the port later with the following command.
 @code{.sh}
@@ -369,20 +372,20 @@ rosparam set /serial_publisher/port /path/to/port
 The serial publisher does not need to be running.
 
 If the serial publisher crashes because it loses connection, you can re-launch
-it with this command.
+it with this command without ending the visualizer.
 @code{.sh}
 rosrun robot_description serial_publisher
 @endcode
 
 @section Background Background
 We have two custom programs used to maintain the simulation. The first is
-serial_publisher, compiled from \b
+\b serial_publisher, compiled from \b
 catkin_ws/src/robot_description/src/serial_publisher.cpp. This program accepts
 input from a serial port and translates it to a <a
 href="http://wiki.ros.org/Topics">ROS topic</a>.
 
-The other program is state_publisher, compiled from \b state_publisher.cpp in
-the same directory. This program listens to the topic and translates it into 
+The other program is \b state_publisher, compiled from \b state_publisher.cpp
+in the same directory. This program listens to the topic and translates it into
 joint positions, which <a href="http://wiki.ros.org/rviz">rviz</a> (the
 visualizer component of ROS) listens to. It expects input of the same protocol
 as described in @ref Introduction.
@@ -392,8 +395,8 @@ protocols (such as bluetooth) using just \b serial_publisher.cpp as reference.
 It also makes it easy to add new parts to \b state_publisher. New programs need
 to be added to \b catkin_ws/src/robot_description/CMakeLists.txt.
 
-The rviz visualizer is loaded with a <a
-href="http://wiki.ros.org/urdf_tutorial">urdf</a> file, stored in \b
+The rviz visualizer is loaded with a
+<a href="http://wiki.ros.org/urdf_tutorial">urdf</a> file, stored in \b
 catkin_ws/src/robot_description/model.xml, that describes how the different 3D
 models that make up movable parts are positionally related to one another.
 

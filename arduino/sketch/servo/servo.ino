@@ -38,18 +38,20 @@ is changed and retrieved upon @ref DUMP_SIGNAL.
 **/
 uint8_t current_pos [SERVOS] = { 0 };
 
-char buf [BUFSIZE]; /// The print buffer.
+/// The print buffer.
+char buf [BUFSIZE];
 
 enum
 {
-    MIN_LIM = 0, /// Index for the @ref limit variables.
-    MAX_LIM = 1, /// Index for the @ref limit variables.
-    CANCEL_SIGNAL = 255, /// Incoming signal commanding termination of the current loop.
-    WAIT_RESPONSE = 254, /// Outgoing signal indicating that we are waiting for input.
-    DUMP_SIGNAL = 253, /// Incoming signal indicating that we are to print information to serial.
-    START_RESPONSE = 252, /// Beginning of some multi-byte response.
-    END_RESPONSE = 251, /// End of some response.
-    DUMP_RESPONSE_LEN = SERVOS * 2 + 4, /// The length of the response to the dump signal.
+    MIN_LIM = 0,
+    MAX_LIM = 1,
+    CANCEL_SIGNAL = 255,
+    WAIT_RESPONSE = 254,
+    DUMP_SIGNAL = 253,
+    START_RESPONSE = 252,
+    END_RESPONSE = 251,
+    /// The length of the response to the dump signal.
+    DUMP_RESPONSE_LEN = SERVOS * 2 + 4,
 };
 
 /**
@@ -88,11 +90,11 @@ void setup ()
 
 /**
 The \b loop function is called continually until the program exits.  It
-performs actions based on @ref Arduino. Recieves two unsigned 8-bit
-integers, a servo id and a servo angle, then calls @ref setServoFromID().  If
-the @ref DUMP_SIGNAL is recieved at any time, calls @ref dump() and continues.
-If the @ref CANCEL_SIGNAL is recieved, it does nothing and continues. If, at
-the beginning of the function, there is no pending input, it transmits @ref
+performs actions based on @ref Arduino. Recieves two unsigned 8-bit integers, a
+servo id and a servo angle, then calls @ref setServoFromID().  If the @ref
+DUMP_SIGNAL is recieved at any time, calls @ref dump() and continues.  If the
+@ref CANCEL_SIGNAL is recieved, it does nothing and continues. If, at the
+beginning of the function, there is no pending input, it transmits @ref
 WAIT_RESPONSE, then does nothing until input is available.
 **/
 void loop ()
@@ -255,7 +257,7 @@ void setServoFromID (int servo_id, uint8_t servo_angle)
 
 /**
 Writes various information about the board to the serial port. Triggered on
-reception of @ref DUMP_RESPONSE_LEN. Transmits the ID of the board, the number
+reception of @ref DUMP_SIGNAL. Transmits the ID of the board, the number
 of servos, each servo ID, and the current position of the servos.
 @see @ref Arduino, START_RESPONSE, END_RESPONSE, current_pos,
 getServoIDFromIndex()
