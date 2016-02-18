@@ -306,7 +306,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="names
 </div><div class="memdoc">
 
 <p>Retrieves information about the board. </p>
-<p>The command sends the DUMP_SIGNAL to the serial port and reads back the response. The response is described in <a class="el" href="servo_8ino.html">servo.ino</a>.</p>
+<p>The command sends the <a class="el" href="index.html#DUMP_SIGNAL">DUMP_SIGNAL</a> to the serial port and reads back the response. The response is described in <a class="el" href="servo_8ino.html">servo.ino</a>.</p>
 <p>When you write your own similar function, timing is important.</p>
 <p>We may need to increase the response delay on the Arduino if you are unable to recieve a response. View the source of this function to understand how it works, but keep in mind it is untested. Also keep in mind that the function is very non-general as it always reads the same amount of bytes instead of looking for the end signal.</p>
 <dl class="section note"><dt>Note</dt><dd>While this function could be used to change dynamically between gestures instead of resetting the servos to 0, this function did not exist when this script was first written. </dd></dl>
@@ -561,7 +561,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="names
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Upon success, returns the generated list of commands. The commands are surrounded by the CANCEL_SIGNAL for syncing. The servos will always reach their exact final destination, unless if <b>steps</b> at the index of the servo is 0. Upon error, raises <b>'Invalid sweep command'</b>. This indicates non-matching list lengths.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Upon success, returns the generated list of commands. The commands are surrounded by the <a class="el" href="index.html#CANCEL_SIGNAL">CANCEL_SIGNAL</a> for syncing. The servos will always reach their exact final destination, unless if <b>steps</b> at the index of the servo is 0. Upon error, raises <b>'Invalid sweep command'</b>. This indicates non-matching list lengths.</dd></dl>
 <dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;sweep ([], [1,2], [180,0], [90,180], [90,45]) </div></div><!-- fragment --> Returns <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;[CANCEL_SIGNAL, 1, 180, 2, 0, 1, 90, 2, 45, 2, 90, 2, 135, 2, 180, CANCEL_SIGNAL]</div></div><!-- fragment --> The protocol this follows is described in <a class="el" href="servo_8ino.html">servo.ino</a>. By intertwining commands in this way, a delay can be inserted between bytes and fluid motion is still preserved. </dd></dl>
 
 <p>Definition at line <a class="el" href="servo__demo_8py_source.html#l00101">101</a> of file <a class="el" href="servo__demo_8py_source.html">servo_demo.py</a>.</p>
@@ -663,7 +663,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="names
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Feb 17 2016 23:31:10 for RIG InMoov Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Feb 18 2016 16:03:01 for RIG InMoov Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

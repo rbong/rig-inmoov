@@ -1,22 +1,4 @@
 var searchData=
 [
-  ['ser',['ser',['../namespaceservo__demo.html#a06e6a9a977aae60df82ad0f4c4918a2f',1,'servo_demo']]],
-  ['serial_2eino',['serial.ino',['../serial_8ino.html',1,'']]],
-  ['serialgetbyte',['serialGetByte',['../servo_8ino.html#a06d585a91d5f5e628f8a8b36b026e1a3',1,'servo.ino']]],
-  ['serialprint',['serialPrint',['../servo_8ino.html#a0f3ae8cf0248b01210907e87ad4eea85',1,'servo.ino']]],
-  ['serialprintint',['serialPrintInt',['../servo_8ino.html#a4f103414ba9a87662bcbdd19a742a9de',1,'servo.ino']]],
-  ['serialprintintpretty',['serialPrintIntPretty',['../servo_8ino.html#a049abf2e8acf34fe1c919b25e04220c7',1,'servo.ino']]],
-  ['serialwait',['serialWait',['../servo_8ino.html#a9cfb336c355574cb26d524cb65a4a7ec',1,'servo.ino']]],
-  ['servo',['servo',['../servo_8ino.html#adf02be48d17da3f4a229ebfdfda2fa71',1,'servo.ino']]],
-  ['servo_2eino',['servo.ino',['../servo_8ino.html',1,'']]],
-  ['servo_5fdemo',['servo_demo',['../namespaceservo__demo.html',1,'']]],
-  ['servo_5frhand_2eh',['servo_rhand.h',['../servo__rhand_8h.html',1,'']]],
-  ['servos',['SERVOS',['../servo__rhand_8h.html#a7baed4559391f95790fea2b456a22b68',1,'servo_rhand.h']]],
-  ['servowrite',['servowrite',['../namespaceservo__demo.html#a232b3c526dae62b6a2c255b5c1a2568d',1,'servo_demo']]],
-  ['setservofromid',['setServoFromID',['../servo_8ino.html#a3a39af320e5158e45d76e498553daa1c',1,'servo.ino']]],
-  ['setservofromindex',['setServoFromIndex',['../servo_8ino.html#ae825d17aac5e6dc657fd1a6cb43eb4a7',1,'servo.ino']]],
-  ['setup',['setup',['../servo_8ino.html#a4fc01d736fe50cf5b977f755b675f11d',1,'servo.ino']]],
-  ['simulation',['Simulation',['../Simulation.html',1,'']]],
-  ['start_5fresponse',['START_RESPONSE',['../servo_8ino.html#a726ca809ffd3d67ab4b8476646f26635a48468e45ef67fed1d655c9aa1dc40aa8',1,'servo.ino']]],
-  ['sweep',['sweep',['../namespaceservo__demo.html#ac3ae8848496e32cbb183800bee438872',1,'servo_demo']]]
+  ['verbose',['VERBOSE',['../servo__rhand_8h.html#a0411cd49bb5b71852cecd93bcbf0ca2dace3e26676763569084c86b8c3b67d601',1,'servo_rhand.h']]]
 ];

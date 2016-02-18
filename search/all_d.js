@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['unsweep',['unsweep',['../namespaceservo__demo.html#aa57b848b25a59eb119eb5570392d6673',1,'servo_demo']]]
+  ['wiggle',['wiggle',['../namespaceservo__demo.html#a0036c7c1a2bc3b9cc9c237533cb7ef6d',1,'servo_demo']]]
 ];

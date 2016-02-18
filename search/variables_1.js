@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['default_5fpos',['default_pos',['../servo__rhand_8h.html#af9e032ca502bd456fc642064811ca273',1,'servo_rhand.h']]]
+  ['current_5fpos',['current_pos',['../servo_8ino.html#ae88c6e452cc6a2dc7af59897c42d8e1e',1,'servo.ino']]]
 ];

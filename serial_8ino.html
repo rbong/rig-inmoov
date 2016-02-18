@@ -139,15 +139,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>serialDebugPrintIntPr
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This is the serial communication shared code.</p>
-<p>Serial communication is broken up into two serial ports; a command port, and a debug port. On boards that only recieve commands (servo controllers), the command port is the port on which the board recieves commands and prints responses, and the debug port is the port on which it prints information if the <a class="el" href="servo__rhand_8h.html#a0411cd49bb5b71852cecd93bcbf0ca2dace3e26676763569084c86b8c3b67d601">VERBOSE</a> constant is true.</p>
-<p>On boards that control other boards (flex sensors), the command port is the port on which it transmits commands to and listens for responses from the child board, and the debug port is the port on which it recieves any commands and prints information.</p>
-<p>To use the USB serial port on an Arduino board, simply set the board's corresponding RX and TX pins for output (usually 0 and 1). </p>
+<p>In the near future, this will be shared between Arduino programs for common serial communication tasks. </p>
 
 <p>Definition in file <a class="el" href="serial_8ino_source.html">serial.ino</a>.</p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Feb 17 2016 23:31:10 for RIG InMoov Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Feb 18 2016 16:03:01 for RIG InMoov Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>
