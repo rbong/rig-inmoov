@@ -28,7 +28,7 @@ href="http://libserial.sourceforge.net/">LibSerial</a> for the simulation.
 
 @section Quick_Start Quick Start
 To quickly upload to the right hand, do the following. Copy the \b
-arduino/servo folder to your Arduino sketch folder. Copy \b
+arduino/sketch/servo folder to your Arduino sketch folder. Copy \b
 servo/settings/servo_rhand.h to \b servo/settings.h in the sketch directory.
 Copy \b arduino/lib/serial.ino to \b servo/serial.ino in the sketch directory.
 Open the Arduino software. Select your board and the port it is connected to.
