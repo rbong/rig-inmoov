@@ -68,7 +68,11 @@ You can build this documentation with the command
 @code{.sh}
 make documentation
 @endcode
-from the root directory.
+from the root directory. To upload the documentation, run
+@code{.sh}
+make gh-pages
+@endcode
+and enter a commit message when prompted.
 
 To upload the right hand servo code to the connected Arduino, run
 @code{.sh}

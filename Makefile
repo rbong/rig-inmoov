@@ -11,15 +11,22 @@ SETTINGS=servo_rhand
 ARDUINO_DO=--upload
 # arduino flags
 ARDUINO_FLAGS=$(ARDUINO_DO) --port $(PORT) --board $(BOARD_TYPE)$(BOARD)
+# address of the documentation repo
+GH_PAGES_REPO='http://www.github.com/rbong/rig-inmoov'
+# branch of the documentation repo
+GH_PAGES_BRANCH='gh-pages'
+DOC_CLONE_FLAGS=$(DOC_CLONE_OPTIONS) -b $(GH_PAGES_BRANCH) $(GH_PAGES_REPO) $(GH_PAGES_DIR)
 
 ## relevant directories
 SKETCH_DIR=arduino/sketch
 ARDUINO_LIB_DIR=arduino/lib
 BUILD_DIR=build
+GH_PAGES_DIR=rig-doc
 
 ## command wrappers
 ARDUINO=arduino $(ARDUINO_FLAGS)
 DOXY=doxygen $(DOC_OPTIONS)
+DOC_CLONE=git clone $(DOC_CLONE_FLAGS)
 
 ## files left by the build system
 ARDUINO_BUILD_FILES=$(BUILD_DIR)
@@ -50,6 +57,20 @@ flex_double.ino: $(BUILD_DIR)/flex_double/serial.ino
 documentation:
 	$(DOXY) doc/Doxyfile
 	cd doc/latex && make pdf
+gh-pages:
+	if [ ! -d $(GH_PAGES_DIR) ]; then \
+	    rm -f $(GH_PAGES_DIR); \
+	    $(DOC_CLONE); \
+	fi
+	cd $(GH_PAGES_DIR) && git rm -r *
+	cp -r doc/html/* $(GH_PAGES_DIR)
+	cp doc/latex/refman.pdf $(GH_PAGES_DIR)/readme.pdf
+	cd $(GH_PAGES_DIR) && git add *
+	# Please enter a commit message, or leave blank for no commit.
+	read commit_msg && \
+	if [ "$$commit_msg" != "" ]; then \
+	    cd $(GH_PAGES_DIR) && git commit -m "$$commit_msg" && git push; \
+	fi
 simulation:
 	if [ ! -f catkin_ws/src/CMakeLists.txt ]; then \
 	    . /opt/ros/jade/setup.sh && \
@@ -65,4 +86,4 @@ simulation:
 
 ## cleanup
 clean:
-	rm -rf $(BUILD_FILES)
+	rm -rf $(BUILD_FILES) $(GH_PAGES_DIR)
