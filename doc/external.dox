@@ -19,8 +19,9 @@ git clone github.com/rbong/rig-inmoov
 
 @section Dependencies Dependencies
 The embedded system (servo and flex sensor glove code) currently depends on
-<a href="http://www.python.org">Python</a> for an example script,
-<a href="http://www.arduino.cc">Arduino</a> for the actual code,
+<a href="http://www.python.org">Python</a> and
+<a href="https://github.com/pyserial/pyserial">pyserial</a> (for an example
+script), <a href="http://www.arduino.cc">Arduino</a> for the actual code,
 <a href="http://www.stack.nl/~dimitri/doxygen/">Doxygen</a> and
 <a href="https://www.tug.org/texlive/">texlive</a> (if you wish to remake the
 documentation), <a href="http://www.gnu.org/software/make/"> Make</a> (if you
@@ -43,9 +44,6 @@ To transmit commands to the board, run this from the command line.
 python -i example/servo_demo.py
 @endcode
 You can now run commands defined in @ref servo_demo.
-
-The python script needs the pyserial library. Its website is located
-<a href="http://pyserial.sourceforge.net/">here.</a>
 
 See @ref servo_demo.connect to connect to the board.
 
