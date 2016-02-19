@@ -173,7 +173,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="names
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Documentation for the <a class="el" href="servo__demo_8py_source.html">servo_demo.py</a> script. </p>
-<p>An example script for controlling the right hand. This script requires python with a library called pyserial. After instally python 3, pyserial can be installed by calling</p>
+<p>An example script for controlling the right hand. This script can also be used to calibrate the bot. Please see <a class="el" href="namespaceservo__demo.html#a7855c0e41103b1ec79f74694713fb9a5">connect</a>, <a class="el" href="namespaceservo__demo.html#ad6f7900ac39dba44ca3395d7e837f672">cmd</a>, and <a class="el" href="namespaceservo__demo.html#af6f06424c3428ed003fa05f017756f33">calibrate</a>. This script requires python with a library called pyserial. After instally python 3, pyserial can be installed by calling</p>
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;pip install pyserial</div></div><!-- fragment --><p>Or through your package manager. Example:</p>
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;sudo apt-get install python-pyserial</div></div><!-- fragment --><p>Once you have the library installed, you must have your <b>PYTHONPATH</b> variable set to the location of the library.</p>
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;export PYTHONPATH=/usr/lib/python2.7/site-packages</div></div><!-- fragment --><p>Replace 2.7 with your version of python (type in /usr/lib/python and press tab once or twice).</p>
@@ -204,7 +204,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="names
 <p>Enter the maximum values into the <a class="el" href="servo__rhand_8h.html#ab48e069f24be713d91d0268626f2df7d">limit</a> array in your settings file.</p>
 <p>Note that if a servo isn't moving the correct way, for example if a finger isn't flat at 0 and curved at 180, you must set <a class="el" href="servo__rhand_8h.html#ae858a0ba64b6875be7726f8cb68fc391">reverse</a> to 1 at the servo index. </p>
 
-<p>Definition at line <a class="el" href="servo__demo_8py_source.html#l00373">373</a> of file <a class="el" href="servo__demo_8py_source.html">servo_demo.py</a>.</p>
+<p>Definition at line <a class="el" href="servo__demo_8py_source.html#l00375">375</a> of file <a class="el" href="servo__demo_8py_source.html">servo_demo.py</a>.</p>
 
 </div>
 </div>
@@ -223,9 +223,9 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="names
 
 <p>Sends the input to the serial port until a blank line is given. </p>
 <p>Must enter integers between 0-255.</p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="index.html">Introduction</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="index.html#Arduino">Arduino Protocol</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="servo__demo_8py_source.html#l00227">227</a> of file <a class="el" href="servo__demo_8py_source.html">servo_demo.py</a>.</p>
+<p>Definition at line <a class="el" href="servo__demo_8py_source.html#l00229">229</a> of file <a class="el" href="servo__demo_8py_source.html">servo_demo.py</a>.</p>
 
 </div>
 </div>
@@ -248,7 +248,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="names
 <p>Note that you must be part of the dialout group in Linux. Enter this command to add yourself to a group.</p>
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;usermod -a -G dialout $USER</div></div><!-- fragment --><p>You must logout to apply group changes. If you cannot logout, you can run the script as root.</p>
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;sudo su</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;export PYTHONPATH=/usr/lib/python2.7/site-packages</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;python -i example/servo_demo.py</div></div><!-- fragment --> 
-<p>Definition at line <a class="el" href="servo__demo_8py_source.html#l00070">70</a> of file <a class="el" href="servo__demo_8py_source.html">servo_demo.py</a>.</p>
+<p>Definition at line <a class="el" href="servo__demo_8py_source.html#l00072">72</a> of file <a class="el" href="servo__demo_8py_source.html">servo_demo.py</a>.</p>
 
 </div>
 </div>
@@ -268,7 +268,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="names
 <p>Counts to 5 on the fingers. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="namespaceservo__demo.html#ac3ae8848496e32cbb183800bee438872" title="Produces complex command chains. ">sweep()</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="servo__demo_8py_source.html#l00319">319</a> of file <a class="el" href="servo__demo_8py_source.html">servo_demo.py</a>.</p>
+<p>Definition at line <a class="el" href="servo__demo_8py_source.html#l00321">321</a> of file <a class="el" href="servo__demo_8py_source.html">servo_demo.py</a>.</p>
 
 </div>
 </div>
@@ -287,7 +287,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="names
 
 <p>Performs all movements. </p>
 
-<p>Definition at line <a class="el" href="servo__demo_8py_source.html#l00327">327</a> of file <a class="el" href="servo__demo_8py_source.html">servo_demo.py</a>.</p>
+<p>Definition at line <a class="el" href="servo__demo_8py_source.html#l00329">329</a> of file <a class="el" href="servo__demo_8py_source.html">servo_demo.py</a>.</p>
 
 </div>
 </div>
@@ -311,7 +311,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="names
 <p>We may need to increase the response delay on the Arduino if you are unable to recieve a response. View the source of this function to understand how it works, but keep in mind it is untested. Also keep in mind that the function is very non-general as it always reads the same amount of bytes instead of looking for the end signal.</p>
 <dl class="section note"><dt>Note</dt><dd>While this function could be used to change dynamically between gestures instead of resetting the servos to 0, this function did not exist when this script was first written. </dd></dl>
 
-<p>Definition at line <a class="el" href="servo__demo_8py_source.html#l00239">239</a> of file <a class="el" href="servo__demo_8py_source.html">servo_demo.py</a>.</p>
+<p>Definition at line <a class="el" href="servo__demo_8py_source.html#l00241">241</a> of file <a class="el" href="servo__demo_8py_source.html">servo_demo.py</a>.</p>
 
 </div>
 </div>
@@ -366,7 +366,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="names
 <p>Sets the servos to a position, waits for input, then resets them to 0. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="namespaceservo__demo.html#ac3ae8848496e32cbb183800bee438872" title="Produces complex command chains. ">sweep()</a> <a class="el" href="namespaceservo__demo.html#a232b3c526dae62b6a2c255b5c1a2568d" title="Writes commands to the serial port. ">servowrite()</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="servo__demo_8py_source.html#l00210">210</a> of file <a class="el" href="servo__demo_8py_source.html">servo_demo.py</a>.</p>
+<p>Definition at line <a class="el" href="servo__demo_8py_source.html#l00212">212</a> of file <a class="el" href="servo__demo_8py_source.html">servo_demo.py</a>.</p>
 
 </div>
 </div>
@@ -387,7 +387,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="names
 <p>Makes a fist. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="namespaceservo__demo.html#aa720cc5af6d8851a892ea35d8d8ff004" title="Sets the servos to a position, waits for input, then resets them to 0. ">gesture()</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="servo__demo_8py_source.html#l00293">293</a> of file <a class="el" href="servo__demo_8py_source.html">servo_demo.py</a>.</p>
+<p>Definition at line <a class="el" href="servo__demo_8py_source.html#l00295">295</a> of file <a class="el" href="servo__demo_8py_source.html">servo_demo.py</a>.</p>
 
 </div>
 </div>
@@ -408,7 +408,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="names
 <p>Makes an ok sign. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="namespaceservo__demo.html#aa720cc5af6d8851a892ea35d8d8ff004" title="Sets the servos to a position, waits for input, then resets them to 0. ">gesture()</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="servo__demo_8py_source.html#l00289">289</a> of file <a class="el" href="servo__demo_8py_source.html">servo_demo.py</a>.</p>
+<p>Definition at line <a class="el" href="servo__demo_8py_source.html#l00291">291</a> of file <a class="el" href="servo__demo_8py_source.html">servo_demo.py</a>.</p>
 
 </div>
 </div>
@@ -429,7 +429,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="names
 <p>Makes a peace sign. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="namespaceservo__demo.html#aa720cc5af6d8851a892ea35d8d8ff004" title="Sets the servos to a position, waits for input, then resets them to 0. ">gesture()</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="servo__demo_8py_source.html#l00285">285</a> of file <a class="el" href="servo__demo_8py_source.html">servo_demo.py</a>.</p>
+<p>Definition at line <a class="el" href="servo__demo_8py_source.html#l00287">287</a> of file <a class="el" href="servo__demo_8py_source.html">servo_demo.py</a>.</p>
 
 </div>
 </div>
@@ -448,7 +448,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="names
 
 <p>Immediately sets the servos to 0. </p>
 
-<p>Definition at line <a class="el" href="servo__demo_8py_source.html#l00223">223</a> of file <a class="el" href="servo__demo_8py_source.html">servo_demo.py</a>.</p>
+<p>Definition at line <a class="el" href="servo__demo_8py_source.html#l00225">225</a> of file <a class="el" href="servo__demo_8py_source.html">servo_demo.py</a>.</p>
 
 </div>
 </div>
@@ -469,7 +469,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="names
 <p>Makes a rock on sign. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="namespaceservo__demo.html#aa720cc5af6d8851a892ea35d8d8ff004" title="Sets the servos to a position, waits for input, then resets them to 0. ">gesture()</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="servo__demo_8py_source.html#l00297">297</a> of file <a class="el" href="servo__demo_8py_source.html">servo_demo.py</a>.</p>
+<p>Definition at line <a class="el" href="servo__demo_8py_source.html#l00299">299</a> of file <a class="el" href="servo__demo_8py_source.html">servo_demo.py</a>.</p>
 
 </div>
 </div>
@@ -502,7 +502,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="names
 <p>Inserting a delay controls the speed of the movements.</p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="namespaceservo__demo.html#a7855c0e41103b1ec79f74694713fb9a5" title="Sets the global ser variable. ">connect()</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="servo__demo_8py_source.html#l00193">193</a> of file <a class="el" href="servo__demo_8py_source.html">servo_demo.py</a>.</p>
+<p>Definition at line <a class="el" href="servo__demo_8py_source.html#l00195">195</a> of file <a class="el" href="servo__demo_8py_source.html">servo_demo.py</a>.</p>
 
 </div>
 </div>
@@ -564,7 +564,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="names
 <dl class="section return"><dt>Returns</dt><dd>Upon success, returns the generated list of commands. The commands are surrounded by the <a class="el" href="index.html#CANCEL_SIGNAL">CANCEL_SIGNAL</a> for syncing. The servos will always reach their exact final destination, unless if <b>steps</b> at the index of the servo is 0. Upon error, raises <b>'Invalid sweep command'</b>. This indicates non-matching list lengths.</dd></dl>
 <dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;sweep ([], [1,2], [180,0], [90,180], [90,45]) </div></div><!-- fragment --> Returns <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;[CANCEL_SIGNAL, 1, 180, 2, 0, 1, 90, 2, 45, 2, 90, 2, 135, 2, 180, CANCEL_SIGNAL]</div></div><!-- fragment --> The protocol this follows is described in <a class="el" href="servo_8ino.html">servo.ino</a>. By intertwining commands in this way, a delay can be inserted between bytes and fluid motion is still preserved. </dd></dl>
 
-<p>Definition at line <a class="el" href="servo__demo_8py_source.html#l00101">101</a> of file <a class="el" href="servo__demo_8py_source.html">servo_demo.py</a>.</p>
+<p>Definition at line <a class="el" href="servo__demo_8py_source.html#l00103">103</a> of file <a class="el" href="servo__demo_8py_source.html">servo_demo.py</a>.</p>
 
 </div>
 </div>
@@ -601,7 +601,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="names
 <p>Produces a command chain that resets all servos to 0. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="namespaceservo__demo.html#ac3ae8848496e32cbb183800bee438872" title="Produces complex command chains. ">sweep()</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="servo__demo_8py_source.html#l00185">185</a> of file <a class="el" href="servo__demo_8py_source.html">servo_demo.py</a>.</p>
+<p>Definition at line <a class="el" href="servo__demo_8py_source.html#l00187">187</a> of file <a class="el" href="servo__demo_8py_source.html">servo_demo.py</a>.</p>
 
 </div>
 </div>
@@ -638,7 +638,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="names
 <p>Wiggles the fingers. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="namespaceservo__demo.html#ac3ae8848496e32cbb183800bee438872" title="Produces complex command chains. ">sweep()</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="servo__demo_8py_source.html#l00301">301</a> of file <a class="el" href="servo__demo_8py_source.html">servo_demo.py</a>.</p>
+<p>Definition at line <a class="el" href="servo__demo_8py_source.html#l00303">303</a> of file <a class="el" href="servo__demo_8py_source.html">servo_demo.py</a>.</p>
 
 </div>
 </div>
@@ -656,14 +656,14 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="names
 <p>The serial connection for input and output. </p>
 <p>Must be initialized. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="namespaceservo__demo.html#a7855c0e41103b1ec79f74694713fb9a5" title="Sets the global ser variable. ">connect()</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="servo__demo_8py_source.html#l00068">68</a> of file <a class="el" href="servo__demo_8py_source.html">servo_demo.py</a>.</p>
+<p>Definition at line <a class="el" href="servo__demo_8py_source.html#l00070">70</a> of file <a class="el" href="servo__demo_8py_source.html">servo_demo.py</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Feb 18 2016 16:10:57 for RIG InMoov Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Feb 19 2016 08:33:06 for RIG InMoov Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>
