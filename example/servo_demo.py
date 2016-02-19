@@ -1,5 +1,7 @@
 """! Documentation for the servo_demo.py script.
 An example script for controlling the right hand.
+This script can also be used to calibrate the bot. Please see @ref connect,
+@ref cmd, and @ref calibrate.
 This script requires python with a library called pyserial.
 After instally python 3, pyserial can be installed by calling
 
@@ -228,7 +230,7 @@ def cmd ():
     """! Sends the input to the serial port until a blank line is given.
     Must enter integers between 0-255.
 
-    @see @ref index
+    @see @ref Arduino
     """
     while 1:
         s = (input ())
